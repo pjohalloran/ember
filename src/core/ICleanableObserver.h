@@ -1,15 +1,12 @@
 #pragma once
-#ifndef GF_I_CLEANABLE_OBSERVER_H
-#define GF_I_CLEANABLE_OBSERVER_H
+#ifndef __EMBER_I_CLEANABLE_OBSERVER_H
+#define __EMBER_I_CLEANABLE_OBSERVER_H
 
-// /////////////////////////////////////////////////////////////////
-// @file ICleanableObserver.h
-// @author PJ O Halloran
-// @date 26/11/2011
-//
-// Contains the ICleanableObserver interface.
-//
-// /////////////////////////////////////////////////////////////////
+/*
+ * @file ICleanableObserver.h
+ * @author PJ O Halloran
+ * @date 14/12/2016
+ */
 
 #include "ICleanable.h"
 
@@ -17,27 +14,11 @@ namespace ember
 {
 	namespace core
 	{
-		// /////////////////////////////////////////////////////////////////
-		// @class ICleanableObserver
-		// @author PJ O Halloran.
-		//
-		// Cleanable Observer base interface.
-		//
-		// /////////////////////////////////////////////////////////////////
 		class ICleanableObserver
 		{
 			public:
-			
-				// /////////////////////////////////////////////////////////////////
-				//
-				//
-				// /////////////////////////////////////////////////////////////////
 				virtual ~ICleanableObserver() {};
 				
-				// /////////////////////////////////////////////////////////////////
-				// Interface for dependants to notify this observer that it has changed.
-				//
-				// /////////////////////////////////////////////////////////////////
 				virtual void VNotifyDirty( ICleanable *ptr ) = 0;
 		};
 	}
