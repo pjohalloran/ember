@@ -12,7 +12,7 @@ solution "ember-test"
    project "ember-test"
       kind "ConsoleApp"
       language "C++"
-      files { "../src/**.h", "../src/**.cpp" }
+      files { "../../src/**.h", "../../src/**.cpp" }
 
       configuration "Debug"
          defines { "DEBUG" }
