@@ -1,0 +1,6 @@
+[requires]
+PremakeGen@0.1@memsharded/testing
+glfw/3.2.1@R3v3nX/testing
+
+[generators]
+Premake
