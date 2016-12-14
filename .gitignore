@@ -11,3 +11,4 @@
 
 projects/premake/conanpremake.lua
 projects/conan/conaninfo.txt
+projects/premake/generated_project

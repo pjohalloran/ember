@@ -7,6 +7,7 @@ local_src_dir = "../../src/"
 local_ember_test_dir = local_src_dir .. "ember-test"
 local_include_dir = "../../include/"
 local_lib_dir = "../../libs/"
+local_bin_dir = "../../bin/"
 generated_project_dir = "generated_project"
 
 -- A solution contains projects, and defines the available configurations
@@ -28,6 +29,7 @@ solution "ember"
    {
       conan_libs
    }
+   location(generated_project_dir)
 
    project "libember"
       kind "StaticLib"
@@ -86,6 +88,11 @@ solution "ember"
          {
             "Symbols"
          }
+         libdirs
+         {
+            local_lib_dir .. "debug"
+         }
+         targetdir (local_bin_dir .. "debug")
       configuration "Release"
          defines
          {
@@ -95,3 +102,8 @@ solution "ember"
          {
             "Optimize"
          }
+         libdirs
+         {
+            local_lib_dir .. "release"
+         }
+         targetdir (local_bin_dir .. "release")
