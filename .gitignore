@@ -8,3 +8,6 @@
 *.log
 *.a
 *.orig
+
+projects/premake/conanpremake.lua
+projects/conan/conaninfo.txt
