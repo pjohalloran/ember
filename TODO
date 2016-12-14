@@ -4,6 +4,12 @@
 
 - Add initial configs for these.
 
+- Make simple demo opening a window & gl context.
+	- Ability to clone and script installation of initial 3rd party dependancies.
+	- premake scripts that generate xcode & VS project files.
+	- minimal src added from gameframework.
+	- demo app that opens a gl window with nothing in it.
+
 - List 3rd party libs i want to include initially.
 	- glfw?
 	- sdl?
@@ -42,7 +48,7 @@
 	- Reloading of assets and scripts without restart.
 	- Lua scripting with standard lua lib only.
 	- Coroutines and task orientated threading system.
-	- Fully features 3D math (add quaternions, raycasting)
+	- Fully featured 3D math lib (add quaternions, raycasting)
 	- Fast & performant opengl rendering.
 	- Explore rendering and shader techniques.
 	- Expose tools with ingame editor.
@@ -66,10 +72,3 @@
 	- datastructures
 	- memory
 	- shaders
-
-- Make simple demo opening a window & gl context.
-	- Ability to clone and script installation of initial 3rd party dependancies.
-	- premake scripts that generate xcode & VS project files.
-	- minimal src added from gameframework.
-	- demo app that opens a gl window with nothing in it.
-

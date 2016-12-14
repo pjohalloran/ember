@@ -107,3 +107,11 @@ solution "ember"
             local_lib_dir .. "release"
          }
          targetdir (local_bin_dir .. "release")
+      configuration "macosx"
+         links
+         {
+            "OpenGL.framework",
+            "Cocoa.framework",
+            "IOKit.framework",
+            "CoreVideo.framework"
+         }
