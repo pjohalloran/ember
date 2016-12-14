@@ -15,9 +15,27 @@
 [DONE]
 
 - List 3rd party libs i want to include initially.
-	- glfw?
-	- sdl?
+	- glfw
 	- opengl
+[DONE]
+
+- Bring over gameframework code i still like.
+	- Math
+	- premake scripts
+	- fileio (some)
+	- gamebase (some)
+	- graphics (some)
+
+- Look at other gameframework code i could bring over with a rethink
+	- physics
+	- graphics
+	- eventmanager
+	- scripting
+	- resourcecache
+	- sound
+	- datastructures
+	- memory
+	- shaders
 
 - List 3rd party libs i want to research including
 	- bullet
@@ -58,21 +76,3 @@
 	- Expose tools with ingame editor.
 	- Write more tools in addition to glsl compiler.
 	- Component based system.
-
-- Bring over gameframework code i still like.
-	- Math
-	- premake scripts
-	- fileio (some)
-	- gamebase (some)
-	- graphics (some)
-
-- Look at other gameframework code i could bring over with a rethink
-	- physics
-	- graphics
-	- eventmanager
-	- scripting
-	- resourcecache
-	- sound
-	- datastructures
-	- memory
-	- shaders
