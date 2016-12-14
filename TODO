@@ -1,0 +1,75 @@
+- Research conan package manager.
+
+- Research premake4.
+
+- Add initial configs for these.
+
+- List 3rd party libs i want to include initially.
+	- glfw?
+	- sdl?
+	- opengl
+
+- List 3rd party libs i want to research including
+	- bullet
+	- lua
+	- openal
+	- (or) SoLoud
+	- imgui
+	- flextgl (instead of glew)
+	- whereami
+	- convertutf
+	- gliml
+	- Remotery
+	- unittest++
+	- libcurl
+	- stb headers
+	- enkiTS
+	- imguizmo
+	- tinycthread
+	- clReflect
+
+- List goals of the codebase
+	- Desktop only. Run equally as well on OSX and Windows.
+	- Simplicity.
+	- Performance. Data orientated priority 1.
+	- Integrates with minimal and useful 3rd party libs installed with conan package manager.
+	- 3rd party Header files preferred, static libs at a stretch, no dynamic libs (except opengl).
+	- 3rdParty libs hidden away behind abstractions, only called directly if they are understandable.
+	- C/C++ but no exceptions, no deep object hierarchys in critical parts, minimal classes.
+
+- List features i want and/or things i want to do:
+	- In engine editor with imgui.
+	- Reloading of assets and scripts without restart.
+	- Lua scripting with standard lua lib only.
+	- Coroutines and task orientated threading system.
+	- Fully features 3D math (add quaternions, raycasting)
+	- Fast & performant opengl rendering.
+	- Explore rendering and shader techniques.
+	- Expose tools with ingame editor.
+	- Write more tools in addition to glsl compiler.
+	- Component based system.
+
+- Bring over gameframework code i still like.
+	- Math
+	- premake scripts
+	- fileio (some)
+	- gamebase (some)
+	- graphics (some)
+
+- Look at other gameframework code i could bring over with a rethink
+	- physics
+	- graphics
+	- eventmanager
+	- scripting
+	- resourcecache
+	- sound
+	- datastructures
+	- memory
+	- shaders
+
+- Make simple demo opening a window & gl context.
+	- Ability to clone and script installation of initial 3rd party dependancies.
+	- premake scripts that generate xcode & VS project files.
+	- minimal src added from gameframework.
+	- demo app that opens a gl window with nothing in it.
+
