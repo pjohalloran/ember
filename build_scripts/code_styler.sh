@@ -22,7 +22,7 @@ function style_files {
 	if [ ! -d $1 ]; then
 		should_style_file $file
 		if [ $? -eq 0 ]; then
-			astyle $file --options=${ASTYLE_CONFIG_FILE}
+			astyle $file --options=${ASTYLE_CONFIG_FILE} -n
 		fi
 	elif [ -d $1 ]; then
 		for file in $1/*; do
