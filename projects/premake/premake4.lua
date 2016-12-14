@@ -19,7 +19,8 @@ solution "ember"
    }
    includedirs
    {
-      conan_includedirs
+      conan_includedirs,
+      local_includes_dir
    }
    libdirs
    {
@@ -66,6 +67,10 @@ solution "ember"
          }
          targetdir (local_lib_dir .. "release")
       configuration "macosx"
+         defines
+         {
+            "TARGET_OS_MAC"
+         }
          prebuildcommands 
          {
             "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. local_src_dir .. " ../" .. local_includes_dir
@@ -77,10 +82,6 @@ solution "ember"
       links
       {
          "libember"
-      }
-      includedirs
-      {
-         local_includes_dir
       }
       files
       {
@@ -117,6 +118,10 @@ solution "ember"
          }
          targetdir (local_bin_dir .. "release")
       configuration "macosx"
+         defines
+         {
+            "TARGET_OS_MAC"
+         }
          links
          {
             "OpenGL.framework",

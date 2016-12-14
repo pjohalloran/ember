@@ -1,5 +1,7 @@
 #include <GLFW/glfw3.h>
 
+//#include "core/GamePlatform.h"
+
 int main( void )
 {
 	GLFWwindow *window;

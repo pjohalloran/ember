@@ -50,10 +50,10 @@
 	
 	#ifdef __APPLE__
 		#include <TargetConditionals.h>
-		#include <GL/glew.h>
+		//#include <GL/glew.h>
 		#include <OpenGL/gl.h>
 		#include <OpenGL/glext.h>
-		#include <GL/glfw3.h>
+		#include <GLFW/glfw3.h>
 		#define GLFW_FUNC_PRE GLFWAPI
 	#endif
 	
