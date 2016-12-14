@@ -68,7 +68,7 @@ solution "ember"
       configuration "macosx"
          prebuildcommands 
          {
-            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. local_src_dir .. " " .. local_includes_dir
+            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. local_src_dir .. " ../" .. local_includes_dir
          }
 
    project "ember-test"
