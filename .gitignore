@@ -1,0 +1,10 @@
+/include
+/obj
+/bin
+*.suo
+*.sdf
+*.sln
+/log
+*.log
+*.a
+*.orig
