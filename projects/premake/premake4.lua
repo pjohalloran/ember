@@ -5,7 +5,7 @@ require 'conanpremake'
 -- Directory variables.
 local_src_dir = "../../src/"
 local_ember_test_dir = local_src_dir .. "ember-test"
-local_include_dir = "../../include/"
+local_includes_dir = "../../includes/"
 local_lib_dir = "../../libs/"
 local_bin_dir = "../../bin/"
 generated_project_dir = "generated_project"
@@ -65,6 +65,11 @@ solution "ember"
             "Optimize"
          }
          targetdir (local_lib_dir .. "release")
+      configuration "macosx"
+         prebuildcommands 
+         {
+            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. local_src_dir .. " " .. local_includes_dir
+         }
 
    project "ember-test"
       kind "ConsoleApp"
@@ -72,6 +77,10 @@ solution "ember"
       links
       {
          "libember"
+      }
+      includedirs
+      {
+         local_includes_dir
       }
       files
       {
