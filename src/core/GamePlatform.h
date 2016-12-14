@@ -50,6 +50,7 @@
 	
 	#ifdef __APPLE__
 		#include <TargetConditionals.h>
+		// TODO Am i using GLEW?
 		//#include <GL/glew.h>
 		#include <OpenGL/gl.h>
 		#include <OpenGL/glext.h>
