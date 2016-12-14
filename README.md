@@ -5,7 +5,8 @@ Hobbiyst game programming experiments.
 - conan package manager (for all third party dependancies). http://conan.io/
 - premake4 (for project generation) http://premake.github.io/
 
-## To begin on OSX
+## To begin on OSX 
+- [OPTIONAL] Install homebrew. http://brew.sh/
 - Install conan package manager. On OSX, you can use homebrew. `brew install conan`.
 - Install premake4. `brew install premake`
 - To install and build all third party dependancies `. build_scripts\build_dependancies.sh`
