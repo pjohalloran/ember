@@ -2,20 +2,15 @@
 
 require 'conanpremake'
 
--- Project names
-ember = "ember"
-libember = "libember"
-ember_test = "ember-test"
-
 -- Directory variables.
 local_src_dir = "../../src/"
-local_ember_test_dir = local_src_dir .. ember_test
+local_ember_test_dir = local_src_dir .. "ember-test"
 local_include_dir = "../../include/"
 local_lib_dir = "../../libs/"
 generated_project_dir = "generated_project"
 
 -- A solution contains projects, and defines the available configurations
-solution ember
+solution "ember"
    configurations
    {
       "Debug",
@@ -34,7 +29,7 @@ solution ember
       conan_libs
    }
 
-   project libember
+   project "libember"
       kind "StaticLib"
       language "C++"
       files
@@ -69,12 +64,12 @@ solution ember
          }
          targetdir (local_lib_dir .. "release")
 
-   project ember_test
+   project "ember-test"
       kind "ConsoleApp"
       language "C++"
       links
       {
-         libember
+         "libember"
       }
       files
       {

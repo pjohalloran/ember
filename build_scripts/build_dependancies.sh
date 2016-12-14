@@ -10,21 +10,21 @@ conan install --build outdated --file "${CONAN_DIR}${CONAN_FILENAME}"
 
 if [ $? -ne 0 ]; then
 	echo "[FAILED] Installing dependancies"
-	exit 1
+	return 1
 fi
 
 mv -f "${PREMAKE_CONAN_FILE}" "${PREMAKE_DIR}"
 
 if [ $? -ne 0 ]; then
 	echo "[FAILED] copying premake dependancies"
-	exit 1
+	return 1
 fi
 
 mv -f "${CONAN_INFO_FILE}" "${CONAN_DIR}"
 
 if [ $? -ne 0 ]; then
 	echo "[FAILED] Copying conaninfo"
-	exit 1
+	return 1
 fi
 
 echo "[SUCCESS]"

@@ -9,7 +9,7 @@ premake4 xcode4
 if [ $? -ne 0 ]; then
 	echo "[FAILED] generating project"
 	popd
-	exit 1
+	return 1
 fi
 
 popd
