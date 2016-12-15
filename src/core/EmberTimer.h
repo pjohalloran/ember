@@ -8,8 +8,7 @@
  * @date 14/12/2016
  */
 
-// TODO used to be GameBase.h
-#include "EmberTypes.h"
+#include "Ember.h"
 
 namespace ember
 {
