@@ -3,14 +3,14 @@
 #define __EMBER_ENDIAN_CONV_H
 
 /*
- * @file GameEndianConv.h
+ * @file EmberEndianConv.h
  * @author PJ O Halloran
  * @date 14/12/2016
  *
  * Utility functions for endianness conversion.
  */
 
-#include "GameTypes.h"
+#include "EmberTypes.h"
 
 namespace ember
 {

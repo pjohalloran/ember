@@ -3,7 +3,7 @@
 #define __EMBER_PLATFORM_H
 
 /*
- * @file GamePlatform.h
+ * @file EmberPlatform.h
  * @author PJ O Halloran
  * @date 14/12/2016
  *
@@ -13,7 +13,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include "GameTypes.h"
+#include "EmberTypes.h"
 
 #if _WINDOWS
 #include <windows.h>

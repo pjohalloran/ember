@@ -4,7 +4,7 @@
  * @date 14/12/2016
  */
 
-#include "Timer.h"
+#include "EmberTimer.h"
 
 namespace ember
 {

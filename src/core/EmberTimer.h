@@ -9,7 +9,7 @@
  */
 
 // TODO used to be GameBase.h
-#include "GameTypes.h"
+#include "EmberTypes.h"
 
 namespace ember
 {

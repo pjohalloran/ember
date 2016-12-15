@@ -3,7 +3,7 @@
 #define __EMBER_GAME_TYPES_H
 
 /*
- * @file GameTypes.h
+ * @file EmberTypes.h
  * @author PJ O Halloran
  * @date 14/12/2016
  *
