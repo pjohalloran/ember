@@ -3,7 +3,7 @@
 #define __EMBER_TIMER_H
 
 /*
- * @file Timer.h
+ * @file EmberTimer.h
  * @author PJ O Halloran
  * @date 14/12/2016
  */
