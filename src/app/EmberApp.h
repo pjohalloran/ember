@@ -28,22 +28,22 @@ namespace ember
 				
 			protected:
 			
-                virtual bool VInitializeSystems();
+				virtual bool VInitializeSystems();
 				
-            virtual void VPollInput();
+				virtual void VPollInput();
 				
-            virtual void VUpdate();
+				virtual void VUpdate();
 				
-            virtual void VRender();
+				virtual void VRender();
 				
 			public:
 			
-            EmberApp();
-            virtual ~EmberApp();
+				EmberApp();
+				virtual ~EmberApp();
 				
-            bool Initialize();
-            
-            void Run();
+				bool Initialize();
+				
+				void Run();
 				
 		};
 		
