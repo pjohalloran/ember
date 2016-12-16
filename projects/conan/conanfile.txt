@@ -1,7 +1,7 @@
 [requires]
 PremakeGen@0.1@memsharded/testing
 glfw/3.2.1@R3v3nX/testing
-loguru/0.1@pjohalloran/testing
+loguru/1.0@pjohalloran/testing
 
 [generators]
 Premake

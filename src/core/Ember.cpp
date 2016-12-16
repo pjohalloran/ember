@@ -89,7 +89,7 @@ namespace ember
 			
 			if ( err != GL_NO_ERROR )
 			{
-				GF_LOG_ERR( GetOpenGLError( err ) );
+				//GF_LOG_ERR( GetOpenGLError( err ) );
 			}
 			
 			return err == GL_NO_ERROR;
@@ -105,7 +105,7 @@ namespace ember
 			
 			if ( err != GL_NO_ERROR )
 			{
-				GF_LOG_ERR( msg + GetOpenGLError( err ) );
+				//GF_LOG_ERR( msg + GetOpenGLError( err ) );
 			}
 			
 			return err == GL_NO_ERROR;

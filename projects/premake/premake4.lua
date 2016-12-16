@@ -30,6 +30,10 @@ solution "ember"
    {
       conan_libs
    }
+   buildoptions
+   {
+      conan_cppflags
+   }
    location(generated_project_dir)
 
    project "libember"
@@ -46,6 +50,10 @@ solution "ember"
          local_ember_test_dir .. "**.cpp"
       }
       location(generated_project_dir)
+      linkoptions
+      {
+         conan_sharedlinkflags
+      }
       configuration "Debug"
          defines
          {
@@ -82,6 +90,10 @@ solution "ember"
       links
       {
          "libember"
+      }
+      linkoptions
+      {
+         conan_exelinkflags
       }
       files
       {
@@ -121,11 +133,4 @@ solution "ember"
          defines
          {
             "TARGET_OS_MAC"
-         }
-         links
-         {
-            "OpenGL.framework",
-            "Cocoa.framework",
-            "IOKit.framework",
-            "CoreVideo.framework"
          }
