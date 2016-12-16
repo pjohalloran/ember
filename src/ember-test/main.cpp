@@ -1,8 +1,6 @@
 #include <GLFW/glfw3.h>
 
-//#include "core/GamePlatform.h"
-#define LOGURU_IMPLEMENTATION 1
-#include <loguru.hpp>
+#include "core/Ember.h"
 
 int get_log_level();
 void test_loguru( int argc, char **argv );

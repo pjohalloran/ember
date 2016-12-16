@@ -5,7 +5,6 @@
  */
 
 #include "Ember.h"
-// #include "GameMain.h"
 
 namespace ember
 {
@@ -87,10 +86,7 @@ namespace ember
 			#if DEBUG
 			GLenum err = glGetError();
 			
-			if ( err != GL_NO_ERROR )
-			{
-				//GF_LOG_ERR( GetOpenGLError( err ) );
-			}
+			LOG_IF_F( ERROR, err != GL_NO_ERROR, GetOpenGLError( err ).c_str() );
 			
 			return err == GL_NO_ERROR;
 			#else
@@ -103,10 +99,7 @@ namespace ember
 			#if DEBUG
 			GLenum err = glGetError();
 			
-			if ( err != GL_NO_ERROR )
-			{
-				//GF_LOG_ERR( msg + GetOpenGLError( err ) );
-			}
+			LOG_IF_F( ERROR, err != GL_NO_ERROR, ( msg + GetOpenGLError( err ) ).c_str() );
 			
 			return err == GL_NO_ERROR;
 			#else

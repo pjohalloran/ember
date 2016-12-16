@@ -20,8 +20,10 @@
 #include "EmberTypes.h"
 #include "EmberPlatform.h"
 
+#define LOGURU_IMPLEMENTATION 1
+#include <loguru.hpp>
+
 // TODO include these ?
-// #include "GameLog.h"
 // #include <boost/shared_ptr.hpp>
 
 namespace ember
