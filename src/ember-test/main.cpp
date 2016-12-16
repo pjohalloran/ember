@@ -1,12 +1,17 @@
 #include <GLFW/glfw3.h>
 
 #include "core/Ember.h"
+#include "app/EmberApp.h"
 
 int get_log_level();
 void test_loguru( int argc, char **argv );
 
 int main( int argc, char **argv )
 {
+	using namespace ember::app;
+	
+	EmberApp *app = new EmberApp();
+	
 	test_loguru( argc, argv );
 	
 	GLFWwindow *window;

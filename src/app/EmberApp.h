@@ -18,7 +18,7 @@ namespace ember
 	namespace app
 	{
 	
-		using ember::core;
+		using namespace ember::core;
 		
 		class EmberApp
 		{
@@ -30,7 +30,7 @@ namespace ember
 				
 			protected:
 			
-				virtual void InitializeSystems() { }
+				virtual void VInitializeSystems() { }
 				
 				virtual void VPollInput() { }
 				

@@ -14,7 +14,7 @@ namespace ember
 {
 	namespace app
 	{
-		using ember::core;
+		using namespace ember::core;
 		
 		class AbstractSystem
 		{
