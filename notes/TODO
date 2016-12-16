@@ -1,6 +1,5 @@
 - Bring over gameframework code i still like.
 	- Math
-	- premake scripts
 	- fileio (some)
 	- gamebase (some)
 	- graphics (some)
