@@ -11,7 +11,7 @@ local_bin_dir = "../../bin/"
 generated_project_dir = "generated_project"
 
 -- A solution contains projects, and defines the available configurations
-solution "ember"
+solution "ember-engine"
    configurations
    {
       "Debug",
@@ -36,7 +36,7 @@ solution "ember"
    }
    location(generated_project_dir)
 
-   project "libember"
+   project "ember"
       kind "StaticLib"
       language "C++"
       files
@@ -89,7 +89,7 @@ solution "ember"
       language "C++"
       links
       {
-         "libember"
+         "ember"
       }
       linkoptions
       {

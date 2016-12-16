@@ -11,6 +11,10 @@ int main( int argc, char **argv )
 	using namespace ember::app;
 	
 	EmberApp *app = new EmberApp();
+    
+    app->Initialize();
+    
+    app->Run();
 	
 	test_loguru( argc, argv );
 	

@@ -26,27 +26,24 @@ namespace ember
 			
 				std::vector<AbstractSystem> _systems;
 				
-				void MainLoop();
-				
 			protected:
 			
-				virtual void VInitializeSystems() { }
+                virtual bool VInitializeSystems();
 				
-				virtual void VPollInput() { }
+            virtual void VPollInput();
 				
-				virtual void VUpdate() { }
+            virtual void VUpdate();
 				
-				virtual void VRender() { }
+            virtual void VRender();
 				
 			public:
 			
-				EmberApp() { }
-				virtual ~EmberApp() { }
+            EmberApp();
+            virtual ~EmberApp();
 				
-				bool Initialize()
-				{
-					return false;
-				}
+            bool Initialize();
+            
+            void Run();
 				
 		};
 		
