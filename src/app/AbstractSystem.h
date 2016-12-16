@@ -22,12 +22,24 @@ namespace ember
 			
 				I32 _id;
 				I32 _priority;
+				bool _initialized;
 				
 			public:
 			
-				AbstractSystem( int id, int priority ) : _id( id ), _priority( priority ) { }
+				AbstractSystem( int id, int priority ) : _id( id ), _priority( priority )
+				{
+					_initialized = false;
+				}
 				
-				virtual void VInitialize() = 0;
+				virtual ~AbstractSystem() {};
+				
+				virtual bool VInitialize() = 0;
+				virtual bool VShutdown() = 0;
+				
+				bool Initialized() const
+				{
+					return _initialized;
+				}
 				
 				I32 GetPriority() const
 				{
