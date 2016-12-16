@@ -17,14 +17,11 @@ namespace ember
 {
 	namespace app
 	{
-	
-		using namespace ember::core;
-		
 		class EmberApp
 		{
 			private:
 			
-				std::vector<AbstractSystem> _systems;
+				std::vector<AbstractSystem *> _systems;
 				
 			protected:
 			

@@ -20,7 +20,6 @@
 #include "EmberTypes.h"
 #include "EmberPlatform.h"
 
-#define LOGURU_IMPLEMENTATION 1
 #include <loguru.hpp>
 
 // TODO include these ?

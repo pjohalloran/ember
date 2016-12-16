@@ -12,10 +12,13 @@ namespace ember
 	{
 		using namespace ember::core;
 		
+		// Initialize the global, extern game application pointer.
+		EmberApp *g_appPtr = NULL;
+		
 		EmberApp::EmberApp()
 		{
 			g_appPtr = this;
-			
+			LOG_F( INFO, "EmberApp() done" );
 		}
 		
 		EmberApp::~EmberApp()
@@ -25,12 +28,16 @@ namespace ember
 		
 		bool EmberApp::Initialize()
 		{
-			return false;
+			return VInitializeSystems();
 		}
 		
 		void EmberApp::Run()
 		{
-		
+			VPollInput();
+			
+			VUpdate();
+			
+			VRender();
 		}
 		
 		bool EmberApp::VInitializeSystems()

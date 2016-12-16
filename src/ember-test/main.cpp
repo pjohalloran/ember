@@ -1,6 +1,6 @@
 #include <GLFW/glfw3.h>
 
-#include "core/Ember.h"
+#define LOGURU_IMPLEMENTATION 1
 #include "app/EmberApp.h"
 
 int get_log_level();
@@ -8,15 +8,15 @@ void test_loguru( int argc, char **argv );
 
 int main( int argc, char **argv )
 {
+	test_loguru( argc, argv );
+	
 	using namespace ember::app;
 	
 	EmberApp *app = new EmberApp();
-	
 	app->Initialize();
-	
 	app->Run();
-	
-	test_loguru( argc, argv );
+	delete app;
+	app = nullptr;
 	
 	GLFWwindow *window;
 	
