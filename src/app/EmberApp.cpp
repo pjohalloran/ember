@@ -15,17 +15,18 @@ namespace ember
 		using namespace ember::core;
 		
 		// Initialize the global, extern game application pointer.
-		EmberApp *g_appPtr = NULL;
+		EmberApp *Application = NULL;
 		
-		EmberApp::EmberApp() : _systems()
+		EmberApp::EmberApp() : _systems(), _windowSystem( nullptr )
 		{
-			g_appPtr = this;
+			Application = this;
+			
 			LOG_F( INFO, "EmberApp() done" );
 		}
 		
 		EmberApp::~EmberApp()
 		{
-			for ( U32 i = 0, size = _systems.size(); i < size; ++i )
+			for ( U32 i = _systems.size() - 1; i != 0; --i )
 			{
 				if ( _systems[i] != nullptr )
 				{
@@ -37,7 +38,7 @@ namespace ember
 			
 			_systems.clear();
 			
-			g_appPtr = nullptr;
+			Application = nullptr;
 		}
 		
 		bool EmberApp::Initialize()
@@ -47,25 +48,29 @@ namespace ember
 		
 		void EmberApp::Run()
 		{
-			VPollInput();
-			
-			VUpdate();
-			
-			VRender();
+			while ( !glfwWindowShouldClose( _windowSystem->GetWindow() ) )
+			{
+				_windowSystem->PollEvents();
+				
+				VUpdate();
+				
+				VRender();
+			}
 		}
 		
 		bool EmberApp::VInitializeSystems()
 		{
+			// TODO: Make data driven.
+			
 			AbstractSystem *loggingSystem = new LoggingSystem( 0, 1 );
 			loggingSystem->VInitialize();
 			_systems.push_back( loggingSystem );
 			
+			_windowSystem = new WindowSystem( 1, 2 );
+			_windowSystem->VInitialize();
+			_systems.push_back( _windowSystem );
+			
 			return false;
-		}
-		
-		void EmberApp::VPollInput()
-		{
-		
 		}
 		
 		void EmberApp::VUpdate()
@@ -75,7 +80,11 @@ namespace ember
 		
 		void EmberApp::VRender()
 		{
-		
+			glClear( GL_COLOR_BUFFER_BIT );
+			
+			_windowSystem->SwapBuffers();
+			
+			// TODO: Rendering
 		}
 	}
 }

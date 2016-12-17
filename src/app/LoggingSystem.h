@@ -17,7 +17,7 @@ namespace ember
 		{
 			public:
 				LoggingSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ) { };
-				virtual ~LoggingSystem();
+				virtual ~LoggingSystem() { }
 				
 				virtual bool VInitialize();
 				virtual bool VShutdown();

@@ -12,22 +12,24 @@
 
 #include "core/Ember.h"
 #include "app/AbstractSystem.h"
+#include "app/WindowSystem.h"
 
 namespace ember
 {
 	namespace app
 	{
+		using namespace ember::core;
+		
 		class EmberApp
 		{
 			private:
 			
 				std::vector<AbstractSystem *> _systems;
+				WindowSystem *_windowSystem;
 				
 			protected:
 			
 				virtual bool VInitializeSystems();
-				
-				virtual void VPollInput();
 				
 				virtual void VUpdate();
 				
@@ -44,7 +46,7 @@ namespace ember
 				
 		};
 		
-		extern EmberApp *g_appPtr;
+		extern EmberApp *Application;
 	}
 }
 

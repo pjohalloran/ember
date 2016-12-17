@@ -22,31 +22,37 @@ namespace ember
 			
 				I32 _id;
 				I32 _priority;
+				
+			protected:
+			
 				bool _initialized;
 				
 			public:
 			
-				AbstractSystem( int id, int priority ) : _id( id ), _priority( priority )
-				{
-					_initialized = false;
-				}
+				AbstractSystem( int id, int priority ) : _id( id ), _priority( priority ), _initialized( false ) { }
 				
-				virtual ~AbstractSystem() {};
+				virtual ~AbstractSystem()
+				{
+					if ( VInitialized() )
+					{
+						VShutdown();
+					}
+				}
 				
 				virtual bool VInitialize() = 0;
 				virtual bool VShutdown() = 0;
 				
-				bool Initialized() const
+				virtual bool VInitialized() const
 				{
 					return _initialized;
 				}
 				
-				I32 GetPriority() const
+				inline I32 GetPriority() const
 				{
 					return _priority;
 				}
 				
-				I32 GetId() const
+				inline I32 GetId() const
 				{
 					return _id;
 				}
