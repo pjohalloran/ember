@@ -12,17 +12,11 @@ namespace ember
 {
 	namespace app
 	{
-		LoggingSystem::~LoggingSystem()
-		{
-			if ( Initialized() )
-			{
-				VShutdown();
-			}
-		}
+		using namespace ember::core;
 		
 		bool LoggingSystem::VInitialize()
 		{
-			if ( Initialized() )
+			if ( VInitialized() )
 			{
 				LOG_F( WARNING, "Tried to intialize logging system when already running!" );
 				return true;
@@ -32,7 +26,7 @@ namespace ember
 			std::string arg0( "ember-test\0" );
 			std::string arg1( "-v\0" );
 			std::string arg2( "1\0" );
-			int c = 3;
+			I32 c = 3;
 			char **args = new char *[3];
 			args[0] = ( char * )arg0.c_str();
 			args[1] = ( char * )arg1.c_str();
@@ -50,7 +44,7 @@ namespace ember
 		
 		bool LoggingSystem::VShutdown()
 		{
-			if ( !Initialized() )
+			if ( !VInitialized() )
 			{
 				// no logging system to log warning to in this case.
 				return true;
