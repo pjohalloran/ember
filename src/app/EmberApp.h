@@ -33,6 +33,8 @@ namespace ember
 				TimeSystem *_timeSystem;
 				InputSystem *_inputSystem;
 				
+				void Sleep( F64 seconds );
+				
 			protected:
 			
 				virtual bool VInitializeSystems();

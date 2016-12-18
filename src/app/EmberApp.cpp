@@ -5,6 +5,8 @@
  */
 
 #include <algorithm>
+#include <chrono>
+#include <thread>
 
 #include "core/EmberTimer.h"
 
@@ -70,13 +72,28 @@ namespace ember
 			return VInitializeSystems();
 		}
 		
+		void EmberApp::Sleep( F64 seconds )
+		{
+			std::this_thread::sleep_for( std::chrono::duration<F64>( seconds ) );
+			LOG_F( INFO, "App Sleep for %f s on frame %ul", seconds, Time()->FrameCount() );
+		}
+		
 		void EmberApp::Run()
 		{
+			F64 targetFrameRateTime = 1.0 / 30; // TMP
+			
 			while ( !_windowSystem->IsClosing() )
 			{
 				VUpdate();
 				
 				VRender();
+				
+				F64 timeToSleep = targetFrameRateTime - Time()->TimeSinceFrameStart();
+				
+				if ( timeToSleep > 0.0 )
+				{
+					Sleep( timeToSleep );
+				}
 			}
 		}
 		
