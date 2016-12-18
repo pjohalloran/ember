@@ -17,12 +17,14 @@ namespace ember
 		
 		using namespace ember::core;
 		
+		static const F32 DPI = 25.4;
+		
 		bool WindowSystem::VInitialize()
 		{
 			if ( VInitialized() )
 			{
 				LOG_F( WARNING, "Tried to intialize window system when already running!" );
-				return true;
+				return false;
 			}
 			
 			glfwSetErrorCallback( glfw_error_callback );
@@ -33,7 +35,36 @@ namespace ember
 				return false;
 			}
 			
-			_window = glfwCreateWindow( 640, 480, "Hello World", NULL, NULL );
+			GLFWmonitor *monitor = glfwGetPrimaryMonitor();
+			
+			if ( !monitor )
+			{
+				LOG_F( ERROR, "Failed to get the primary monitor" );
+				return false;
+			}
+			
+			const GLFWvidmode *mode = glfwGetVideoMode( monitor );
+			
+			if ( !mode )
+			{
+				LOG_F( ERROR, "Failed to get the primary monitor's video mode" );
+				return false;
+			}
+			
+			glfwWindowHint( GLFW_RED_BITS, mode->redBits );
+			glfwWindowHint( GLFW_GREEN_BITS, mode->greenBits );
+			glfwWindowHint( GLFW_BLUE_BITS, mode->blueBits );
+			glfwWindowHint( GLFW_REFRESH_RATE, mode->refreshRate );
+			glfwWindowHint( GLFW_DOUBLEBUFFER, GLFW_TRUE );
+			glfwWindowHint( GLFW_CLIENT_API, GLFW_OPENGL_API );
+			glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
+			glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 1 );
+			glfwWindowHint( GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE );
+			glfwWindowHint( GLFW_OPENGL_DEBUG_CONTEXT, GLFW_FALSE );
+			glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+			
+			//_window = glfwCreateWindow( mode->width, mode->height, "ember", monitor, NULL );
+			_window = glfwCreateWindow( mode->width, mode->height, "ember", NULL, NULL );
 			
 			if ( !_window )
 			{
@@ -55,16 +86,94 @@ namespace ember
 			if ( !VInitialized() )
 			{
 				LOG_F( WARNING, "Tried to shutdown window system but is not yet initialized" );
-				return true;
+				return false;
 			}
+			
+			glfwDestroyWindow( _window );
+			_window = nullptr;
 			
 			glfwTerminate();
 			glfwSetErrorCallback( nullptr );
 			
-			_window = nullptr;
 			_initialized = false;
 			
 			LOG_F( INFO, "Window system shut down" );
+			
+			return true;
+		}
+		
+		bool WindowSystem::IsClosing() const
+		{
+			if ( !VInitialized() )
+			{
+				LOG_F( WARNING, "Tried to shutdown window system but is not yet initialized" );
+				return false;
+			}
+			
+			return glfwWindowShouldClose( _window ) == GLFW_TRUE;
+		}
+		
+		bool WindowSystem::GetWindowSize( Vector2 &dim ) const
+		{
+			if ( !VInitialized() )
+			{
+				LOG_F( WARNING, "Window system needs to be initialized before use." );
+				return false;
+			}
+			
+			int w, h;
+			glfwGetWindowSize( _window, &w, &h );
+			
+			dim.x = ( F32 )w;
+			dim.y = ( F32 )h;
+			
+			return true;
+		}
+		
+		bool WindowSystem::GetFrameBufferSize( Vector2 &dim ) const
+		{
+			if ( !VInitialized() )
+			{
+				LOG_F( WARNING, "Window system needs to be initialized before use." );
+				return false;
+			}
+			
+			int w, h;
+			glfwGetFramebufferSize( _window, &w, &h );
+			
+			dim.x = ( F32 )w;
+			dim.y = ( F32 )h;
+			
+			return true;
+		}
+		
+		bool WindowSystem::GetDpi( int &dpi ) const
+		{
+			if ( !VInitialized() )
+			{
+				LOG_F( WARNING, "Window system needs to be initialized before use." );
+				return false;
+			}
+			
+			GLFWmonitor *monitor = glfwGetPrimaryMonitor();
+			
+			if ( !monitor )
+			{
+				LOG_F( ERROR, "Failed to get the primary monitor" );
+				return false;
+			}
+			
+			const GLFWvidmode *mode = glfwGetVideoMode( monitor );
+			
+			if ( !mode )
+			{
+				LOG_F( ERROR, "Failed to get the primary monitor's video mode" );
+				return false;
+			}
+			
+			int w, h;
+			glfwGetMonitorPhysicalSize( monitor, &w, &h );
+			dpi = mode->width / ( w / DPI );
 			
 			return true;
 		}
