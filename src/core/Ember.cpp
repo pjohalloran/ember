@@ -6,8 +6,6 @@
 
 #include "Ember.h"
 
-//#include <loguru.hpp>
-
 namespace ember
 {
 	namespace core

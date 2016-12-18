@@ -8,70 +8,46 @@
  * @date 14/12/2016
  */
 
-#include "Ember.h"
+#include "EmberApp.h"
 
 namespace ember
 {
 	namespace core
 	{
-		class Timer
+		class EmberTimer
 		{
 			private:
 			
-				F64 m_startTicks;
-				F64 m_pausedTicks;
-				bool m_started;
-				bool m_paused;
-				
-				F64 GetTicks()
-				{
-					// TODO fixme
-					//return (F64)glfwGetTime();
-					return 0;
-				};
-				
-			protected:
-			
-				void SetStartTicks( const F64 st )
-				{
-					m_startTicks = st;
-				};
-				
-				F64 GetStartTicks() const
-				{
-					return ( m_startTicks );
-				};
-				
-				void SetPauseTicks( const F64 pt )
-				{
-					m_pausedTicks = pt;
-				};
-				
-				F64 GetPauseTicks() const
-				{
-					return ( m_pausedTicks );
-				};
+				F64 _start;
+				F64 _end;
+				bool _running;
 				
 			public:
 			
-				Timer() : m_startTicks( 0.0 ), m_pausedTicks( 0.0 ), m_paused( false ), m_started( false ) { };
-				~Timer() { };
+				EmberTimer() : _running( false ), _start( -1.0 ), _end( -1.0 ) { }
+				
+				~EmberTimer() { }
+				
+				inline F64 Duration() const
+				{
+					return _end - _start;
+				}
+				
+				inline bool Running() const
+				{
+					return _running;
+				}
+				
+				inline void Reset()
+				{
+					_running = false;
+					_start = _end = -1.0;
+				}
 				
 				void Start();
 				
 				void Stop();
-				
-				void Pause();
-				
-				void UnPause();
-				
-				F64 GetTime();
-				
-				bool IsStarted() const;
-				
-				bool IsPaused() const;
 		};
 	}
 }
-
 #endif

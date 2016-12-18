@@ -6,8 +6,9 @@
 
 #include <algorithm>
 
-#include "app/EmberApp.h"
+#include "core/EmberTimer.h"
 
+#include "app/EmberApp.h"
 #include "app/LoggingSystem.h"
 
 namespace ember
@@ -113,6 +114,9 @@ namespace ember
 		
 		void EmberApp::VUpdate()
 		{
+			EmberTimer timer;
+			timer.Start();
+			
 			for ( U32 i = 0, size = _systems.size(); i < size; ++i )
 			{
 				if ( _systems[i] != nullptr )
@@ -121,16 +125,31 @@ namespace ember
 				}
 			}
 			
-			LOG_F( INFO, "Frame Count %ul Last Frame Time %f Time Since App Start %f", Time()->FrameCount(), Time()->LastFrameTime(), Time()->TimeSinceAppStart() );
+			timer.Stop();
+			
+			if ( timer.Duration() > 0.0 )
+			{
+				LOG_F( INFO, "App Update took %f s on frame %ul", timer.Duration(), Time()->FrameCount() );
+			}
 		}
 		
 		void EmberApp::VRender()
 		{
+			EmberTimer timer;
+			timer.Start();
+			
 			glClear( GL_COLOR_BUFFER_BIT );
 			
 			_windowSystem->SwapBuffers();
 			
 			// TODO: Rendering
+			
+			timer.Stop();
+			
+			if ( timer.Duration() > 0.0 )
+			{
+				LOG_F( INFO, "App Render took %f s on frame %ul", timer.Duration(), Time()->FrameCount() );
+			}
 		}
 	}
 }
