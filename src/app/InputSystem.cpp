@@ -44,11 +44,11 @@ namespace ember
 			return true;
 		}
 		
-		void WindowSystem::PollEvents()
+		void InputSystem::PollEvents()
 		{
 			if ( !VInitialized() )
 			{
-				LOG_F( WARNING, "Window system needs to be initialized before use." );
+				LOG_F( WARNING, "Input system needs to be initialized before use." );
 				return;
 			}
 			
