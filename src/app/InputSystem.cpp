@@ -20,6 +20,8 @@ namespace ember
 				return true;
 			}
 			
+			// TODO Allow input mapping for players.
+			
 			_initialized = true;
 			return true;
 		}
@@ -30,6 +32,10 @@ namespace ember
 			{
 				return;
 			}
+			
+			glfwPollEvents();
+			
+			// TODO better system to pass input events around the App rather than polling GLFW everywhere.
 		}
 		
 		bool InputSystem::VShutdown()
@@ -42,17 +48,6 @@ namespace ember
 			
 			_initialized = false;
 			return true;
-		}
-		
-		void InputSystem::PollEvents()
-		{
-			if ( !VInitialized() )
-			{
-				LOG_F( WARNING, "Input system needs to be initialized before use." );
-				return;
-			}
-			
-			glfwPollEvents();
 		}
 	}
 }

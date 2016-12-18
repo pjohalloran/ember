@@ -4,6 +4,8 @@
  * @date 17/12/2016
  */
 
+#include <algorithm>
+
 #include "app/EmberApp.h"
 
 #include "app/LoggingSystem.h"
@@ -23,16 +25,16 @@ namespace ember
 			
 			// TODO: Make system setup order and whats used/needed data driven.
 			
-			AbstractSystem *loggingSystem = new LoggingSystem( 0, 1 );
+			AbstractSystem *loggingSystem = new LoggingSystem( 1, 0 );
 			_systems.push_back( loggingSystem );
 			
-			_windowSystem = new WindowSystem( 1, 2 );
+			_windowSystem = new WindowSystem( 2, 0 );
 			_systems.push_back( _windowSystem );
 			
-			_inputSystem = new InputSystem( 2, 3 );
+			_inputSystem = new InputSystem( 3, 2 );
 			_systems.push_back( _inputSystem );
 			
-			_timeSystem = new TimeSystem( 3, 4 );
+			_timeSystem = new TimeSystem( 4, 1 );
 			_systems.push_back( _timeSystem );
 			
 			LOG_F( INFO, "EmberApp() done" );
@@ -40,7 +42,14 @@ namespace ember
 		
 		EmberApp::~EmberApp()
 		{
-			for ( U32 i = _systems.size() - 1; i != 0; --i )
+			// Reverse sort of init priority
+			std::sort( _systems.begin(), _systems.end(),
+			           []( const AbstractSystem * a, const AbstractSystem * b ) -> bool
+			{
+				return a != nullptr && b != nullptr && ( a->InitPriority() < b->InitPriority() );
+			} );
+			
+			for ( U32 i = 0, size = _systems.size(); i < size; ++i )
 			{
 				if ( _systems[i] != nullptr )
 				{
@@ -64,8 +73,6 @@ namespace ember
 		{
 			while ( !_windowSystem->IsClosing() )
 			{
-				_inputSystem->PollEvents();
-				
 				VUpdate();
 				
 				VRender();
@@ -74,6 +81,12 @@ namespace ember
 		
 		bool EmberApp::VInitializeSystems()
 		{
+			std::sort( _systems.begin(), _systems.end(),
+			           []( const AbstractSystem * a, const AbstractSystem * b ) -> bool
+			{
+				return a != nullptr && b != nullptr && ( a->InitPriority() > b->InitPriority() );
+			} );
+			
 			bool result = true;
 			
 			for ( U32 i = 0, size = _systems.size(); ( result && i < size ); ++i )
@@ -82,6 +95,16 @@ namespace ember
 				{
 					result = _systems[i]->VInitialize();
 				}
+			}
+			
+			if ( result )
+			{
+				// Sort using desired priority for update.
+				std::sort( _systems.begin(), _systems.end(),
+				           []( const AbstractSystem * a, const AbstractSystem * b ) -> bool
+				{
+					return a != nullptr && b != nullptr && ( a->UpdatePriority() > b->UpdatePriority() );
+				} );
 			}
 			
 			return result;

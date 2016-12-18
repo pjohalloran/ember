@@ -24,8 +24,6 @@ namespace ember
 				virtual bool VInitialize();
 				virtual void VUpdate();
 				virtual bool VShutdown();
-				
-				void PollEvents();
 		};
 	}
 }
