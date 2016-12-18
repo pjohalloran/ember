@@ -6,8 +6,6 @@
 
 #include "TimeSystem.h"
 
-#include<loguru.hpp>
-
 namespace ember
 {
 	namespace app

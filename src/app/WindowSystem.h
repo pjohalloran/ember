@@ -57,8 +57,6 @@ namespace ember
 				
 				bool GetDpi( int &dpi ) const;
 				
-				void PollEvents();
-				
 				void SwapBuffers();
 		};
 	}

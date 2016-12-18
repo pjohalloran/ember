@@ -29,7 +29,10 @@ namespace ember
 			_windowSystem = new WindowSystem( 1, 2 );
 			_systems.push_back( _windowSystem );
 			
-			_timeSystem = new TimeSystem( 2, 3 );
+			_inputSystem = new InputSystem( 2, 3 );
+			_systems.push_back( _inputSystem );
+			
+			_timeSystem = new TimeSystem( 3, 4 );
 			_systems.push_back( _timeSystem );
 			
 			LOG_F( INFO, "EmberApp() done" );
@@ -61,7 +64,7 @@ namespace ember
 		{
 			while ( !_windowSystem->IsClosing() )
 			{
-				_windowSystem->PollEvents();
+				_inputSystem->PollEvents();
 				
 				VUpdate();
 				

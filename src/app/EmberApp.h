@@ -11,9 +11,11 @@
 #include <vector>
 
 #include "core/Ember.h"
+
 #include "app/AbstractSystem.h"
 #include "app/WindowSystem.h"
 #include "app/TimeSystem.h"
+#include "app/InputSystem.h"
 
 namespace ember
 {
@@ -29,6 +31,7 @@ namespace ember
 				
 				WindowSystem *_windowSystem;
 				TimeSystem *_timeSystem;
+				InputSystem *_inputSystem;
 				
 			protected:
 			
@@ -47,12 +50,17 @@ namespace ember
 				
 				void Run();
 				
-				WindowSystem *Window() const
+				inline WindowSystem *Window() const
 				{
 					return _windowSystem;
 				}
 				
-				TimeSystem *Time() const
+				inline InputSystem *Input() const
+				{
+					return _inputSystem;
+				}
+				
+				inline TimeSystem *Time() const
 				{
 					return _timeSystem;
 				}

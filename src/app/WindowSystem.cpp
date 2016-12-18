@@ -178,17 +178,6 @@ namespace ember
 			return true;
 		}
 		
-		void WindowSystem::PollEvents()
-		{
-			if ( !VInitialized() )
-			{
-				LOG_F( WARNING, "Window system needs to be initialized before use." );
-				return;
-			}
-			
-			glfwPollEvents();
-		}
-		
 		void WindowSystem::SwapBuffers()
 		{
 			if ( !VInitialized() )
