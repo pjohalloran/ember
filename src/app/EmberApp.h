@@ -13,6 +13,7 @@
 #include "core/Ember.h"
 #include "app/AbstractSystem.h"
 #include "app/WindowSystem.h"
+#include "app/TimeSystem.h"
 
 namespace ember
 {
@@ -25,7 +26,9 @@ namespace ember
 			private:
 			
 				std::vector<AbstractSystem *> _systems;
+				
 				WindowSystem *_windowSystem;
+				TimeSystem *_timeSystem;
 				
 			protected:
 			
@@ -44,6 +47,15 @@ namespace ember
 				
 				void Run();
 				
+				WindowSystem *Window() const
+				{
+					return _windowSystem;
+				}
+				
+				TimeSystem *Time() const
+				{
+					return _timeSystem;
+				}
 		};
 		
 		extern EmberApp *Application;

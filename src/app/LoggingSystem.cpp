@@ -39,6 +39,7 @@ namespace ember
 			loguru::add_file( "ember_last_run.log", loguru::Truncate, loguru::Verbosity_INFO );
 			loguru::g_stderr_verbosity = 1;
 			
+			_initialized = true;
 			return true;
 		}
 		
@@ -53,6 +54,7 @@ namespace ember
 			LOG_F( INFO, "logging system shutting down" );
 			loguru::shutdown();
 			
+			_initialized = false;
 			return true;
 		}
 	}

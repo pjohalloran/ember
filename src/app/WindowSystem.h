@@ -14,14 +14,14 @@ namespace ember
 	// TMP for WindowSystem to have near final API - until i import my math lib.
 	namespace math
 	{
-		// tmp
+		using namespace ember::core;
+		
 		struct Vector2
 		{
 			public:
-				float x;
-				float y;
+				F32 x;
+				F32 y;
 		};
-		//
 	}
 	
 	namespace app
@@ -39,6 +39,8 @@ namespace ember
 				virtual ~WindowSystem() { }
 				
 				virtual bool VInitialize();
+				
+				virtual void VUpdate() { }
 				
 				virtual bool VShutdown();
 				

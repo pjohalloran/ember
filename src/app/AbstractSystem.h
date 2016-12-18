@@ -40,6 +40,7 @@ namespace ember
 				}
 				
 				virtual bool VInitialize() = 0;
+				virtual void VUpdate() = 0;
 				virtual bool VShutdown() = 0;
 				
 				virtual bool VInitialized() const

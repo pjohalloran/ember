@@ -21,6 +21,8 @@ namespace ember
 				
 				virtual bool VInitialize();
 				virtual bool VShutdown();
+				
+				virtual void VUpdate() { }
 		};
 	}
 }

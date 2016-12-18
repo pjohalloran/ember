@@ -21,6 +21,17 @@ namespace ember
 		{
 			Application = this;
 			
+			// TODO: Make system setup order and whats used/needed data driven.
+			
+			AbstractSystem *loggingSystem = new LoggingSystem( 0, 1 );
+			_systems.push_back( loggingSystem );
+			
+			_windowSystem = new WindowSystem( 1, 2 );
+			_systems.push_back( _windowSystem );
+			
+			_timeSystem = new TimeSystem( 2, 3 );
+			_systems.push_back( _timeSystem );
+			
 			LOG_F( INFO, "EmberApp() done" );
 		}
 		
@@ -60,22 +71,30 @@ namespace ember
 		
 		bool EmberApp::VInitializeSystems()
 		{
-			// TODO: Make data driven.
+			bool result = true;
 			
-			AbstractSystem *loggingSystem = new LoggingSystem( 0, 1 );
-			loggingSystem->VInitialize();
-			_systems.push_back( loggingSystem );
+			for ( U32 i = 0, size = _systems.size(); ( result && i < size ); ++i )
+			{
+				if ( _systems[i] != nullptr )
+				{
+					result = _systems[i]->VInitialize();
+				}
+			}
 			
-			_windowSystem = new WindowSystem( 1, 2 );
-			_windowSystem->VInitialize();
-			_systems.push_back( _windowSystem );
-			
-			return false;
+			return result;
 		}
 		
 		void EmberApp::VUpdate()
 		{
-		
+			for ( U32 i = 0, size = _systems.size(); i < size; ++i )
+			{
+				if ( _systems[i] != nullptr )
+				{
+					_systems[i]->VUpdate();
+				}
+			}
+			
+			LOG_F( INFO, "Frame Count %ul Last Frame Time %f Time Since App Start %f", Time()->FrameCount(), Time()->LastFrameTime(), Time()->TimeSinceAppStart() );
 		}
 		
 		void EmberApp::VRender()
