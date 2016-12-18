@@ -81,6 +81,7 @@ namespace ember
 		
 		bool EmberApp::VInitializeSystems()
 		{
+			// Sort in order of increasing init priority.
 			std::sort( _systems.begin(), _systems.end(),
 			           []( const AbstractSystem * a, const AbstractSystem * b ) -> bool
 			{
