@@ -11,8 +11,23 @@
 
 namespace ember
 {
+	// TMP for WindowSystem to have near final API - until i import my math lib.
+	namespace math
+	{
+		// tmp
+		struct Vector2
+		{
+			public:
+				float x;
+				float y;
+		};
+		//
+	}
+	
 	namespace app
 	{
+		using namespace ember::math;
+		
 		class WindowSystem : public AbstractSystem
 		{
 			private:
@@ -24,6 +39,7 @@ namespace ember
 				virtual ~WindowSystem() { }
 				
 				virtual bool VInitialize();
+				
 				virtual bool VShutdown();
 				
 				virtual bool VInitialized() const
@@ -31,10 +47,13 @@ namespace ember
 					return _initialized && _window != nullptr;
 				}
 				
-				inline GLFWwindow *GetWindow() const
-				{
-					return _window;
-				}
+				bool IsClosing() const;
+				
+				bool GetWindowSize( Vector2 &dim ) const;
+				
+				bool GetFrameBufferSize( Vector2 &dim ) const;
+				
+				bool GetDpi( int &dpi ) const;
 				
 				void PollEvents();
 				

@@ -48,7 +48,7 @@ namespace ember
 		
 		void EmberApp::Run()
 		{
-			while ( !glfwWindowShouldClose( _windowSystem->GetWindow() ) )
+			while ( !_windowSystem->IsClosing() )
 			{
 				_windowSystem->PollEvents();
 				
