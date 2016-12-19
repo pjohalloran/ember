@@ -112,6 +112,8 @@ namespace ember
 			glfwSetJoystickCallback( nullptr );
 			glfwSetDropCallback( Application->Window()->GetWindow(), nullptr );
 			
+			Clear();
+			
 			LOG_F( INFO, "%s shutdown", Name );
 			_initialized = false;
 			return true;
