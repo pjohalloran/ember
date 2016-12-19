@@ -15,12 +15,21 @@ namespace ember
 	{
 		class LoggingSystem : public AbstractSystem
 		{
+			private:
+			
+				static const char *Name;
+				
 			public:
 				LoggingSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ) { };
 				virtual ~LoggingSystem() { }
 				
 				virtual bool VInitialize();
+				
 				virtual bool VShutdown();
+				
+				virtual void VUpdate() { }
+				
+				virtual const char *VGetSystemName();
 		};
 	}
 }

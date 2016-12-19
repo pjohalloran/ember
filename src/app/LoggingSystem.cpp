@@ -14,11 +14,13 @@ namespace ember
 	{
 		using namespace ember::core;
 		
+		const char *LoggingSystem::Name = "Logging";
+		
 		bool LoggingSystem::VInitialize()
 		{
 			if ( VInitialized() )
 			{
-				LOG_F( WARNING, "Tried to intialize logging system when already running!" );
+				LOG_F( WARNING, "Tried to intialize %s when already running!", Name );
 				return true;
 			}
 			
@@ -39,6 +41,8 @@ namespace ember
 			loguru::add_file( "ember_last_run.log", loguru::Truncate, loguru::Verbosity_INFO );
 			loguru::g_stderr_verbosity = 1;
 			
+			LOG_F( INFO, "%s initialized", Name );
+			_initialized = true;
 			return true;
 		}
 		
@@ -50,10 +54,16 @@ namespace ember
 				return true;
 			}
 			
-			LOG_F( INFO, "logging system shutting down" );
+			LOG_F( INFO, "%s shutting down", Name );
 			loguru::shutdown();
 			
+			_initialized = false;
 			return true;
+		}
+		
+		const char *LoggingSystem::VGetSystemName()
+		{
+			return Name;
 		}
 	}
 }

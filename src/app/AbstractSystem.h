@@ -20,8 +20,8 @@ namespace ember
 		{
 			private:
 			
-				I32 _id;
-				I32 _priority;
+				I32 _initPriority;
+				I32 _updatePriority;
 				
 			protected:
 			
@@ -29,7 +29,7 @@ namespace ember
 				
 			public:
 			
-				AbstractSystem( int id, int priority ) : _id( id ), _priority( priority ), _initialized( false ) { }
+				AbstractSystem( int initPriority, int updatePriority ) : _initPriority( initPriority ), _updatePriority( updatePriority ), _initialized( false ) { }
 				
 				virtual ~AbstractSystem()
 				{
@@ -40,21 +40,26 @@ namespace ember
 				}
 				
 				virtual bool VInitialize() = 0;
+				
+				virtual void VUpdate() = 0;
+				
 				virtual bool VShutdown() = 0;
+				
+				virtual const char *VGetSystemName() = 0;
 				
 				virtual bool VInitialized() const
 				{
 					return _initialized;
 				}
 				
-				inline I32 GetPriority() const
+				inline I32 GetInitPriority() const
 				{
-					return _priority;
+					return _initPriority;
 				}
 				
-				inline I32 GetId() const
+				inline I32 GetUpdatePriority() const
 				{
-					return _id;
+					return _updatePriority;
 				}
 		};
 	}
