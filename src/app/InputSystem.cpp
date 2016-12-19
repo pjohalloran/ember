@@ -4,9 +4,15 @@
  * @date 18/12/2016
  */
 
+#include <algorithm>
+
 #include "InputSystem.h"
 
-#include "EmberApp.h"
+#include "input/IKeyboardListener.h"
+#include "input/IMouseListener.h"
+#include "input/IGamepadListener.h"
+
+#include "app/EmberApp.h"
 
 namespace ember
 {
@@ -114,6 +120,79 @@ namespace ember
 		const char *InputSystem::VGetSystemName()
 		{
 			return Name;
+		}
+		
+		template<typename T>
+		bool AddListener( T *listener, std::vector<T *> &container )
+		{
+			if ( listener == nullptr )
+			{
+				LOG_F( WARNING, "Tried to add null pointer to Listeners" );
+				return false;
+			}
+			
+			typename std::vector<T *>::iterator it;
+			it = std::find( container.begin(), container.end(), listener );
+			
+			if ( it != container.end() )
+			{
+				LOG_F( WARNING, "Tried to add duplicate pointer to Listeners (%p)", listener );
+				return false;
+			}
+			
+			container.push_back( listener );
+			return true;
+		}
+		
+		template<typename T>
+		bool RemoveListener( T *listener, std::vector<T *> &container )
+		{
+			if ( listener == nullptr )
+			{
+				LOG_F( WARNING, "Tried to remove null pointer from Listeners" );
+				return false;
+			}
+			
+			typename std::vector<T *>::iterator it;
+			it = std::remove( container.begin(), container.end(), listener );
+			return it != container.end();
+		}
+		
+		bool InputSystem::Add( IKeyboardListener *listener )
+		{
+			return AddListener( listener, _keyboardListeners );
+		}
+		
+		bool InputSystem::Add( IMouseListener *listener )
+		{
+			return AddListener( listener, _mouseListeners );
+		}
+		
+		bool InputSystem::Add( IGamepadListener *listener )
+		{
+			return AddListener( listener, _gamepadListeners );
+		}
+		
+		bool InputSystem::Remove( IKeyboardListener *listener )
+		{
+			return RemoveListener( listener, _keyboardListeners );
+		}
+		
+		bool InputSystem::Remove( IMouseListener *listener )
+		{
+			return RemoveListener( listener, _mouseListeners );
+		}
+		
+		bool InputSystem::Remove( IGamepadListener *listener )
+		{
+			return RemoveListener( listener, _gamepadListeners );
+		}
+		
+		void InputSystem::Clear()
+		{
+			_keyboardListeners.clear();
+			_mouseListeners.clear();
+			_gamepadListeners.clear();
 		}
 	}
 }
