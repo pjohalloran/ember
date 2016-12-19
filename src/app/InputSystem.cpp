@@ -124,8 +124,6 @@ namespace ember
 			}
 			
 			glfwPollEvents();
-			
-			// TODO better system to pass input events around the App rather than polling GLFW everywhere.
 		}
 		
 		bool InputSystem::VShutdown()
