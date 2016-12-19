@@ -2,23 +2,93 @@
 
 #define LOGURU_IMPLEMENTATION 1
 #include "app/EmberApp.h"
+#include "input/IMouseListener.h"
+#include "input/IKeyboardListener.h"
+#include "app/InputSystem.h"
 
 int get_log_level();
 void test_loguru( int argc, char **argv );
 
-//class TestMouseListener : public ember::input::IMouseListener
-//{
-//
-//};
+using namespace ember::core;
+using namespace ember::input;
+using namespace ember::app;
+
+class TestKeyListener : public IKeyboardListener
+{
+	public:
+		TestKeyListener() {};
+		virtual ~TestKeyListener() { }
+		
+		virtual I32 VGetPriority() const
+		{
+			return 0;
+		}
+		
+		virtual void VOnKeyPress( I32 key )
+		{
+			LOG_F( INFO, "KEY PRESSED %i", key );
+		}
+		
+		virtual void VOnKeyRelease( I32 key )
+		{
+			LOG_F( INFO, "KEY RELEASED %i", key );
+		}
+		
+		virtual void VOnCharacterInput( U32 codePoint )
+		{
+			LOG_F( INFO, "CHAR TYPED %i", codePoint );
+		}
+};
+
+class TestMouseListener : public IMouseListener
+{
+	public:
+		TestMouseListener() {};
+		virtual ~TestMouseListener() { }
+		
+		virtual I32 VGetPriority() const
+		{
+			return 0;
+		}
+		
+		virtual void VOnButtonPress( I32 button )
+		{
+			LOG_F( INFO, "TEST Button PRESSED %i", button );
+		}
+		
+		virtual void VOnButtonRelease( I32 button )
+		{
+			LOG_F( INFO, "TEST Button RELEASED %i", button );
+		}
+		
+		virtual void VOnMove( F64 x, F64 y, F64 xRelative, F64 yRelative )
+		{
+			LOG_F( INFO, "Mouse moved x %f y %f xRel %f yRel %f", x, y, xRelative, yRelative );
+		}
+		
+		virtual void VOnScroll( F64 x, F64 y )
+		{
+			LOG_F( INFO, "Mouse scrolled x %f y %f", x, y );
+		}
+		
+		virtual void VOnFileDrop( const char **paths, int count )
+		{
+			LOG_F( INFO, "Files dropped %i", count );
+		}
+};
 
 int main( int argc, char **argv )
 {
-	using namespace ember::app;
+	TestKeyListener k;
+	TestMouseListener m;
 	
 	EmberApp *app = new EmberApp();
 	app->Initialize();
 	
 	test_loguru( argc, argv );
+	
+	app->Input()->Add( ( IKeyboardListener * )&k );
+	app->Input()->Add( ( IMouseListener * )&m );
 	
 	app->Run();
 	
