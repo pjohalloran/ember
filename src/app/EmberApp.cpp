@@ -49,7 +49,7 @@ namespace ember
 			std::sort( _systems.begin(), _systems.end(),
 			           []( const AbstractSystem * a, const AbstractSystem * b ) -> bool
 			{
-				return a != nullptr && b != nullptr && ( a->InitPriority() < b->InitPriority() );
+				return a != nullptr && b != nullptr && ( a->GetInitPriority() > b->GetInitPriority() );
 			} );
 			
 			for ( U32 i = 0, size = _systems.size(); i < size; ++i )
@@ -103,7 +103,7 @@ namespace ember
 			std::sort( _systems.begin(), _systems.end(),
 			           []( const AbstractSystem * a, const AbstractSystem * b ) -> bool
 			{
-				return a != nullptr && b != nullptr && ( a->InitPriority() > b->InitPriority() );
+				return a != nullptr && b != nullptr && ( a->GetInitPriority() < b->GetInitPriority() );
 			} );
 			
 			bool result = true;
@@ -122,7 +122,7 @@ namespace ember
 				std::sort( _systems.begin(), _systems.end(),
 				           []( const AbstractSystem * a, const AbstractSystem * b ) -> bool
 				{
-					return a != nullptr && b != nullptr && ( a->UpdatePriority() > b->UpdatePriority() );
+					return a != nullptr && b != nullptr && ( a->GetUpdatePriority() < b->GetUpdatePriority() );
 				} );
 			}
 			

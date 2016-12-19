@@ -16,7 +16,8 @@ namespace ember
 		class TimeSystem : public AbstractSystem
 		{
 			private:
-			
+				static const char *Name;
+				
 				U64 _frameCount;
 				F64 _startAppTime;
 				F64 _lastFrameTime;
@@ -27,8 +28,12 @@ namespace ember
 				virtual ~TimeSystem() { }
 				
 				virtual bool VInitialize();
+				
 				virtual void VUpdate();
+				
 				virtual bool VShutdown();
+				
+				virtual const char *VGetSystemName();
 				
 				inline F64 GetCurrentTime() const
 				{

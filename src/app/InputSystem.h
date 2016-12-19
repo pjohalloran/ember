@@ -17,13 +17,19 @@ namespace ember
 		{
 			private:
 			
+				static const char *Name;
+				
 			public:
 				InputSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ) { };
 				virtual ~InputSystem() { }
 				
 				virtual bool VInitialize();
+				
 				virtual void VUpdate();
+				
 				virtual bool VShutdown();
+				
+				virtual const char *VGetSystemName();
 		};
 	}
 }

@@ -8,7 +8,7 @@
  * @date 14/12/2016
  */
 
-#include "EmberApp.h"
+#include "EmberTypes.h"
 
 namespace ember
 {

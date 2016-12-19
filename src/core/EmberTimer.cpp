@@ -6,7 +6,7 @@
 
 #include "EmberTimer.h"
 
-//#include "EmberApp.h"
+#include "EmberApp.h"
 
 namespace ember
 {

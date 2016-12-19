@@ -32,6 +32,9 @@ namespace ember
 		{
 			private:
 			
+				static const F32 DPI;
+				static const char *Name;
+				
 				GLFWwindow *_window;
 				
 			public:
@@ -44,9 +47,16 @@ namespace ember
 				
 				virtual bool VShutdown();
 				
+				virtual const char *VGetSystemName();
+				
 				virtual bool VInitialized() const
 				{
 					return _initialized && _window != nullptr;
+				}
+				
+				inline GLFWwindow *GetWindow() const
+				{
+					return _window;
 				}
 				
 				bool IsClosing() const;

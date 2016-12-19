@@ -40,20 +40,24 @@ namespace ember
 				}
 				
 				virtual bool VInitialize() = 0;
+				
 				virtual void VUpdate() = 0;
+				
 				virtual bool VShutdown() = 0;
+				
+				virtual const char *VGetSystemName() = 0;
 				
 				virtual bool VInitialized() const
 				{
 					return _initialized;
 				}
 				
-				inline I32 InitPriority() const
+				inline I32 GetInitPriority() const
 				{
 					return _initPriority;
 				}
 				
-				inline I32 UpdatePriority() const
+				inline I32 GetUpdatePriority() const
 				{
 					return _updatePriority;
 				}

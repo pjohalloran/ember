@@ -10,24 +10,25 @@ namespace ember
 {
 	namespace app
 	{
-		void glfw_error_callback( int error, const char *errorMsg )
+		void OnGLFWErrorCallback( int error, const char *errorMsg )
 		{
 			LOG_F( ERROR, "GLFW error code = %i, message = %s", error, errorMsg );
 		}
 		
 		using namespace ember::core;
 		
-		static const F32 DPI = 25.4;
+		const F32 WindowSystem::DPI = 25.4;
+		const char *WindowSystem::Name = "Window";
 		
 		bool WindowSystem::VInitialize()
 		{
 			if ( VInitialized() )
 			{
-				LOG_F( WARNING, "Tried to intialize window system when already running!" );
+				LOG_F( WARNING, "Tried to intialize %s when already running!", Name );
 				return false;
 			}
 			
-			glfwSetErrorCallback( glfw_error_callback );
+			glfwSetErrorCallback( OnGLFWErrorCallback );
 			
 			if ( !glfwInit() )
 			{
@@ -75,7 +76,7 @@ namespace ember
 			
 			glfwMakeContextCurrent( _window );
 			
-			LOG_F( INFO, "WindowSystem initialized (GLFW version = %s, OpenGL version = %s) ", glfwGetVersionString(), glGetString( GL_VERSION ) );
+			LOG_F( INFO, "%s initialized (GLFW version = %s, OpenGL version = %s) ", Name, glfwGetVersionString(), glGetString( GL_VERSION ) );
 			
 			_initialized = true;
 			return true;
@@ -85,7 +86,7 @@ namespace ember
 		{
 			if ( !VInitialized() )
 			{
-				LOG_F( WARNING, "Tried to shutdown window system but is not yet initialized" );
+				LOG_F( WARNING, "Tried to shutdown %s but is not yet initialized", Name );
 				return false;
 			}
 			
@@ -97,7 +98,7 @@ namespace ember
 			
 			_initialized = false;
 			
-			LOG_F( INFO, "Window system shut down" );
+			LOG_F( INFO, "%s shutdown", Name );
 			
 			return true;
 		}
@@ -106,7 +107,7 @@ namespace ember
 		{
 			if ( !VInitialized() )
 			{
-				LOG_F( WARNING, "Tried to shutdown window system but is not yet initialized" );
+				LOG_F( WARNING, "Tried to shutdown %s but is not yet initialized", Name );
 				return false;
 			}
 			
@@ -117,7 +118,7 @@ namespace ember
 		{
 			if ( !VInitialized() )
 			{
-				LOG_F( WARNING, "Window system needs to be initialized before use." );
+				LOG_F( WARNING, "%s needs to be initialized before use.", Name );
 				return false;
 			}
 			
@@ -134,7 +135,7 @@ namespace ember
 		{
 			if ( !VInitialized() )
 			{
-				LOG_F( WARNING, "Window system needs to be initialized before use." );
+				LOG_F( WARNING, "%s needs to be initialized before use.", Name );
 				return false;
 			}
 			
@@ -151,7 +152,7 @@ namespace ember
 		{
 			if ( !VInitialized() )
 			{
-				LOG_F( WARNING, "Window system needs to be initialized before use." );
+				LOG_F( WARNING, "%s needs to be initialized before use.", Name );
 				return false;
 			}
 			
@@ -182,11 +183,16 @@ namespace ember
 		{
 			if ( !VInitialized() )
 			{
-				LOG_F( WARNING, "Window system needs to be initialized before use." );
+				LOG_F( WARNING, "%s needs to be initialized before use.", Name );
 				return;
 			}
 			
 			glfwSwapBuffers( _window );
+		}
+		
+		const char *WindowSystem::VGetSystemName()
+		{
+			return Name;
 		}
 	}
 }
