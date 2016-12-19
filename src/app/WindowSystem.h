@@ -11,23 +11,8 @@
 
 namespace ember
 {
-	// TMP for WindowSystem to have near final API - until i import my math lib.
-	namespace math
-	{
-		using namespace ember::core;
-		
-		struct Vector2
-		{
-			public:
-				F32 x;
-				F32 y;
-		};
-	}
-	
 	namespace app
 	{
-		using namespace ember::math;
-		
 		class WindowSystem : public AbstractSystem
 		{
 			private:
@@ -61,9 +46,9 @@ namespace ember
 				
 				bool IsClosing() const;
 				
-				bool GetWindowSize( Vector2 &dim ) const;
+				bool GetWindowSize( F32 &width, F32 &height ) const;
 				
-				bool GetFrameBufferSize( Vector2 &dim ) const;
+				bool GetFrameBufferSize( F32 &width, F32 &height ) const;
 				
 				bool GetDpi( int &dpi ) const;
 				

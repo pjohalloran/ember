@@ -114,7 +114,7 @@ namespace ember
 			return glfwWindowShouldClose( _window ) == GLFW_TRUE;
 		}
 		
-		bool WindowSystem::GetWindowSize( Vector2 &dim ) const
+		bool WindowSystem::GetWindowSize( F32 &width, F32 &height ) const
 		{
 			if ( !VInitialized() )
 			{
@@ -125,13 +125,13 @@ namespace ember
 			int w, h;
 			glfwGetWindowSize( _window, &w, &h );
 			
-			dim.x = ( F32 )w;
-			dim.y = ( F32 )h;
+			width = ( F32 )w;
+			height = ( F32 )h;
 			
 			return true;
 		}
 		
-		bool WindowSystem::GetFrameBufferSize( Vector2 &dim ) const
+		bool WindowSystem::GetFrameBufferSize( F32 &width, F32 &height ) const
 		{
 			if ( !VInitialized() )
 			{
@@ -142,8 +142,8 @@ namespace ember
 			int w, h;
 			glfwGetFramebufferSize( _window, &w, &h );
 			
-			dim.x = ( F32 )w;
-			dim.y = ( F32 )h;
+			width = ( F32 )w;
+			height = ( F32 )h;
 			
 			return true;
 		}

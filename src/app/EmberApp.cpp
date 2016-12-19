@@ -8,9 +8,13 @@
 #include <chrono>
 #include <thread>
 
+#include "app/EmberApp.h"
+
 #include "core/EmberTimer.h"
 
-#include "app/EmberApp.h"
+#include "app/WindowSystem.h"
+#include "app/TimeSystem.h"
+#include "app/InputSystem.h"
 #include "app/LoggingSystem.h"
 
 namespace ember

@@ -24,6 +24,8 @@ namespace ember
 				virtual void VOnKeyPress( I32 key ) = 0;
 				
 				virtual void VOnKeyRelease( I32 key ) = 0;
+				
+				virtual void VOnCharacterInput( U32 codePoint ) = 0;
 		};
 	}
 }

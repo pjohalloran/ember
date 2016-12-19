@@ -30,6 +30,9 @@ namespace ember
 				
 				// TODO Replace with math structures
 				virtual void VOnScroll( F64 x, F64 y ) = 0;
+				
+				// TODO might be better to put this in a Window listener
+				virtual void VOnFileDrop( const char **paths, int count ) = 0;
 		};
 	}
 }

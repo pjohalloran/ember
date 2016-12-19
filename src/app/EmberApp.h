@@ -13,15 +13,16 @@
 #include "core/Ember.h"
 
 #include "app/AbstractSystem.h"
-#include "app/WindowSystem.h"
-#include "app/TimeSystem.h"
-#include "app/InputSystem.h"
 
 namespace ember
 {
 	namespace app
 	{
 		using namespace ember::core;
+		
+		class WindowSystem;
+		class TimeSystem;
+		class InputSystem;
 		
 		class EmberApp
 		{

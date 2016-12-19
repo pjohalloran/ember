@@ -6,6 +6,11 @@
 int get_log_level();
 void test_loguru( int argc, char **argv );
 
+//class TestMouseListener : public ember::input::IMouseListener
+//{
+//
+//};
+
 int main( int argc, char **argv )
 {
 	using namespace ember::app;
