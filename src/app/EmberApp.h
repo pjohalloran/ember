@@ -13,12 +13,14 @@
 #include "core/Ember.h"
 
 #include "app/AbstractSystem.h"
+#include "math/Random.h"
 
 namespace ember
 {
 	namespace app
 	{
 		using namespace ember::core;
+        using namespace ember::math;
 		
 		class WindowSystem;
 		class TimeSystem;
@@ -33,6 +35,8 @@ namespace ember
 				WindowSystem *_windowSystem;
 				TimeSystem *_timeSystem;
 				InputSystem *_inputSystem;
+            
+				Random *_rng;
 				
 				void Sleep( F64 seconds );
 				
@@ -66,6 +70,11 @@ namespace ember
 				inline TimeSystem *Time() const
 				{
 					return _timeSystem;
+				}
+				
+				inline Random *RNG() const
+				{
+					return _rng;
 				}
 		};
 		

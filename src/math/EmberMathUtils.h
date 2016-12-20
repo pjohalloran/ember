@@ -72,15 +72,9 @@ namespace ember
 			return clamp;
 		};
 		
-		inline F32 Clamp01( const F32 value )
-		{
-			return Clamp<F32>( value, 0.0f, 1.0f );
-		};
+		F32 Clamp01( const F32 value );
 		
-		inline F64 Clamp01( const F64 value )
-		{
-			return Clamp<F64>( value, 0.0f, 1.0f );
-		};
+		F64 Clamp01( const F64 value );
 		
 		template<typename T>
 		T Max( const T &a, const T &b )

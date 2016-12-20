@@ -316,20 +316,19 @@ namespace ember
 					outVecRef._vec[2] = _vec[0] * rhsVecRef._vec[1] - _vec[1] * rhsVecRef._vec[0];
 				};
 				
+				#ifdef EMBER_MATH_TO_STRING
 				inline std::string ToString() const
 				{
-					#ifdef EMBER_MATH_TO_STRING
-				
 					std::stringstream strStream;
 					strStream << "[" << _vec[0] << ", " << _vec[1] << ", " << _vec[2] << "]";
 					return strStream.str();
-					
-					#else
-					
+				}
+				#else
+				inline const char *ToString() const
+				{
 					return "";
-					
-					#endif
 				};
+				#endif
 				
 				inline const F32 *const GetComponentsConst() const
 				{
@@ -393,7 +392,6 @@ namespace ember
 		 * Generate a Vector3 with random xyz components between a defined
 		 * range.
 		 *
-		 * @param rng The random number generator.
 		 * @param min The minimum vector.
 		 * @param max The maximum vector.
 		 * @param outVec The Vector to hold the random componenets.
@@ -402,7 +400,7 @@ namespace ember
 		 *                  components. It refers to the same object passed
 		 *                  in.
 		 */
-		Vector3 &Random( CRandom &rng, const Vector3 &min, const Vector3 &max, Vector3 &outVec );
+		Vector3 &RandomVector3( const Vector3 &min, const Vector3 &max, Vector3 &outVec );
 	}
 }
 #endif

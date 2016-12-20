@@ -42,6 +42,7 @@
 #include "core/EmberTypes.h"
 
 #include "math/EmberMathUtils.h"
+#include "math/Random.h"
 #include "math/Vector3.h"
 #include "math/Vector4.h"
 #include "math/Point3.h"

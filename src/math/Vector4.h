@@ -87,13 +87,7 @@ namespace ember
 				 * (See Mathematics for Computer Graphics by John Vince, 2nd Edition,
 				 * Chapter 7 Transformations, pg. 99).
 				 */
-				explicit inline Vector4( const Vector3 &vec3 )
-				{
-					_vec[0] = vec3.X();
-					_vec[1] = vec3.Y();
-					_vec[2] = vec3.Z();
-					_vec[3] = 0.0f;
-				};
+				explicit Vector4( const Vector3 &vec3 );
 				
 				~Vector4() { };
 				
@@ -160,15 +154,7 @@ namespace ember
 					return *this;
 				};
 				
-				inline Vector4 &operator=( const Vector3 &rhs )
-				{
-					_vec[0] = rhs.X();
-					_vec[1] = rhs.Y();
-					_vec[2] = rhs.Z();
-					_vec[3] = 0.0f;
-					
-					return *this ;
-				};
+				Vector4 &operator=( const Vector3 &rhs );
 				
 				Vector4 &operator=( const Point3 &rhs );
 				
@@ -369,20 +355,19 @@ namespace ember
 					       ( _vec[3] * rhsVecRef._vec[3] );
 				};
 				
+				#ifdef EMBER_MATH_TO_STRING
 				inline std::string ToString() const
 				{
-					#ifdef EMBER_MATH_TO_STRING
-				
 					std::stringstream strStream;
 					strStream << "[" << _vec[0] << ", " << _vec[1] << ", " << _vec[2] << ", " << _vec[3] << "]";
 					return strStream.str();
-					
-					#else
-					
+				}
+				#else
+				inline const char *ToString() const
+				{
 					return "";
-					
-					#endif
 				};
+				#endif
 				
 				inline const F32 *const GetComponentsConst() const
 				{
@@ -413,7 +398,6 @@ namespace ember
 		/*
 		 * Generate a Vector4 with random xyzw components.
 		 *
-		 * @param rng The random number generator.
 		 * @param min The minimum vector.
 		 * @param max The maximum vector.
 		 * @param outVec The Vector to hold the random componenets.
@@ -422,7 +406,7 @@ namespace ember
 		 *                  components. It refers to the same object passed
 		 *                  in.
 		 */
-		Vector4 &GenerateRandomVector4( CRandom &rng, const Vector4 &min, const Vector4 &max, Vector4 &outVec );
+		Vector4 &RandomVector4( const Vector4 &min, const Vector4 &max, Vector4 &outVec );
 	}
 }
 #endif

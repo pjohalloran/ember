@@ -8,7 +8,7 @@
 #include <chrono>
 #include <thread>
 
-#include "app/EmberApp.h"
+#include "EmberApp.h"
 
 #include "core/EmberTimer.h"
 
@@ -22,6 +22,7 @@ namespace ember
 	namespace app
 	{
 		using namespace ember::core;
+        using namespace ember::math;
 		
 		//
 		// Sub System execution order sorting
@@ -52,6 +53,8 @@ namespace ember
 		EmberApp::EmberApp() : _systems(), _windowSystem( nullptr )
 		{
 			Application = this;
+			
+			_rng = new Random();
 			
 			// TODO: Make system setup order and whats used/needed data driven.
 			
@@ -87,6 +90,8 @@ namespace ember
 			}
 			
 			_systems.clear();
+			
+			Delete( _rng );
 			
 			Application = nullptr;
 		}

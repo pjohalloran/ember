@@ -21,6 +21,8 @@ namespace ember
 	{
 		using namespace ember::core;
 		
+		class Vector3;
+		
 		class Point3
 		{
 			private:
@@ -60,12 +62,7 @@ namespace ember
 					memcpy( _vec, copyPt._vec, sizeof( F32 ) * Size );
 				};
 				
-				explicit inline Point3( const Vector3 &vec )
-				{
-					_vec[0] = vec.X();
-					_vec[1] = vec.Y();
-					_vec[2] = vec.Z();
-				};
+				explicit Point3( const Vector3 &vec );
 				
 				~Point3() { };
 				
@@ -119,13 +116,7 @@ namespace ember
 					return *this;
 				};
 				
-				inline Point3 &operator=( const Vector3 &rhs )
-				{
-					_vec[0] = rhs.X();
-					_vec[1] = rhs.Y();
-					_vec[2] = rhs.Z();
-					return *this;
-				};
+				Point3 &operator=( const Vector3 &rhs );
 				
 				inline bool operator==( const Point3 &rhs ) const
 				{
@@ -144,42 +135,15 @@ namespace ember
 					return !( *this == rhs );
 				};
 				
-				inline Vector3 operator-( const Point3 &rhs ) const
-				{
-					return Vector3( _vec[0] - rhs._vec[0], \
-					                _vec[1] - rhs._vec[1], \
-					                _vec[2] - rhs._vec[2] );
-				};
+				Vector3 operator-( const Point3 &rhs ) const;
 				
-				inline Point3 operator+( const Vector3 &rhs ) const
-				{
-					return Point3( _vec[0] + rhs.X(), \
-					               _vec[1] + rhs.Y(), \
-					               _vec[2] + rhs.Z() );
-				};
+				Point3 operator+( const Vector3 &rhs ) const;
 				
-				inline Point3 operator-( const Vector3 &rhs ) const
-				{
-					return Point3( _vec[0] - rhs.X(), \
-					               _vec[1] - rhs.Y(), \
-					               _vec[2] - rhs.Z() );
-				};
+				Point3 operator-( const Vector3 &rhs ) const;
 				
-				inline Point3 &operator+=( const Vector3 &rhs )
-				{
-					_vec[0] += rhs.X();
-					_vec[1] += rhs.Y();
-					_vec[2] += rhs.Z();
-					return *this;
-				};
+				Point3 &operator+=( const Vector3 &rhs );
 				
-				inline Point3 &operator-=( const Vector3 &rhs )
-				{
-					_vec[0] -= rhs.X();
-					_vec[1] -= rhs.Y();
-					_vec[2] -= rhs.Z();
-					return *this;
-				};
+				Point3 &operator-=( const Vector3 &rhs );
 				
 				inline Point3 operator-() const
 				{
@@ -245,20 +209,19 @@ namespace ember
 					return static_cast<F32>( sqrt( static_cast<F32>( DistanceSqr( pt ) ) ) );
 				};
 				
+				#ifdef EMBER_MATH_TO_STRING
 				inline std::string ToString() const
 				{
-					#ifdef EMBER_MATH_TO_STRING
-				
 					std::stringstream strStream;
 					strStream << "[" << _vec[0] << ", " << _vec[1] << ", " << _vec[2] << "]";
 					return ( strStream.str() );
-					
-					#else
-					
+				}
+				#else
+				inline const char *ToString() const
+				{
 					return "";
-					
-					#endif
 				};
+				#endif
 				
 				inline const F32 *const GetComponentsConst() const
 				{
@@ -305,17 +268,11 @@ namespace ember
 		 * @param ptThree The third point.
 		 * @param normalOut Object that contains details on the normal vector.
 		 */
-		inline Vector3 &CalculateUnitNormal( const Point3 &ptOne, const Point3 &ptTwo, const Point3 &ptThree, Vector3 &normalOut )
-		{
-			normalOut = CalculateNormal( ptOne, ptTwo, ptThree, normalOut );
-			normalOut.Normalize();
-			return normalOut;
-		};
+		inline Vector3 &CalculateUnitNormal( const Point3 &ptOne, const Point3 &ptTwo, const Point3 &ptThree, Vector3 &normalOut );
 		
 		/*
 		 * Generate a Point3 with random xyz components.
 		 *
-		 * @param rng The random number generator.
 		 * @param min The minimum point.
 		 * @param max The maximum point.
 		 * @param pt The Point3 object to hold the random componenets.
@@ -324,7 +281,7 @@ namespace ember
 		 *                  components. It refers to the same object passed
 		 *                  in.
 		 */
-		Point3 &GenerateRandomPoint3( CRandom &rng, const Point3 &min, const Point3 &max, Point3 &pt );
+		Point3 &RandomPoint3( const Point3 &min, const Point3 &max, Point3 &pt );
 	}
 }
 #endif
