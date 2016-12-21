@@ -18,9 +18,20 @@
 //
 // Include if you want to have ToString() method on all Math utils for debugging return iseful info.
 // (Otherwise it returns an empty string)
-// Will include std::string and string streams.
+// Will also include std::string and std::streams.
 //
 #define EMBER_MATH_TO_STRING 1
+
+//
+// Use Cramer implementation of calculating the inverse of a Matrix.
+// If its off (default) laplaces expansion method is instead used.
+//
+// Cramer method taken from a 1999 paper released by Intel
+// titled "Streaming SIMD Extensions - Inverse of a 4*4 matrix".
+//
+// Laplace expansion taken from OpenGL Superbible 5th Edition.
+//
+#define EMBER_MATRIX_USE_CRAMER_INVERSE 0
 
 //
 // Defines
@@ -46,8 +57,8 @@
 #include "math/Vector3.h"
 #include "math/Vector4.h"
 #include "math/Point3.h"
+#include "math/Matrix4.h"
 //#include "math/Point2.h"
-//#include "math/Matrix.h"
 //#include "math/Quaternion.h"
 //#include "math/Raycast.h"
 

@@ -20,7 +20,7 @@ namespace ember
 	namespace app
 	{
 		using namespace ember::core;
-        using namespace ember::math;
+		using namespace ember::math;
 		
 		class WindowSystem;
 		class TimeSystem;
@@ -35,7 +35,7 @@ namespace ember
 				WindowSystem *_windowSystem;
 				TimeSystem *_timeSystem;
 				InputSystem *_inputSystem;
-            
+				
 				Random *_rng;
 				
 				void Sleep( F64 seconds );

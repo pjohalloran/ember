@@ -22,7 +22,7 @@ namespace ember
 	namespace app
 	{
 		using namespace ember::core;
-        using namespace ember::math;
+		using namespace ember::math;
 		
 		//
 		// Sub System execution order sorting

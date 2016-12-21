@@ -25,11 +25,10 @@ namespace ember
 		typedef float F32;
 		typedef double F64;
 		
-		// TODO - i might not need these anymore depending on what i bring over from gameframework
+		// Matrix3x3 array definition (a F32 array as it is used in GLSL shaders only).
+		typedef F32 Matrix3x3[9];
 		
-		// // Matrix3x3 array definition (a F32 array as it is used in GLSL shaders only).
-		// typedef F32 Matrix3x3[9];
-		//
+		// TODO - i might not need these anymore depending on what i bring over from gameframework
 		// 		// unsigned long is 32 bits or 64 bits depending on the target architecture...
 		// 		// However, 3rd party data chunks used in framework (zlib (.zip), .wav) use 4 bytes for DWORD no matter
 		// 		//  what the architeture used is...  So we will explicitly define DWORD and WORD types here!
