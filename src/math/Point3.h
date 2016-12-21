@@ -10,9 +10,7 @@
  * 3D Point in space.
  */
 
-#include <cstring>
-
-#include "core/EmberTypes.h"
+#include "EmberMathDefines.h"
 #include "EmberMathUtils.h"
 
 namespace ember
@@ -209,19 +207,16 @@ namespace ember
 					return static_cast<F32>( sqrt( static_cast<F32>( DistanceSqr( pt ) ) ) );
 				};
 				
-				#ifdef EMBER_MATH_TO_STRING
-				inline std::string ToString() const
-				{
-					std::stringstream strStream;
-					strStream << "[" << _vec[0] << ", " << _vec[1] << ", " << _vec[2] << "]";
-					return ( strStream.str() );
-				}
-				#else
 				inline const char *ToString() const
 				{
+					#ifdef EMBER_MATH_TO_STRING
+					std::stringstream strStream;
+					strStream << "[" << _vec[0] << ", " << _vec[1] << ", " << _vec[2] << "]";
+					return strStream.str().c_str();
+					#else
 					return "";
-				};
-				#endif
+					#endif
+				}
 				
 				inline const F32 *const GetComponentsConst() const
 				{

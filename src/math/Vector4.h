@@ -10,9 +10,7 @@
  * 4D Vector.
  */
 
-#include <cstring>
-
-#include "core/EmberTypes.h"
+#include "EmberMathDefines.h"
 #include "EmberMathUtils.h"
 
 namespace ember
@@ -21,8 +19,8 @@ namespace ember
 	{
 		using namespace ember::core;
 		
-		class Vector3;
 		class Point3;
+		class Vector3;
 		
 		class Vector4
 		{
@@ -355,19 +353,16 @@ namespace ember
 					       ( _vec[3] * rhsVecRef._vec[3] );
 				};
 				
-				#ifdef EMBER_MATH_TO_STRING
-				inline std::string ToString() const
-				{
-					std::stringstream strStream;
-					strStream << "[" << _vec[0] << ", " << _vec[1] << ", " << _vec[2] << ", " << _vec[3] << "]";
-					return strStream.str();
-				}
-				#else
 				inline const char *ToString() const
 				{
+					#ifdef EMBER_MATH_TO_STRING
+					std::stringstream strStream;
+					strStream << "[" << _vec[0] << ", " << _vec[1] << ", " << _vec[2] << ", " << _vec[3] << "]";
+					return strStream.str().c_str();
+					#else
 					return "";
-				};
-				#endif
+					#endif
+				}
 				
 				inline const F32 *const GetComponentsConst() const
 				{

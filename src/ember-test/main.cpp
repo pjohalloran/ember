@@ -5,6 +5,7 @@
 #include "input/IMouseListener.h"
 #include "input/IKeyboardListener.h"
 #include "app/InputSystem.h"
+#include "math/EmberMath.h"
 
 int get_log_level();
 void test_loguru( int argc, char **argv );
@@ -12,6 +13,7 @@ void test_loguru( int argc, char **argv );
 using namespace ember::core;
 using namespace ember::input;
 using namespace ember::app;
+using namespace ember::math;
 
 class TestKeyListener : public IKeyboardListener
 {
@@ -89,6 +91,13 @@ int main( int argc, char **argv )
 	
 	app->Input()->Add( ( IKeyboardListener * )&k );
 	app->Input()->Add( ( IMouseListener * )&m );
+	
+	Matrix4 mat;
+	mat.LoadIdentity();
+	LOG_F( INFO, "matrix %s", mat.ToString() );
+	
+	Vector3 v;
+	LOG_F( INFO, "vec %s", v.ToString() );
 	
 	app->Run();
 	

@@ -8,8 +8,9 @@
  * @date 20/12/2016
  */
 
-#include "core/EmberTypes.h"
+#include "EmberMathDefines.h"
 #include "EmberMathUtils.h"
+
 #include "Vector4.h"
 #include "Vector3.h"
 #include "Point3.h"
@@ -209,22 +210,19 @@ namespace ember
 					return _mat[index];
 				};
 				
-				#ifdef EMBER_MATH_TO_STRING
-				inline std::string ToString() const
+				inline const char *ToString() const
 				{
+					#ifdef EMBER_MATH_TO_STRING
 					std::stringstream conv;
 					conv << "|\t" << _mat[M00] << "\t" << _mat[M10] << "\t" << _mat[M20] << "\t" << _mat[M30] << "\t|\n";
 					conv << "|\t" << _mat[M01] << "\t" << _mat[M11] << "\t" << _mat[M21] << "\t" << _mat[M31] << "\t|\n";
 					conv << "|\t" << _mat[M02] << "\t" << _mat[M12] << "\t" << _mat[M22] << "\t" << _mat[M32] << "\t|\n";
 					conv << "|\t" << _mat[M03] << "\t" << _mat[M13] << "\t" << _mat[M23] << "\t" << _mat[M33] << "\t|";
-					return conv.str();
-				};
-				#else
-				inline const char *ToString() const
-				{
+					return conv.str().c_str();
+					#else
 					return "";
+					#endif
 				};
-				#endif
 				
 				inline const F32 *const GetComponentsConst() const
 				{

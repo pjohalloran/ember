@@ -10,9 +10,7 @@
  * Common Math utilities.
  */
 
-#include <cmath>
-
-#include "core/EmberTypes.h"
+#include "EmberMathDefines.h"
 
 #define F64_ERROR_DELTA 0.000001
 #define F32_ERROR_DELTA 0.000001f
@@ -72,9 +70,15 @@ namespace ember
 			return clamp;
 		};
 		
-		F32 Clamp01( const F32 value );
+		inline F32 Clamp01( F32 &value )
+		{
+			return Clamp<F32>( value, 0.0f, 1.0f );
+		};
 		
-		F64 Clamp01( const F64 value );
+		inline F64 Clamp01( F64 &value )
+		{
+			return Clamp<F64>( value, 0.0, 1.0 );
+		};
 		
 		template<typename T>
 		T Max( const T &a, const T &b )
