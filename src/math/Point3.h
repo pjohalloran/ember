@@ -66,17 +66,17 @@ namespace ember
 				
 				inline F32 X() const
 				{
-					return ( _vec[0] );
+					return _vec[0];
 				};
 				
 				inline F32 Y() const
 				{
-					return ( _vec[1] );
+					return _vec[1];
 				};
 				
 				inline F32 Z() const
 				{
-					return ( _vec[2] );
+					return _vec[2];
 				};
 				
 				inline void SetX( const F32 x )
@@ -105,7 +105,7 @@ namespace ember
 				{
 					if ( this == &rhs )
 					{
-						return ( *this );
+						return *this;
 					}
 					
 					_vec[0] = rhs._vec[0];

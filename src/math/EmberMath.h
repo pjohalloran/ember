@@ -22,5 +22,6 @@
 #include "math/BoundingCube.h"
 #include "math/Plane.h"
 #include "math/Frustum.h"
+#include "math/Point2.h"
 
 #endif
