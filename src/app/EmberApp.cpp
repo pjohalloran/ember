@@ -55,6 +55,7 @@ namespace ember
 			Application = this;
 			
 			_rng = new Random();
+			_rng->Randomize();
 			
 			// TODO: Make system setup order and whats used/needed data driven.
 			
