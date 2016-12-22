@@ -19,9 +19,9 @@ namespace ember
 	{
 		using namespace ember::app;
 		
-		const Vector4 Up4( Up );
-		const Vector4 Right4( Right );
-		const Vector4 Forward4( Forward );
+		const Vector4 UpDir4( UpDir );
+		const Vector4 RightDir4( RightDir );
+		const Vector4 ForwardDir4( ForwardDir );
 		
 		Vector4::Vector4( const Point3 &pt )
 		{

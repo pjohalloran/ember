@@ -370,6 +370,10 @@ namespace ember
 				};
 		};
 		
+		extern const Vector4 UpDir4;
+		extern const Vector4 RightDir4;
+		extern const Vector4 ForwardDir4;
+		
 		inline Vector4 operator*( const F32 lhs, const Vector4 &rhs )
 		{
 			Vector4 copy( rhs );

@@ -331,9 +331,9 @@ namespace ember
 				};
 		};
 		
-		extern const Vector3 Up;
-		extern const Vector3 Right;
-		extern const Vector3 Forward;
+		extern const Vector3 UpDir;
+		extern const Vector3 RightDir;
+		extern const Vector3 ForwardDir;
 		extern const Vector3 XAxis;
 		extern const Vector3 YAxis;
 		extern const Vector3 ZAxis;
