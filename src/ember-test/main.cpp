@@ -63,14 +63,14 @@ class TestMouseListener : public IMouseListener
 			LOG_F( INFO, "TEST Button RELEASED %i", button );
 		}
 		
-		virtual void VOnMove( F64 x, F64 y, F64 xRelative, F64 yRelative )
+		virtual void VOnMove( const Point2 &position, const Point2 &relative )
 		{
-			LOG_F( INFO, "Mouse moved x %f y %f xRel %f yRel %f", x, y, xRelative, yRelative );
+			LOG_F( INFO, "Mouse moved x %f y %f xRel %f yRel %f", position.X(), position.Y(), relative.X(), relative.Y() );
 		}
 		
-		virtual void VOnScroll( F64 x, F64 y )
+		virtual void VOnScroll( const Point2 &position )
 		{
-			LOG_F( INFO, "Mouse scrolled x %f y %f", x, y );
+			LOG_F( INFO, "Mouse scrolled x %f y %f", position.X(), position.Y() );
 		}
 		
 		virtual void VOnFileDrop( const char **paths, int count )

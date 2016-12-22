@@ -9,11 +9,14 @@
 
 #include "IInputListener.h"
 
+#include "math/Point2.h"
+
 namespace ember
 {
 	namespace input
 	{
 		using namespace ember::core;
+		using namespace ember::math;
 		
 		class IMouseListener : public IInputListener
 		{
@@ -25,11 +28,9 @@ namespace ember
 				
 				virtual void VOnButtonRelease( I32 button ) = 0;
 				
-				// TODO Replace with math structures
-				virtual void VOnMove( F64 x, F64 y, F64 xRelative, F64 yRelative ) = 0;
+				virtual void VOnMove( const Point2 &position, const Point2 &relative ) = 0;
 				
-				// TODO Replace with math structures
-				virtual void VOnScroll( F64 x, F64 y ) = 0;
+				virtual void VOnScroll( const Point2 &position ) = 0;
 				
 				// TODO might be better to put this in a Window listener
 				virtual void VOnFileDrop( const char **paths, int count ) = 0;

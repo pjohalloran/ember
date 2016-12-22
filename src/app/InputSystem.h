@@ -11,6 +11,8 @@
 
 #include "app/AbstractSystem.h"
 
+#include "math/Point2.h"
+
 namespace ember
 {
 	namespace input
@@ -23,6 +25,7 @@ namespace ember
 	namespace app
 	{
 		using namespace ember::input;
+		using namespace ember::math;
 		
 		class InputSystem : public AbstractSystem
 		{
@@ -34,11 +37,10 @@ namespace ember
 				std::vector<IMouseListener *> _mouseListeners;
 				std::vector<IGamepadListener *> _gamepadListeners;
 				
-				F64 _prevMouseX;
-				F64 _prevMouseY;
+				Point2 _prevMouse;
 				
 			public:
-				InputSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _keyboardListeners(), _mouseListeners(), _gamepadListeners(), _prevMouseX( 0.0 ), _prevMouseY( 0.0 ) { };
+				InputSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _keyboardListeners(), _mouseListeners(), _gamepadListeners(), _prevMouse() { };
 				
 				virtual ~InputSystem()
 				{
@@ -57,11 +59,11 @@ namespace ember
 				
 				void TriggerCharacterInput( U32 codePoint, I32 mods );
 				
-				void TriggerMouseMove( F64 x, F64 y );
+				void TriggerMouseMove( const Point2 &position );
 				
 				void TriggerMouseButton( I32 button, I32 action, I32 mods );
 				
-				void TriggerMouseScroll( F64 x, F64 y );
+				void TriggerMouseScroll( const Point2 &position );
 				
 				void TriggerFileDrop( I32 count, const I8 **paths );
 				

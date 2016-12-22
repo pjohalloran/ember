@@ -59,13 +59,13 @@ namespace ember
 		void OnGLFWMouseMovedEvent( GLFWwindow *window, F64 x, F64 y )
 		{
 			LOG_F( INFO, "x %f y %f", x, y );
-			Application->Input()->TriggerMouseMove( x, y );
+			Application->Input()->TriggerMouseMove( Point2( ( F32 )x, ( F32 )y ) );
 		}
 		
 		void OnGLFWMouseScrollEvent( GLFWwindow *window, F64 xOffset, F64 yOffset )
 		{
 			LOG_F( INFO, "xOffset %f yOffset %f", xOffset, yOffset );
-			Application->Input()->TriggerMouseScroll( xOffset, yOffset );
+			Application->Input()->TriggerMouseScroll( Point2( ( F32 )xOffset, ( F32 )yOffset ) );
 		}
 		
 		void OnGLFWJoystickPluggedEvent( I32 joy, I32 event )
@@ -183,32 +183,27 @@ namespace ember
 			}
 		}
 		
-		void InputSystem::TriggerMouseMove( F64 x, F64 y )
+		void InputSystem::TriggerMouseMove( const Point2 &position )
 		{
 			// GLFW uses top left for the origin but in this codebase, we use bottom left corner for screen space origin.
 			F32 w, h;
 			Application->Window()->GetWindowSize( w, h );
-			y = ( ( F64 )h ) - y;
+			Point2 positionCopy( position );
+			positionCopy.SetY( h - positionCopy.Y() );
 			
-			F64 xRelative, yRelative;
+			Point2 relative;
 			
-			if ( Application->Time()->FrameCount() == 1 )
+			if ( Application->Time()->FrameCount() > 1 )
 			{
-				xRelative = yRelative = 0.0;
-			}
-			else
-			{
-				xRelative = x - _prevMouseX;
-				yRelative = y - _prevMouseY;
+				relative.Set( positionCopy.X() - _prevMouse.X(), positionCopy.Y() - _prevMouse.Y() );
 			}
 			
 			for ( IMouseListener *i : _mouseListeners )
 			{
-				i->VOnMove( x, y, xRelative, yRelative );
+				i->VOnMove( positionCopy, relative );
 			}
 			
-			_prevMouseX = x;
-			_prevMouseY = y;
+			_prevMouse = positionCopy;
 		}
 		
 		void InputSystem::TriggerMouseButton( I32 button, I32 action, I32 mods )
@@ -226,11 +221,11 @@ namespace ember
 			}
 		}
 		
-		void InputSystem::TriggerMouseScroll( F64 x, F64 y )
+		void InputSystem::TriggerMouseScroll( const Point2 &position )
 		{
 			for ( IMouseListener *i : _mouseListeners )
 			{
-				i->VOnScroll( x, y );
+				i->VOnScroll( position );
 			}
 		}
 		
