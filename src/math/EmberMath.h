@@ -18,5 +18,8 @@
 #include "math/Vector4.h"
 #include "math/Point3.h"
 #include "math/Matrix4.h"
+#include "math/BoundingSphere.h"
+#include "math/BoundingCube.h"
+#include "math/Plane.h"
 
 #endif
