@@ -7,7 +7,7 @@
  * @date 19/12/2016
  */
 
-#include <vector>
+#include <EASTL/vector.h>
 
 #include "app/AbstractSystem.h"
 
@@ -51,7 +51,7 @@ namespace ember
 			
 				static const char *Name;
 				
-				std::vector<OneSecondIntervalStats *> _stats;
+				eastl::vector<OneSecondIntervalStats *> _stats;
 				bool _active;
 				U32 _sampleCount;
 				

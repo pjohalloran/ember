@@ -8,7 +8,7 @@
  * @date 17/12/2016
  */
 
-#include <vector>
+#include <EASTL/vector.h>
 
 #include "core/Ember.h"
 
@@ -30,7 +30,7 @@ namespace ember
 		{
 			private:
 			
-				std::vector<AbstractSystem *> _systems;
+				eastl::vector<AbstractSystem *> _systems;
 				
 				WindowSystem *_windowSystem;
 				TimeSystem *_timeSystem;

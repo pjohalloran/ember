@@ -4,7 +4,7 @@
  * @date 18/12/2016
  */
 
-#include <algorithm>
+#include <EASTL/algorithm.h>
 
 #include "InputSystem.h"
 
@@ -257,7 +257,7 @@ namespace ember
 		//
 		
 		template<typename T>
-		bool AddListener( T *listener, std::vector<T *> &container )
+		bool AddListener( T *listener, eastl::vector<T *> &container )
 		{
 			if ( listener == nullptr )
 			{
@@ -265,8 +265,8 @@ namespace ember
 				return false;
 			}
 			
-			typename std::vector<T *>::iterator it;
-			it = std::find( container.begin(), container.end(), listener );
+			typename eastl::vector<T *>::iterator it;
+			it = eastl::find( container.begin(), container.end(), listener );
 			
 			if ( it != container.end() )
 			{
@@ -279,7 +279,7 @@ namespace ember
 		}
 		
 		template<typename T>
-		bool RemoveListener( T *listener, std::vector<T *> &container )
+		bool RemoveListener( T *listener, eastl::vector<T *> &container )
 		{
 			if ( listener == nullptr )
 			{
@@ -287,8 +287,8 @@ namespace ember
 				return false;
 			}
 			
-			typename std::vector<T *>::iterator it;
-			it = std::remove( container.begin(), container.end(), listener );
+			typename eastl::vector<T *>::iterator it;
+			it = eastl::remove( container.begin(), container.end(), listener );
 			return it != container.end();
 		}
 		

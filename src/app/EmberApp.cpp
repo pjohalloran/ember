@@ -4,9 +4,10 @@
  * @date 17/12/2016
  */
 
-#include <algorithm>
 #include <chrono>
 #include <thread>
+
+#include <EASTL/sort.h>
 
 #include "EmberApp.h"
 
@@ -71,14 +72,14 @@ namespace ember
 			_timeSystem = new TimeSystem( 3, 1 );
 			_systems.push_back( _timeSystem );
 			
-			std::sort( _systems.begin(), _systems.end(), SortForInit );
+			eastl::sort( _systems.begin(), _systems.end(), SortForInit );
 			
 			LOG_F( INFO, "EmberApp() done" );
 		}
 		
 		EmberApp::~EmberApp()
 		{
-			std::sort( _systems.begin(), _systems.end(), SortForShutdown );
+			eastl::sort( _systems.begin(), _systems.end(), SortForShutdown );
 			
 			for ( U32 i = 0, size = _systems.size(); i < size; ++i )
 			{
@@ -141,7 +142,7 @@ namespace ember
 			
 			if ( result )
 			{
-				std::sort( _systems.begin(), _systems.end(), SortForUpdate );
+				eastl::sort( _systems.begin(), _systems.end(), SortForUpdate );
 			}
 			
 			return result;

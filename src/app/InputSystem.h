@@ -7,7 +7,7 @@
  * @date 18/12/2016
  */
 
-#include <vector>
+#include <EASTL/vector.h>
 
 #include "app/AbstractSystem.h"
 
@@ -33,9 +33,9 @@ namespace ember
 			
 				static const char *Name;
 				
-				std::vector<IKeyboardListener *> _keyboardListeners;
-				std::vector<IMouseListener *> _mouseListeners;
-				std::vector<IGamepadListener *> _gamepadListeners;
+				eastl::vector<IKeyboardListener *> _keyboardListeners;
+				eastl::vector<IMouseListener *> _mouseListeners;
+				eastl::vector<IGamepadListener *> _gamepadListeners;
 				
 				Point2 _prevMouse;
 				
