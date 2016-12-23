@@ -17,6 +17,8 @@
 - List 3rd party libs i want to include initially.
 	- glfw
 	- opengl
+	- loguru
+	- EASTL
 [DONE]
 
 - Code styling script
