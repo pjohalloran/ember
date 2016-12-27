@@ -7,8 +7,6 @@
 #include "app/InputSystem.h"
 #include "math/EmberMath.h"
 
-#include <path.h>
-
 int get_log_level();
 void test_loguru( int argc, char **argv );
 
@@ -83,16 +81,11 @@ class TestMouseListener : public IMouseListener
 
 int main( int argc, char **argv )
 {
-	using filesystem::path;
-	
 	TestKeyListener k;
 	TestMouseListener m;
 	
 	EmberApp *app = new EmberApp();
 	app->Initialize();
-	
-	path p = path::getcwd();
-	LOG_F( INFO, "GetCWD = %s", p.str().c_str() );
 	
 	test_loguru( argc, argv );
 	
