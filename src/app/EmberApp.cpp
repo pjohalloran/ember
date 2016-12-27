@@ -4,13 +4,18 @@
  * @date 17/12/2016
  */
 
-#include <algorithm>
 #include <chrono>
 #include <thread>
 
+#include <EASTL/sort.h>
+
+#include "EmberApp.h"
+
 #include "core/EmberTimer.h"
 
-#include "app/EmberApp.h"
+#include "app/WindowSystem.h"
+#include "app/TimeSystem.h"
+#include "app/InputSystem.h"
 #include "app/LoggingSystem.h"
 
 namespace ember
@@ -18,6 +23,30 @@ namespace ember
 	namespace app
 	{
 		using namespace ember::core;
+		using namespace ember::math;
+		
+		//
+		// Sub System execution order sorting
+		//
+		
+		bool SortForInit( AbstractSystem *a, AbstractSystem *b )
+		{
+			return a != nullptr && b != nullptr && ( a->GetInitPriority() < b->GetInitPriority() );
+		}
+		
+		bool SortForUpdate( AbstractSystem *a, AbstractSystem *b )
+		{
+			return a != nullptr && b != nullptr && ( a->GetUpdatePriority() < b->GetUpdatePriority() );
+		}
+		
+		bool SortForShutdown( AbstractSystem *a, AbstractSystem *b )
+		{
+			return a != nullptr && b != nullptr && ( a->GetInitPriority() > b->GetInitPriority() );
+		}
+		
+		//
+		// EmberApp
+		//
 		
 		// Initialize the global, extern game application pointer.
 		EmberApp *Application = NULL;
@@ -25,6 +54,9 @@ namespace ember
 		EmberApp::EmberApp() : _systems(), _windowSystem( nullptr )
 		{
 			Application = this;
+			
+			_rng = new Random();
+			_rng->Randomize();
 			
 			// TODO: Make system setup order and whats used/needed data driven.
 			
@@ -34,23 +66,20 @@ namespace ember
 			_windowSystem = new WindowSystem( 2, 0 );
 			_systems.push_back( _windowSystem );
 			
-			_inputSystem = new InputSystem( 3, 2 );
+			_inputSystem = new InputSystem( 4, 2 );
 			_systems.push_back( _inputSystem );
 			
-			_timeSystem = new TimeSystem( 4, 1 );
+			_timeSystem = new TimeSystem( 3, 1 );
 			_systems.push_back( _timeSystem );
+			
+			eastl::sort( _systems.begin(), _systems.end(), SortForInit );
 			
 			LOG_F( INFO, "EmberApp() done" );
 		}
 		
 		EmberApp::~EmberApp()
 		{
-			// Reverse sort of init priority
-			std::sort( _systems.begin(), _systems.end(),
-			           []( const AbstractSystem * a, const AbstractSystem * b ) -> bool
-			{
-				return a != nullptr && b != nullptr && ( a->GetInitPriority() > b->GetInitPriority() );
-			} );
+			eastl::sort( _systems.begin(), _systems.end(), SortForShutdown );
 			
 			for ( U32 i = 0, size = _systems.size(); i < size; ++i )
 			{
@@ -63,6 +92,8 @@ namespace ember
 			}
 			
 			_systems.clear();
+			
+			Delete( _rng );
 			
 			Application = nullptr;
 		}
@@ -99,13 +130,6 @@ namespace ember
 		
 		bool EmberApp::VInitializeSystems()
 		{
-			// Sort in order of increasing init priority.
-			std::sort( _systems.begin(), _systems.end(),
-			           []( const AbstractSystem * a, const AbstractSystem * b ) -> bool
-			{
-				return a != nullptr && b != nullptr && ( a->GetInitPriority() < b->GetInitPriority() );
-			} );
-			
 			bool result = true;
 			
 			for ( U32 i = 0, size = _systems.size(); ( result && i < size ); ++i )
@@ -118,12 +142,7 @@ namespace ember
 			
 			if ( result )
 			{
-				// Sort using desired priority for update.
-				std::sort( _systems.begin(), _systems.end(),
-				           []( const AbstractSystem * a, const AbstractSystem * b ) -> bool
-				{
-					return a != nullptr && b != nullptr && ( a->GetUpdatePriority() < b->GetUpdatePriority() );
-				} );
+				eastl::sort( _systems.begin(), _systems.end(), SortForUpdate );
 			}
 			
 			return result;

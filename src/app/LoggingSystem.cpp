@@ -6,7 +6,7 @@
 
 #include "LoggingSystem.h"
 
-#include<loguru.hpp>
+#include <loguru.hpp>
 
 namespace ember
 {

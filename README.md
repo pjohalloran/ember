@@ -21,3 +21,4 @@ Hobbiyst game programming experiments.
 - glfw (http://http://www.glfw.org/)
 - OpenGL (https://www.opengl.org/)
 - loguru (https://github.com/emilk/loguru)
+- EASTL (https://github.com/electronicarts/EASTL)

@@ -6,7 +6,8 @@
 
 #include "TimeSystem.h"
 
-#include "EmberApp.h"
+#include "app/EmberApp.h"
+#include "app/WindowSystem.h"
 
 namespace ember
 {

@@ -8,30 +8,35 @@
  * @date 17/12/2016
  */
 
-#include <vector>
+#include <EASTL/vector.h>
 
 #include "core/Ember.h"
 
 #include "app/AbstractSystem.h"
-#include "app/WindowSystem.h"
-#include "app/TimeSystem.h"
-#include "app/InputSystem.h"
+#include "math/Random.h"
 
 namespace ember
 {
 	namespace app
 	{
 		using namespace ember::core;
+		using namespace ember::math;
+		
+		class WindowSystem;
+		class TimeSystem;
+		class InputSystem;
 		
 		class EmberApp
 		{
 			private:
 			
-				std::vector<AbstractSystem *> _systems;
+				eastl::vector<AbstractSystem *> _systems;
 				
 				WindowSystem *_windowSystem;
 				TimeSystem *_timeSystem;
 				InputSystem *_inputSystem;
+				
+				Random *_rng;
 				
 				void Sleep( F64 seconds );
 				
@@ -65,6 +70,11 @@ namespace ember
 				inline TimeSystem *Time() const
 				{
 					return _timeSystem;
+				}
+				
+				inline Random *RNG() const
+				{
+					return _rng;
 				}
 		};
 		

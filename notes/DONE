@@ -17,6 +17,8 @@
 - List 3rd party libs i want to include initially.
 	- glfw
 	- opengl
+	- loguru
+	- EASTL
 [DONE]
 
 - Code styling script
@@ -24,4 +26,9 @@
 
 - Bring over gameframework code i still like.
 	- premake scripts
+	- gamebase (some)
+	- Math
 [DONE]
+
+- Decide on gameframework code i will not bring over.
+	- datastructures

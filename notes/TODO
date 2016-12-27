@@ -1,7 +1,5 @@
 - Bring over gameframework code i still like.
-	- Math
 	- fileio (some)
-	- gamebase (some)
 	- graphics (some)
 
 - Look at other gameframework code i could bring over with a rethink
@@ -11,7 +9,6 @@
 	- scripting
 	- resourcecache
 	- sound
-	- datastructures
 	- memory
 	- shaders
 
