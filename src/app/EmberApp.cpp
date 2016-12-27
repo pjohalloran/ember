@@ -17,6 +17,7 @@
 #include "app/TimeSystem.h"
 #include "app/InputSystem.h"
 #include "app/LoggingSystem.h"
+#include "app/FileSystem.h"
 
 namespace ember
 {
@@ -63,14 +64,17 @@ namespace ember
 			AbstractSystem *loggingSystem = new LoggingSystem( 1, 0 );
 			_systems.push_back( loggingSystem );
 			
-			_windowSystem = new WindowSystem( 2, 0 );
+			_fileSystem = new FileSystem( 2, 0 );
+			_systems.push_back( _fileSystem );
+			
+			_windowSystem = new WindowSystem( 3, 0 );
 			_systems.push_back( _windowSystem );
 			
-			_inputSystem = new InputSystem( 4, 2 );
-			_systems.push_back( _inputSystem );
-			
-			_timeSystem = new TimeSystem( 3, 1 );
+			_timeSystem = new TimeSystem( 4, 1 );
 			_systems.push_back( _timeSystem );
+			
+			_inputSystem = new InputSystem( 5, 2 );
+			_systems.push_back( _inputSystem );
 			
 			eastl::sort( _systems.begin(), _systems.end(), SortForInit );
 			

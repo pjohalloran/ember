@@ -19,6 +19,7 @@
 	- opengl
 	- loguru
 	- EASTL
+	- filesystem
 [DONE]
 
 - Code styling script
