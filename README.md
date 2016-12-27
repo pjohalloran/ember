@@ -22,3 +22,4 @@ Hobbiyst game programming experiments.
 - OpenGL (https://www.opengl.org/)
 - loguru (https://github.com/emilk/loguru)
 - EASTL (https://github.com/electronicarts/EASTL)
+- filesystem (https://github.com/wjakob/filesystem)
