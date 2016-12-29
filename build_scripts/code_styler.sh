@@ -9,6 +9,10 @@ function should_style_file {
 	filename="${filename%.*}"
 
 	for i in "${file_exts[@]}"; do
+		if [[ $filename == flextGL* ]]; then
+			echo "Skipping $1"
+			return 1
+		fi
 		if [ ".$extension" == "$i" ]; then
 			#echo "$1 is valid"
 			return 0

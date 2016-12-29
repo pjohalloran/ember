@@ -46,25 +46,6 @@ namespace ember
 					}
 					break;
 					
-				// Pre GL 3.x errors for completeness
-				case GL_STACK_OVERFLOW:
-					{
-						str.assign( "GL_STACK_OVERFLOW: command would cause a stack overflow" );
-					}
-					break;
-					
-				case GL_STACK_UNDERFLOW:
-					{
-						str.assign( "GL_STACK_UNDERFLOW: command would cause a stack underflow" );
-					}
-					break;
-					
-				case GL_TABLE_TOO_LARGE:
-					{
-						str.assign( "GL_TABLE_TOO_LARGE: specified table is too large" );
-					}
-					break;
-					
 				case GL_NO_ERROR:
 					{
 						str.assign( "No OpenGL error occurred" );

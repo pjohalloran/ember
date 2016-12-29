@@ -51,8 +51,6 @@ namespace ember
 				bool GetFrameBufferSize( F32 &width, F32 &height ) const;
 				
 				bool GetDpi( int &dpi ) const;
-				
-				void SwapBuffers();
 		};
 	}
 }

@@ -22,8 +22,7 @@
 #include <direct.h>
 #include <crtdbg.h>
 
-// TODO Am i using GLEW?
-//#include <GL/glew.h>
+#include "flextGL/flextGL.h"
 
 #include <GL/glfw3.h>
 #define GLFW_FUNC_PRE GLFWAPI
@@ -50,10 +49,9 @@
 	
 	#ifdef __APPLE__
 		#include <TargetConditionals.h>
-		// TODO Am i using GLEW?
-		//#include <GL/glew.h>
-		#include <OpenGL/gl.h>
-		#include <OpenGL/glext.h>
+		#include "flextGL/flextGL.h"
+		//#include <OpenGL/gl.h>
+		//#include <OpenGL/glext.h>
 		#include <GLFW/glfw3.h>
 		#define GLFW_FUNC_PRE GLFWAPI
 	#endif

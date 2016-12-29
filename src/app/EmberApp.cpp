@@ -18,6 +18,7 @@
 #include "app/InputSystem.h"
 #include "app/LoggingSystem.h"
 #include "app/FileSystem.h"
+#include "app/RenderSystem.h"
 
 namespace ember
 {
@@ -70,10 +71,13 @@ namespace ember
 			_windowSystem = new WindowSystem( 3, 0 );
 			_systems.push_back( _windowSystem );
 			
-			_timeSystem = new TimeSystem( 4, 1 );
+			_renderSystem = new RenderSystem( 4, 0 );
+			_systems.push_back( _renderSystem );
+			
+			_timeSystem = new TimeSystem( 5, 1 );
 			_systems.push_back( _timeSystem );
 			
-			_inputSystem = new InputSystem( 5, 2 );
+			_inputSystem = new InputSystem( 6, 2 );
 			_systems.push_back( _inputSystem );
 			
 			eastl::sort( _systems.begin(), _systems.end(), SortForInit );
@@ -180,7 +184,7 @@ namespace ember
 			
 			glClear( GL_COLOR_BUFFER_BIT );
 			
-			_windowSystem->SwapBuffers();
+			_renderSystem->SwapBuffers();
 			
 			// TODO: Rendering
 			

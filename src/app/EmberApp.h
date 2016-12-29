@@ -26,6 +26,7 @@ namespace ember
 		class TimeSystem;
 		class InputSystem;
 		class FileSystem;
+		class RenderSystem;
 		
 		class EmberApp
 		{
@@ -37,6 +38,7 @@ namespace ember
 				TimeSystem *_timeSystem;
 				InputSystem *_inputSystem;
 				FileSystem *_fileSystem;
+				RenderSystem *_renderSystem;
 				
 				Random *_rng;
 				
@@ -77,6 +79,11 @@ namespace ember
 				inline FileSystem *File() const
 				{
 					return _fileSystem;
+				}
+				
+				inline RenderSystem *Render() const
+				{
+					return _renderSystem;
 				}
 				
 				inline Random *RNG() const

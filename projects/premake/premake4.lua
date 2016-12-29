@@ -3,6 +3,7 @@
 require 'conanpremake'
 
 -- Directory variables.
+local_flextGL_src_dir = "../../src/flextGL/"
 local_src_dir = "../../src/"
 local_ember_test_dir = local_src_dir .. "ember-test"
 local_includes_dir = "../../includes/"
@@ -26,15 +27,42 @@ solution "ember-engine"
    {
       conan_libdirs
    }
-   links
-   {
-      conan_libs
-   }
-   buildoptions
-   {
-      conan_cppflags
-   }
    location(generated_project_dir)
+
+   project "flextGL"
+      kind "StaticLib"
+      language "C"
+      files 
+      {
+         local_flextGL_src_dir .. "**.h",
+         local_flextGL_src_dir .. "**.c"
+      }
+      location(generated_project_dir)
+      configuration "Debug"
+         defines
+         {
+            "DEBUG"
+         }
+         flags
+         {
+            "Symbols"
+         }
+         targetdir (local_lib_dir .. "debug")
+      configuration "Release"
+         defines
+         {
+            "RELEASE"
+         }
+         flags
+         {
+            "Optimize"
+         }
+         targetdir (local_lib_dir .. "release")
+      configuration "macosx"
+         prebuildcommands 
+         {
+            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. local_src_dir .. " ../" .. local_includes_dir
+         }
 
    project "ember"
       kind "StaticLib"
@@ -47,12 +75,22 @@ solution "ember-engine"
       excludes
       {
          local_ember_test_dir .. "**.h",
-         local_ember_test_dir .. "**.cpp"
+         local_ember_test_dir .. "**.cpp",
+         local_flextGL_src_dir .. "**.h",
+         local_flextGL_src_dir .. "**.c"
       }
       location(generated_project_dir)
       linkoptions
       {
          conan_sharedlinkflags
+      }
+      links
+      {
+         conan_libs
+      }
+      buildoptions
+      {
+         conan_cppflags
       }
       configuration "Debug"
          defines
@@ -87,8 +125,14 @@ solution "ember-engine"
    project "ember-test"
       kind "ConsoleApp"
       language "C++"
+      buildoptions
+      {
+         conan_cppflags
+      }
       links
       {
+         conan_libs,
+         "flextGL",
          "ember"
       }
       linkoptions

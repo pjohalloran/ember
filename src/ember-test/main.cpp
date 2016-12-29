@@ -7,12 +7,6 @@
 #include "app/InputSystem.h"
 #include "math/EmberMath.h"
 
-extern "C" {
-#include <lua.h>
-#include <lauxlib.h>
-#include <lualib.h>
-}
-
 int get_log_level();
 void test_loguru( int argc, char **argv );
 
@@ -109,17 +103,6 @@ int main( int argc, char **argv )
 	
 	delete app;
 	app = nullptr;
-	
-	lua_State *L = luaL_newstate();
-	luaL_openlibs( L );
-	
-	int error = 0;
-	std::string luaScript( "p = 5\nprint(p)" );
-	
-	error = luaL_loadbuffer( L, luaScript.c_str(), luaScript.size(), "line" );
-	lua_pcall( L, 0, 0, 0 );
-	
-	lua_close( L );
 	
 	return 0;
 }

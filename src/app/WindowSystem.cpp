@@ -179,17 +179,6 @@ namespace ember
 			return true;
 		}
 		
-		void WindowSystem::SwapBuffers()
-		{
-			if ( !VInitialized() )
-			{
-				LOG_F( WARNING, "%s needs to be initialized before use.", Name );
-				return;
-			}
-			
-			glfwSwapBuffers( _window );
-		}
-		
 		const char *WindowSystem::VGetSystemName()
 		{
 			return Name;
