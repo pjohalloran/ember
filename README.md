@@ -14,7 +14,7 @@ Hobbiyst game programming experiments.
 - To generate xcode solution, run `. build_scripts\regen_project.sh`
 - Open the xcode project in `projects\premake\generated_project\` and play.
 
-Currently, an OpenGL 4.1 Core Context is used, for instructions on how to setup ember to be used with a different OpenGL profile, see [see!](notes/GeneratingOpenGLExtensions.md)
+Currently, an OpenGL 4.1 Core Context is used, for instructions on how to setup ember to be used with a different OpenGL profile, see [see](notes/GeneratingOpenGLExtensions.md)
 
 ## To begin on Windows
 - Instructions coming soon.
