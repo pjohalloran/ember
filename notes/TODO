@@ -19,7 +19,6 @@
 	- openal
 	- (or) SoLoud
 	- imgui
-	- flextgl (instead of glew)
 	- whereami
 	- convertutf
 	- gliml
