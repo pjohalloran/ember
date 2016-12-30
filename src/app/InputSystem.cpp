@@ -99,7 +99,7 @@ namespace ember
 				return true;
 			}
 			
-			CHECK_WITH_INFO_F( Application != nullptr && Application->Window() != nullptr && Application->Window()->VInitialized(), "WindowSystem needs to be intialized before the %s", Name );
+			CHECK_WITH_INFO_F( Application != nullptr && Application->Window() != nullptr && Application->Window()->VInitialized(), "WindowSystem needs to be intialized before the %s", "%s", Name );
 			
 			glfwSetKeyCallback( Application->Window()->GetWindow(), OnGLFWKeyEvent );
 			glfwSetCharModsCallback( Application->Window()->GetWindow(), OnGLFWCharacterInputEvent );
@@ -134,7 +134,7 @@ namespace ember
 				return true;
 			}
 			
-			CHECK_WITH_INFO_F( Application != nullptr && Application->Window() != nullptr && Application->Window()->VInitialized(), "WindowSystem needs to be running before the %s can be shutdown", Name );
+			CHECK_WITH_INFO_F( Application != nullptr && Application->Window() != nullptr && Application->Window()->VInitialized(), "WindowSystem needs to be running before the %s can be shutdown", "%s", Name );
 			
 			glfwSetKeyCallback( Application->Window()->GetWindow(), nullptr );
 			glfwSetCharModsCallback( Application->Window()->GetWindow(), nullptr );

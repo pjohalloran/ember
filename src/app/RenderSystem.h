@@ -31,7 +31,11 @@ namespace ember
 				
 				virtual const char *VGetSystemName();
 				
+				void Clear();
+				
 				void SwapBuffers();
+				
+				void Draw();
 		};
 	}
 }

@@ -114,7 +114,7 @@ namespace ember
 		void EmberApp::Sleep( F64 seconds )
 		{
 			std::this_thread::sleep_for( std::chrono::duration<F64>( seconds ) );
-			LOG_F( INFO, "App Sleep for %f s on frame %ul", seconds, Time()->FrameCount() );
+			LOG_F( INFO, "App Sleep for %f s on frame %lu", seconds, Time()->FrameCount() );
 		}
 		
 		void EmberApp::Run()
@@ -173,7 +173,7 @@ namespace ember
 			
 			if ( timer.Duration() > 0.0 )
 			{
-				LOG_F( INFO, "App Update took %f s on frame %ul", timer.Duration(), Time()->FrameCount() );
+				LOG_F( INFO, "App Update took %f s on frame %lu", timer.Duration(), Time()->FrameCount() );
 			}
 		}
 		
@@ -182,11 +182,9 @@ namespace ember
 			EmberTimer timer;
 			timer.Start();
 			
-			glClear( GL_COLOR_BUFFER_BIT );
-			
+			_renderSystem->Clear();
 			_renderSystem->SwapBuffers();
-			
-			// TODO: Rendering
+			_renderSystem->Draw();
 			
 			timer.Stop();
 			

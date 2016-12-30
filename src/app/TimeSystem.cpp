@@ -25,7 +25,7 @@ namespace ember
 				return true;
 			}
 			
-			CHECK_WITH_INFO_F( Application != nullptr && Application->Window() != nullptr && Application->Window()->VInitialized(), "WindowSystem needs to be intialized before the %s", Name );
+			CHECK_WITH_INFO_F( Application != nullptr && Application->Window() != nullptr && Application->Window()->VInitialized(), "WindowSystem needs to be intialized before the %s", "%s", Name );
 			
 			// glfwInit was called soon before this, but just set to 0 now to reset.
 			glfwSetTime( 0.0 );

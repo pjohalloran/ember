@@ -57,15 +57,19 @@ namespace ember
 			return Name;
 		}
 		
+		void RenderSystem::Clear()
+		{
+			glClear( GL_COLOR_BUFFER_BIT );
+		}
+		
 		void RenderSystem::SwapBuffers()
 		{
-			if ( !VInitialized() )
-			{
-				LOG_F( WARNING, "%s needs to be initialized before use.", Name );
-				return;
-			}
-			
 			glfwSwapBuffers( Application->Window()->GetWindow() );
+		}
+		
+		void RenderSystem::Draw()
+		{
+		
 		}
 	}
 }
