@@ -6,7 +6,19 @@ PREMAKE_CONAN_FILE="conanpremake.lua"
 CONAN_FILENAME="conanfile.txt"
 CONAN_INFO_FILE="conaninfo.txt"
 
-conan install --build outdated --file "${CONAN_DIR}${CONAN_FILENAME}"
+FORCE=0
+
+if [ $# -gt 0 ]; then
+	if [ "$1" == "-f" ]; then
+		FORCE=1
+	fi
+fi
+
+if [ $FORCE -eq 1 ]; then
+	conan install --build --file "${CONAN_DIR}${CONAN_FILENAME}"
+else
+	conan install --build=outdated --file "${CONAN_DIR}${CONAN_FILENAME}"
+fi
 
 if [ $? -ne 0 ]; then
 	echo "[FAILED] Installing dependancies"
