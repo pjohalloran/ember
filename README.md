@@ -24,5 +24,6 @@ Currently, an OpenGL 4.1 Core Context is used, for instructions on how to setup 
 - OpenGL (https://www.opengl.org/)
 - flextGL (https://github.com/ginkgo/flextGL)
 - loguru (https://github.com/emilk/loguru)
+- Remotery (https://github.com/Celtoys/Remotery)
 - EASTL (https://github.com/electronicarts/EASTL)
 - filesystem (https://github.com/wjakob/filesystem)

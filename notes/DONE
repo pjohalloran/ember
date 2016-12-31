@@ -21,6 +21,7 @@
 	- EASTL
 	- filesystem
 	- flextgl
+	- Remotery
 [DONE]
 
 - Code styling script

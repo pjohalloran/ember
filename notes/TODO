@@ -2,6 +2,8 @@
 	- fileio (some)
 	- graphics (some)
 
+- Add flexgl && Remotery as git submodules as they cant be included as conan dependancies as they are too custom and or tools.
+
 - Look at other gameframework code i could bring over with a rethink
 	- physics
 	- graphics
@@ -22,7 +24,6 @@
 	- whereami
 	- convertutf
 	- gliml
-	- Remotery
 	- unittest++
 	- libcurl
 	- stb headers
