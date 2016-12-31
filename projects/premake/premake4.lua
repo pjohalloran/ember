@@ -4,6 +4,7 @@ require 'conanpremake'
 
 -- Directory variables.
 local_flextGL_src_dir = "../../src/flextGL/"
+local_remotery_src_dir = "../../src/Remotery/"
 local_src_dir = "../../src/"
 local_ember_test_dir = local_src_dir .. "ember-test"
 local_includes_dir = "../../includes/"
@@ -64,6 +65,41 @@ solution "ember-engine"
             "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. local_src_dir .. " ../" .. local_includes_dir
          }
 
+   project "Remotery"
+      kind "StaticLib"
+      language "C"
+      files 
+      {
+         local_remotery_src_dir .. "**.h",
+         local_remotery_src_dir .. "**.c"
+      }
+      location(generated_project_dir)
+      configuration "Debug"
+         defines
+         {
+            "DEBUG"
+         }
+         flags
+         {
+            "Symbols"
+         }
+         targetdir (local_lib_dir .. "debug")
+      configuration "Release"
+         defines
+         {
+            "RELEASE"
+         }
+         flags
+         {
+            "Optimize"
+         }
+         targetdir (local_lib_dir .. "release")
+      configuration "macosx"
+         prebuildcommands 
+         {
+            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. local_src_dir .. " ../" .. local_includes_dir
+         }
+
    project "ember"
       kind "StaticLib"
       language "C++"
@@ -77,7 +113,9 @@ solution "ember-engine"
          local_ember_test_dir .. "**.h",
          local_ember_test_dir .. "**.cpp",
          local_flextGL_src_dir .. "**.h",
-         local_flextGL_src_dir .. "**.c"
+         local_flextGL_src_dir .. "**.c",
+         local_remotery_src_dir .. "**.h",
+         local_remotery_src_dir .. "**.c"
       }
       location(generated_project_dir)
       linkoptions
@@ -133,6 +171,7 @@ solution "ember-engine"
       {
          conan_libs,
          "flextGL",
+         "Remotery",
          "ember"
       }
       linkoptions

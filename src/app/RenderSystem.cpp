@@ -10,6 +10,8 @@
 #include "app/WindowSystem.h"
 #include "app/EmberApp.h"
 
+#include "Remotery/Remotery.h"
+
 namespace ember
 {
 	namespace app
@@ -32,6 +34,8 @@ namespace ember
 				return false;
 			}
 			
+			rmt_BindOpenGL();
+			
 			LOG_F( INFO, "Setup FLEXT system using version %i.%i and core profile %i", FLEXT_MAJOR_VERSION, FLEXT_MINOR_VERSION, FLEXT_CORE_PROFILE );
 			
 			LOG_F( INFO, "%s initialized", Name );
@@ -46,6 +50,8 @@ namespace ember
 				LOG_F( WARNING, "Tried to shutdown %s when already running!", Name );
 				return true;
 			}
+			
+			rmt_UnbindOpenGL();
 			
 			LOG_F( INFO, "%s shutdown", Name );
 			_initialized = false;

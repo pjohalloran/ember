@@ -22,7 +22,7 @@ namespace ember
 				return true;
 			}
 			
-			SetMaxIntervalCount( 10 );
+			rmt_CreateGlobalInstance( &_remotery );
 			
 			LOG_F( INFO, "%s initialized", Name );
 			_initialized = true;
@@ -37,7 +37,7 @@ namespace ember
 				return true;
 			}
 			
-			
+			rmt_DestroyGlobalInstance( _remotery );
 			
 			LOG_F( INFO, "%s shutdown", Name );
 			_initialized = false;
@@ -47,36 +47,6 @@ namespace ember
 		const char *ProfilerSystem::VGetSystemName()
 		{
 			return Name;
-		}
-		
-		void ProfilerSystem::Activate()
-		{
-		
-		}
-		
-		void ProfilerSystem::Deactivate()
-		{
-		
-		}
-		
-		void ProfilerSystem::SetMaxIntervalCount( U32 size )
-		{
-			U32 oldSize = _stats.size();
-			_stats.resize( size );
-			
-			if ( oldSize < size )
-			{
-			}
-		}
-		
-		void ProfilerSystem::BeginCodeSample( char *name )
-		{
-		
-		}
-		
-		void ProfilerSystem::EndCodeSample()
-		{
-		
 		}
 	}
 }

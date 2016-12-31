@@ -19,6 +19,9 @@
 #include "app/LoggingSystem.h"
 #include "app/FileSystem.h"
 #include "app/RenderSystem.h"
+#include "app/ProfilerSystem.h"
+
+#include "Remotery/Remotery.h"
 
 namespace ember
 {
@@ -65,19 +68,22 @@ namespace ember
 			AbstractSystem *loggingSystem = new LoggingSystem( 1, 0 );
 			_systems.push_back( loggingSystem );
 			
-			_fileSystem = new FileSystem( 2, 0 );
+			AbstractSystem *profilerSystem = new ProfilerSystem( 2, 0 );
+			_systems.push_back( profilerSystem );
+			
+			_fileSystem = new FileSystem( 3, 0 );
 			_systems.push_back( _fileSystem );
 			
-			_windowSystem = new WindowSystem( 3, 0 );
+			_windowSystem = new WindowSystem( 4, 0 );
 			_systems.push_back( _windowSystem );
 			
-			_renderSystem = new RenderSystem( 4, 0 );
+			_renderSystem = new RenderSystem( 5, 0 );
 			_systems.push_back( _renderSystem );
 			
-			_timeSystem = new TimeSystem( 5, 1 );
+			_timeSystem = new TimeSystem( 6, 1 );
 			_systems.push_back( _timeSystem );
 			
-			_inputSystem = new InputSystem( 6, 2 );
+			_inputSystem = new InputSystem( 7, 2 );
 			_systems.push_back( _inputSystem );
 			
 			eastl::sort( _systems.begin(), _systems.end(), SortForInit );
@@ -161,6 +167,8 @@ namespace ember
 			EmberTimer timer;
 			timer.Start();
 			
+			rmt_BeginCPUSample( VUpdate, 0 );
+			
 			for ( U32 i = 0, size = _systems.size(); i < size; ++i )
 			{
 				if ( _systems[i] != nullptr )
@@ -168,6 +176,8 @@ namespace ember
 					_systems[i]->VUpdate();
 				}
 			}
+			
+			rmt_EndCPUSample();
 			
 			timer.Stop();
 			
@@ -182,9 +192,16 @@ namespace ember
 			EmberTimer timer;
 			timer.Start();
 			
+			rmt_BeginOpenGLSample( VRender );
+			rmt_BeginCPUSample( VRender, 0 );
+			
 			_renderSystem->Clear();
 			_renderSystem->SwapBuffers();
 			_renderSystem->Draw();
+			
+			
+			rmt_EndCPUSample();
+			rmt_EndOpenGLSample();
 			
 			timer.Stop();
 			
