@@ -31,13 +31,7 @@ namespace ember
 			
 				AbstractSystem( int initPriority, int updatePriority ) : _initPriority( initPriority ), _updatePriority( updatePriority ), _initialized( false ) { }
 				
-				virtual ~AbstractSystem()
-				{
-					if ( VInitialized() )
-					{
-						VShutdown();
-					}
-				}
+				virtual ~AbstractSystem() { }
 				
 				virtual bool VInitialize() = 0;
 				

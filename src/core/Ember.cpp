@@ -67,7 +67,7 @@ namespace ember
 			#if DEBUG
 			GLenum err = glGetError();
 			
-			LOG_IF_F( ERROR, err != GL_NO_ERROR, GetOpenGLError( err ).c_str() );
+			LOG_IF_F( ERROR, err != GL_NO_ERROR, "%s", GetOpenGLError( err ).c_str() );
 			
 			return err == GL_NO_ERROR;
 			#else
@@ -80,7 +80,7 @@ namespace ember
 			#if DEBUG
 			GLenum err = glGetError();
 			
-			LOG_IF_F( ERROR, err != GL_NO_ERROR, ( msg + GetOpenGLError( err ) ).c_str() );
+			LOG_IF_F( ERROR, err != GL_NO_ERROR, "%s", ( msg + GetOpenGLError( err ) ).c_str() );
 			
 			return err == GL_NO_ERROR;
 			#else

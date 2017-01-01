@@ -207,7 +207,7 @@ namespace ember
 			
 			if ( timer.Duration() > 0.0 )
 			{
-				LOG_F( INFO, "App Render took %f s on frame %ul", timer.Duration(), Time()->FrameCount() );
+				LOG_F( INFO, "App Render took %f s on frame %lu", timer.Duration(), Time()->FrameCount() );
 			}
 		}
 	}
