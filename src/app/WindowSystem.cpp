@@ -6,6 +6,8 @@
 
 #include "WindowSystem.h"
 
+#include "core/EmberPlatform.h"
+
 namespace ember
 {
 	namespace app
@@ -58,11 +60,20 @@ namespace ember
 			glfwWindowHint( GLFW_REFRESH_RATE, mode->refreshRate );
 			glfwWindowHint( GLFW_DOUBLEBUFFER, GLFW_TRUE );
 			glfwWindowHint( GLFW_CLIENT_API, GLFW_OPENGL_API );
-			glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
-			glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 1 );
-			glfwWindowHint( GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE );
+			glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, FLEXT_MAJOR_VERSION );
+			glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, FLEXT_MINOR_VERSION );
 			glfwWindowHint( GLFW_OPENGL_DEBUG_CONTEXT, GLFW_FALSE );
-			glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+			
+			if ( FLEXT_CORE_PROFILE == GL_TRUE )
+			{
+				glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+				glfwWindowHint( GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE );
+			}
+			else
+			{
+				glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE );
+				glfwWindowHint( GLFW_OPENGL_FORWARD_COMPAT, GLFW_FALSE );
+			}
 			
 			//_window = glfwCreateWindow( mode->width, mode->height, "ember", monitor, NULL );
 			_window = glfwCreateWindow( mode->width, mode->height, "ember", NULL, NULL );

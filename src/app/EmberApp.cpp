@@ -192,7 +192,7 @@ namespace ember
 			EmberTimer timer;
 			timer.Start();
 			
-			rmt_BeginOpenGLSample( VRender );
+			//rmt_BeginOpenGLSample( VRender );
 			rmt_BeginCPUSample( VRender, 0 );
 			
 			_renderSystem->Clear();
@@ -201,7 +201,7 @@ namespace ember
 			
 			
 			rmt_EndCPUSample();
-			rmt_EndOpenGLSample();
+			//rmt_EndOpenGLSample();
 			
 			timer.Stop();
 			
