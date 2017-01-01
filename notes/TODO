@@ -5,14 +5,14 @@
 - Add flexgl && Remotery as git submodules as they cant be included as conan dependancies as they are too custom and or tools.
 
 - Look at other gameframework code i could bring over with a rethink
-	- physics
-	- graphics
 	- eventmanager
 	- scripting
 	- resourcecache
+	- graphics
+	- shaders
+	- physics
 	- sound
 	- memory
-	- shaders
 
 - List 3rd party libs i want to research including
 	- bullet
