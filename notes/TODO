@@ -4,6 +4,18 @@
 
 - Add flexgl && Remotery as git submodules as they cant be included as conan dependancies as they are too custom and or tools.
 
+- Strings & Paths
+	- Add string hash and GUID generation functionality to the project.
+	- Investigate a way to not have strings or paths used at runtime.
+	- For paths, use GUIDs, for strings like event ids and such, use hashes.
+	- Pre build step to remove and replace all strings and paths marked with pre processor flags ?
+
+- Event System
+	- Define event manager class Header functionality.
+	- Define event data layout and API.
+	- Implement the Event base structure.
+	- Implement the event manager.
+
 - Look at other gameframework code i could bring over with a rethink
 	- eventmanager
 	- scripting

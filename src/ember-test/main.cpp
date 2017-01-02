@@ -7,6 +7,8 @@
 #include "app/InputSystem.h"
 #include "math/EmberMath.h"
 
+#include <functional>
+
 int get_log_level();
 void test_loguru( int argc, char **argv );
 
@@ -99,11 +101,17 @@ int main( int argc, char **argv )
 	Vector3 v;
 	LOG_F( INFO, "vec %s", v.ToString() );
 	
+    std::string testString("TestString");
+    std::size_t h1 = std::hash<std::string>{}(testString);
+    
+    LOG_F(INFO, "String = %s, hash = %i", testString.c_str(), h1);
+    
 	app->Run();
 	
 	delete app;
 	app = nullptr;
-	
+    
+    
 	return 0;
 }
 
