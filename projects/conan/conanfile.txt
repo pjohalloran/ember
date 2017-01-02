@@ -4,6 +4,7 @@ glfw/3.2.1@R3v3nX/testing
 loguru/1.0@pjohalloran/testing
 EASTL/3.05.00@pjohalloran/testing
 filesystem/1.0@pjohalloran/testing
+string_id/2.0-2@pjohalloran/testing
 
 [generators]
 Premake

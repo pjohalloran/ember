@@ -7,10 +7,14 @@
 #include "app/InputSystem.h"
 #include "math/EmberMath.h"
 
-#include <functional>
+#include <database.hpp> // for the databases
+#include <error.hpp> // for error handling
+#include <generator.hpp> // for the generator classes
+#include <string_id.hpp> // for the string_id
 
 int get_log_level();
 void test_loguru( int argc, char **argv );
+void test_string_id();
 
 using namespace ember::core;
 using namespace ember::input;
@@ -101,18 +105,29 @@ int main( int argc, char **argv )
 	Vector3 v;
 	LOG_F( INFO, "vec %s", v.ToString() );
 	
-    std::string testString("TestString");
-    std::size_t h1 = std::hash<std::string>{}(testString);
-    
-    LOG_F(INFO, "String = %s, hash = %i", testString.c_str(), h1);
-    
+	test_string_id();
+	
 	app->Run();
 	
 	delete app;
 	app = nullptr;
-    
-    
+	
+	
 	return 0;
+}
+
+void test_string_id()
+{
+	using namespace foonathan::string_id;
+	// create database to store the strings in
+	// it must stay valid as long as each string_id using it
+	default_database database;
+	
+	//=== string_id usage ===//
+	// create an id
+	string_id sid( "Test0815", database );
+	
+	LOG_F( INFO, "String = %s, hash = %lu", sid.string(), sid.hash_code() );
 }
 
 int get_log_level()
