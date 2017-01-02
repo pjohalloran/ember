@@ -16,9 +16,6 @@ Hobbiyst game programming experiments.
 
 Currently, an OpenGL 4.1 Core Context is used, for instructions on how to setup ember to be used with a different OpenGL profile, see [see](notes/GeneratingOpenGLExtensions.md)
 
-## To begin on Windows
-- Instructions coming soon.
-
 ## Uses
 - glfw (http://http://www.glfw.org/)
 - OpenGL (https://www.opengl.org/)
@@ -27,3 +24,4 @@ Currently, an OpenGL 4.1 Core Context is used, for instructions on how to setup 
 - Remotery (https://github.com/Celtoys/Remotery)
 - EASTL (https://github.com/electronicarts/EASTL)
 - filesystem (https://github.com/wjakob/filesystem)
+- string_id (https://github.com/foonathan/string_id)
