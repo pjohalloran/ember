@@ -14,7 +14,7 @@ namespace ember
 	{
 		void OnGLFWErrorCallback( int error, const char *errorMsg )
 		{
-			LOG_F( ERROR, "GLFW error code = %i, message = %s", error, errorMsg );
+			DLOG_F( ERROR, "GLFW error code = %i, message = %s", error, errorMsg );
 		}
 		
 		using namespace ember::core;
@@ -75,6 +75,7 @@ namespace ember
 				glfwWindowHint( GLFW_OPENGL_FORWARD_COMPAT, GLFW_FALSE );
 			}
 			
+			// TMP commented out until i get config situation sorted.
 			//_window = glfwCreateWindow( mode->width, mode->height, "ember", monitor, NULL );
 			_window = glfwCreateWindow( mode->width, mode->height, "ember", NULL, NULL );
 			

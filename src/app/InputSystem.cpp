@@ -28,7 +28,7 @@ namespace ember
 		
 		void OnGLFWKeyEvent( GLFWwindow *window, I32 key, I32 scanCode, I32 action, I32 mods )
 		{
-			LOG_F( INFO, "key %i scanCode %i action %i mods %i", key, scanCode, action, mods );
+			DLOG_F( INFO, "key %i scanCode %i action %i mods %i", key, scanCode, action, mods );
 			
 			if ( action == GLFW_REPEAT )
 			{
@@ -40,13 +40,13 @@ namespace ember
 		
 		void OnGLFWCharacterInputEvent( GLFWwindow *window, U32 codePoint, I32 mods )
 		{
-			LOG_F( INFO, "codePoint %i mods %i", codePoint, mods );
+			DLOG_F( INFO, "codePoint %i mods %i", codePoint, mods );
 			Application->Input()->TriggerCharacterInput( codePoint, mods );
 		}
 		
 		void OnGLFWMouseButtonEvent( GLFWwindow *window, I32 button, I32 action, I32 mods )
 		{
-			LOG_F( INFO, "button %i action %i mods %i", button, action, mods );
+			DLOG_F( INFO, "button %i action %i mods %i", button, action, mods );
 			
 			if ( action == GLFW_REPEAT )
 			{
@@ -58,19 +58,19 @@ namespace ember
 		
 		void OnGLFWMouseMovedEvent( GLFWwindow *window, F64 x, F64 y )
 		{
-			LOG_F( INFO, "x %f y %f", x, y );
+			DLOG_F( INFO, "x %f y %f", x, y );
 			Application->Input()->TriggerMouseMove( Point2( ( F32 )x, ( F32 )y ) );
 		}
 		
 		void OnGLFWMouseScrollEvent( GLFWwindow *window, F64 xOffset, F64 yOffset )
 		{
-			LOG_F( INFO, "xOffset %f yOffset %f", xOffset, yOffset );
+			DLOG_F( INFO, "xOffset %f yOffset %f", xOffset, yOffset );
 			Application->Input()->TriggerMouseScroll( Point2( ( F32 )xOffset, ( F32 )yOffset ) );
 		}
 		
 		void OnGLFWJoystickPluggedEvent( I32 joy, I32 event )
 		{
-			LOG_F( INFO, "joy %i event %i", joy, event );
+			DLOG_F( INFO, "joy %i event %i", joy, event );
 			Application->Input()->TriggerGamePadConnnection( joy, event );
 		}
 		
@@ -81,7 +81,7 @@ namespace ember
 				return;
 			}
 			
-			LOG_F( INFO, "file drop # %i", count );
+			DLOG_F( INFO, "file drop # %i", count );
 			Application->Input()->TriggerFileDrop( count, paths );
 		}
 		

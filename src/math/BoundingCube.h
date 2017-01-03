@@ -23,9 +23,6 @@ namespace ember
 				Point3 _min;
 				Point3 _max;
 				
-			protected:
-			
-			
 			public:
 			
 				inline explicit BoundingCube() : _min(), _max() { };

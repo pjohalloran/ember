@@ -26,7 +26,7 @@ namespace ember
 			}
 			
 			_exePath = path::getcwd();
-			LOG_F( INFO, "FileSystem using ExePath = %s", _exePath.str().c_str() );
+			DLOG_F( INFO, "FileSystem using ExePath = %s", _exePath.str().c_str() );
 			
 			LOG_F( INFO, "%s initialized", Name );
 			_initialized = true;

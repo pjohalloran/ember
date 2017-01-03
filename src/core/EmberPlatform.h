@@ -50,8 +50,6 @@
 	#ifdef __APPLE__
 		#include <TargetConditionals.h>
 		#include "flextGL/flextGL.h"
-		//#include <OpenGL/gl.h>
-		//#include <OpenGL/glext.h>
 		#include <GLFW/glfw3.h>
 		#define GLFW_FUNC_PRE GLFWAPI
 	#endif

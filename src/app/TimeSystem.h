@@ -42,7 +42,7 @@ namespace ember
 				
 				inline F64 TimeSinceAppStart() const
 				{
-					return GetCurrentTime() - _startFrameTime;
+					return GetCurrentTime() - _startAppTime;
 				}
 				
 				inline F64 TimeSinceFrameStart() const
