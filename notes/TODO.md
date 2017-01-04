@@ -1,3 +1,9 @@
+- Event System
+	- Define event manager class Header functionality.
+	- Define event data layout and API.
+	- Implement the Event base structure.
+	- Implement the event manager.
+
 - Bring over gameframework code i still like.
 	- fileio (some)
 	- graphics (some)
@@ -7,12 +13,6 @@
 - Paths
 	- Add GUID generation functionality to the project.
 	- Investigate a way to not have paths used at runtime.
-
-- Event System
-	- Define event manager class Header functionality.
-	- Define event data layout and API.
-	- Implement the Event base structure.
-	- Implement the event manager.
 
 - Look at other gameframework code i could bring over with a rethink
 	- eventmanager
