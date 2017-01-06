@@ -114,6 +114,10 @@ int main( int argc, char **argv )
 	delete app;
 	app = nullptr;
 	
+    sol::state lua;
+    // open some common libraries
+    lua.open_libraries(sol::lib::base, sol::lib::package);
+    lua.script( "print('bark bark bark!')" );
 	
 	return 0;
 }
