@@ -25,3 +25,4 @@ Currently, an OpenGL 4.1 Core Context is used, for instructions on how to setup 
 - EASTL (https://github.com/electronicarts/EASTL)
 - filesystem (https://github.com/wjakob/filesystem)
 - string_id (https://github.com/foonathan/string_id)
+- sol2 (https://github.com/ThePhD/sol2)

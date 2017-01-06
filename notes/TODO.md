@@ -26,12 +26,9 @@
 
 - List 3rd party libs i want to research including
 	- bullet
-	- lua
-	- luabridge
 	- openal
 	- (or) SoLoud
 	- imgui
-	- whereami
 	- convertutf
 	- gliml
 	- unittest++

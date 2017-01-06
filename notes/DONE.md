@@ -18,6 +18,8 @@
 	- flextgl
 	- Remotery
 	- string_id
+	- lua
+	- sol2
 
 - Bring over gameframework code i still like.
 	- premake scripts

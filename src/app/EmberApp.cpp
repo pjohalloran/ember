@@ -20,6 +20,7 @@
 #include "app/FileSystem.h"
 #include "app/RenderSystem.h"
 #include "app/ProfilerSystem.h"
+#include "app/ScriptingSystem.h"
 
 #include "Remotery/Remotery.h"
 
@@ -65,25 +66,28 @@ namespace ember
 			
 			// TODO: Make system setup order and whats used/needed data driven.
 			
-			AbstractSystem *loggingSystem = new LoggingSystem( 1, 0 );
+			_scriptSystem = new ScriptingSystem( 1, 3 );
+			_systems.push_back( _scriptSystem );
+			
+			AbstractSystem *loggingSystem = new LoggingSystem( 2, 0 );
 			_systems.push_back( loggingSystem );
 			
-			AbstractSystem *profilerSystem = new ProfilerSystem( 2, 0 );
+			AbstractSystem *profilerSystem = new ProfilerSystem( 3, 0 );
 			_systems.push_back( profilerSystem );
 			
-			_fileSystem = new FileSystem( 3, 0 );
+			_fileSystem = new FileSystem( 4, 0 );
 			_systems.push_back( _fileSystem );
 			
-			_windowSystem = new WindowSystem( 4, 0 );
+			_windowSystem = new WindowSystem( 5, 0 );
 			_systems.push_back( _windowSystem );
 			
-			_renderSystem = new RenderSystem( 5, 0 );
+			_renderSystem = new RenderSystem( 6, 4 );
 			_systems.push_back( _renderSystem );
 			
-			_timeSystem = new TimeSystem( 6, 1 );
+			_timeSystem = new TimeSystem( 7, 1 );
 			_systems.push_back( _timeSystem );
 			
-			_inputSystem = new InputSystem( 7, 2 );
+			_inputSystem = new InputSystem( 8, 2 );
 			_systems.push_back( _inputSystem );
 			
 			eastl::sort( _systems.begin(), _systems.end(), SortForInit );
@@ -198,7 +202,6 @@ namespace ember
 			_renderSystem->Clear();
 			_renderSystem->SwapBuffers();
 			_renderSystem->Draw();
-			
 			
 			rmt_EndCPUSample();
 			//rmt_EndOpenGLSample();
