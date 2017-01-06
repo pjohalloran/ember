@@ -8,5 +8,11 @@ string_id/2.0-2@pjohalloran/testing
 lua/5.3.3@dwerner/testing
 sol2/2.15.6@pjohalloran/testing
 
+[options]
+loguru:compiler_version=14
+filesystem:compiler_version=14
+string_id:compiler_version=14
+EASTL:build_type=RelWithDebInfo
+
 [generators]
 Premake
