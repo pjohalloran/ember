@@ -9,12 +9,12 @@
 
 #include "app/AbstractSystem.h"
 
+#include <sol.hpp>
+
 namespace ember
 {
 	namespace app
 	{
-		class sol::state;
-		
 		class ScriptingSystem : public AbstractSystem
 		{
 			private:

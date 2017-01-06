@@ -6,8 +6,6 @@
 
 #include "ScriptingSystem.h"
 
-#include <sol.hpp>
-
 namespace ember
 {
 	namespace app
@@ -25,6 +23,7 @@ namespace ember
 			}
 			
 			lua = new sol::state();
+			lua->open_libraries( sol::lib::base, sol::lib::package );
 			
 			LOG_F( INFO, "%s initialized", Name );
 			_initialized = true;
