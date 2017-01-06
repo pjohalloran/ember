@@ -1,7 +1,5 @@
 #include <GLFW/glfw3.h>
 
-#include <sol.hpp>
-
 #define LOGURU_IMPLEMENTATION 1
 #include "app/EmberApp.h"
 #include "input/IMouseListener.h"
