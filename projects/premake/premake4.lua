@@ -52,7 +52,8 @@ solution "ember-engine"
       configuration "Release"
          defines
          {
-            "RELEASE"
+            "RELEASE",
+            "NDEBUG"
          }
          flags
          {
