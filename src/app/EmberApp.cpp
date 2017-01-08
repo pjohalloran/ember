@@ -72,11 +72,11 @@ namespace ember
 			AbstractSystem *loggingSystem = new LoggingSystem( 2, 0 );
 			_systems.push_back( loggingSystem );
 			
-			AbstractSystem *profilerSystem = new ProfilerSystem( 3, 0 );
-			_systems.push_back( profilerSystem );
-			
-			_fileSystem = new FileSystem( 4, 0 );
+			_fileSystem = new FileSystem( 3, 0 );
 			_systems.push_back( _fileSystem );
+			
+			AbstractSystem *profilerSystem = new ProfilerSystem( 4, 0 );
+			_systems.push_back( profilerSystem );
 			
 			_windowSystem = new WindowSystem( 5, 0 );
 			_systems.push_back( _windowSystem );
