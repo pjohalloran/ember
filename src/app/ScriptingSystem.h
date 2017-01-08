@@ -26,7 +26,7 @@ namespace ember
 				bool InitDefaultConfig();
 				
 			public:
-				ScriptingSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _lua( nullptr ) { };
+				ScriptingSystem( I32 id, I32 priority );
 				virtual ~ScriptingSystem() { }
 				
 				virtual bool VInitialize( int argc, char **argv );

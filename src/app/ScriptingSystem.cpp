@@ -51,20 +51,16 @@ namespace ember
 			                );
 		}
 		
-		bool ScriptingSystem::VInitialize( int argc, char **argv )
+		ScriptingSystem::ScriptingSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _lua( nullptr )
 		{
-			if ( VInitialized() )
-			{
-				LOG_F( WARNING, "Tried to intialize %s when already running!", Name );
-				return true;
-			}
-			
+			// This system needs to get setup and running before everything else as it provides config
+			// data for all other sub systems in the engine.
 			_lua = new sol::state();
 			
 			if ( _lua == nullptr )
 			{
-				LOG_F( ERROR, "Failed to create the sol2 Lua context." );
-				return false;
+				printf( "Failed to create the sol2 Lua context." );
+				return;
 			}
 			
 			_lua->open_libraries( sol::lib::base,
@@ -82,11 +78,15 @@ namespace ember
 			                      
 			if ( !InitDefaultConfig() )
 			{
-				return false;
+				printf( "Failed to initialize the default config script" );
+				return;
 			}
 			
-			LOG_F( INFO, "%s initialized", Name );
 			_initialized = true;
+		}
+		
+		bool ScriptingSystem::VInitialize( int argc, char **argv )
+		{
 			return true;
 		}
 		
