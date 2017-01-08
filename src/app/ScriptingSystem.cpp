@@ -14,7 +14,44 @@ namespace ember
 		
 		const char *ScriptingSystem::Name = "Scripting";
 		
-		bool ScriptingSystem::VInitialize()
+		bool ScriptingSystem::InitDefaultConfig()
+		{
+			// Raw string literal for easy multiline
+			return RunScript( R"(
+                        Render = {
+                        }
+                        Time = {
+                        }
+                        Window = {
+                            gl_major = 4,
+                            gl_minor = 1,
+                            gl_debug = false
+                        }
+                        Logging = {
+                            files = {
+                                [0] = {
+                                    name = "all.log",
+                                    type = 1,
+                                    level = 9
+                                },
+                                [1] = {
+                                    name = "last_run.log",
+                                    type = 0,
+                                    level = 0
+                                }
+                            },
+                            error_level = 1
+                        }
+                        File = {
+                        }
+                        Input = {
+                        }
+                        Profiler = {
+                        })"
+			                );
+		}
+		
+		bool ScriptingSystem::VInitialize( int argc, char **argv )
 		{
 			if ( VInitialized() )
 			{
@@ -22,8 +59,31 @@ namespace ember
 				return true;
 			}
 			
-			lua = new sol::state();
-			lua->open_libraries( sol::lib::base, sol::lib::package );
+			_lua = new sol::state();
+			
+			if ( _lua == nullptr )
+			{
+				LOG_F( ERROR, "Failed to create the sol2 Lua context." );
+				return false;
+			}
+			
+			_lua->open_libraries( sol::lib::base,
+			                      sol::lib::package,
+			                      sol::lib::coroutine,
+			                      sol::lib::string,
+			                      sol::lib::os,
+			                      sol::lib::math,
+			                      sol::lib::table,
+			                      sol::lib::debug,
+			                      sol::lib::bit32,
+			                      sol::lib::io,
+			                      sol::lib::ffi,
+			                      sol::lib::jit );
+			                      
+			if ( !InitDefaultConfig() )
+			{
+				return false;
+			}
 			
 			LOG_F( INFO, "%s initialized", Name );
 			_initialized = true;
@@ -38,8 +98,8 @@ namespace ember
 				return true;
 			}
 			
-			delete lua;
-			lua = nullptr;
+			delete _lua;
+			_lua = nullptr;
 			
 			LOG_F( INFO, "%s shutdown", Name );
 			_initialized = false;
@@ -49,6 +109,41 @@ namespace ember
 		const char *ScriptingSystem::VGetSystemName()
 		{
 			return Name;
+		}
+		
+		bool ScriptingSystem::RunScript( const char *scriptData )
+		{
+			if ( _lua == nullptr )
+			{
+				LOG_F( WARNING, "sol::state is not yet ready!" );
+				return false;
+			}
+			
+			sol::function_result result = _lua->script( scriptData );
+			CHECK_WITH_INFO_F( result.valid(), "Failed to execute the script (%s)", "%s", scriptData );
+			return result.valid();
+		}
+		
+		bool ScriptingSystem::SetConfig( const char *configScript )
+		{
+			return RunScript( configScript );
+		}
+		
+		sol::table ScriptingSystem::GetConfig( const char *name )
+		{
+			if ( !VInitialized() )
+			{
+				LOG_F( WARNING, "%s is not yet Running!", Name );
+				return nullptr;
+			}
+			
+			if ( name == nullptr || strlen( name ) == 0 )
+			{
+				LOG_F( WARNING, "invalid parameters" );
+				return nullptr;
+			}
+			
+			return ( *_lua )[name];
 		}
 	}
 }

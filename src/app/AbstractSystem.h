@@ -33,7 +33,7 @@ namespace ember
 				
 				virtual ~AbstractSystem() { }
 				
-				virtual bool VInitialize() = 0;
+				virtual bool VInitialize( int argc, char **argv ) = 0;
 				
 				virtual void VUpdate() = 0;
 				

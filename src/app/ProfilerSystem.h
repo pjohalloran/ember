@@ -28,7 +28,7 @@ namespace ember
 				ProfilerSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _remotery( nullptr ) { }
 				virtual ~ProfilerSystem() { }
 				
-				virtual bool VInitialize();
+				virtual bool VInitialize( int argc, char **argv );
 				
 				virtual bool VShutdown();
 				

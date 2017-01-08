@@ -4,9 +4,13 @@
  * @date 17/12/2016
  */
 
+#include <sol.hpp>
+
 #include "WindowSystem.h"
 
 #include "core/EmberPlatform.h"
+#include "app/EmberApp.h"
+#include "app/ScriptingSystem.h"
 
 namespace ember
 {
@@ -22,7 +26,7 @@ namespace ember
 		const F32 WindowSystem::DPI = 25.4;
 		const char *WindowSystem::Name = "Window";
 		
-		bool WindowSystem::VInitialize()
+		bool WindowSystem::VInitialize( int argc, char **argv )
 		{
 			if ( VInitialized() )
 			{
@@ -62,7 +66,12 @@ namespace ember
 			glfwWindowHint( GLFW_CLIENT_API, GLFW_OPENGL_API );
 			glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, FLEXT_MAJOR_VERSION );
 			glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, FLEXT_MINOR_VERSION );
-			glfwWindowHint( GLFW_OPENGL_DEBUG_CONTEXT, GLFW_FALSE );
+			
+			sol::table windowConfig = Application->Script()->GetConfig( Name );
+			
+			bool useDebug = windowConfig["gl_debug"];
+			
+			glfwWindowHint( GLFW_OPENGL_DEBUG_CONTEXT, useDebug ? GLFW_TRUE : GLFW_FALSE );
 			
 			if ( FLEXT_CORE_PROFILE == GL_TRUE )
 			{

@@ -17,7 +17,7 @@ namespace ember
 		
 		const char *FileSystem::Name = "File";
 		
-		bool FileSystem::VInitialize()
+		bool FileSystem::VInitialize( int argc, char **argv )
 		{
 			if ( VInitialized() )
 			{

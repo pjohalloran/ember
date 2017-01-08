@@ -21,19 +21,33 @@ namespace ember
 			
 				static const char *Name;
 				
-				sol::state *lua;
+				sol::state *_lua;
+				
+				bool InitDefaultConfig();
 				
 			public:
-				ScriptingSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), lua( nullptr ) { };
+				ScriptingSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _lua( nullptr ) { };
 				virtual ~ScriptingSystem() { }
 				
-				virtual bool VInitialize();
+				virtual bool VInitialize( int argc, char **argv );
 				
 				virtual bool VShutdown();
 				
 				virtual void VUpdate() { }
 				
 				virtual const char *VGetSystemName();
+				
+				inline sol::state *Lua() const
+				{
+					return _lua;
+				};
+				
+				bool RunScript( const char *configScript );
+				
+				bool SetConfig( const char *configScript );
+				
+				sol::table GetConfig( const char *name );
+				
 		};
 	}
 }

@@ -20,13 +20,15 @@ namespace ember
 		
 		const char *RenderSystem::Name = "Render";
 		
-		bool RenderSystem::VInitialize()
+		bool RenderSystem::VInitialize( int argc, char **argv )
 		{
 			if ( VInitialized() )
 			{
 				LOG_F( WARNING, "Tried to intialize %s when already running!", Name );
 				return true;
 			}
+			
+			CHECK_WITH_INFO_F( Application != nullptr && Application->Window() != nullptr && Application->Window()->VInitialized(), "WindowSystem needs to be intialized before the %s", "%s", Name );
 			
 			if ( flextInit( Application->Window()->GetWindow() ) != GL_TRUE )
 			{

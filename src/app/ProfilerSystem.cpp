@@ -14,7 +14,7 @@ namespace ember
 		
 		const char *ProfilerSystem::Name = "Profiler";
 		
-		bool ProfilerSystem::VInitialize()
+		bool ProfilerSystem::VInitialize( int argc, char **argv )
 		{
 			if ( VInitialized() )
 			{

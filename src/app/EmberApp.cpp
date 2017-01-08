@@ -116,9 +116,9 @@ namespace ember
 			Application = nullptr;
 		}
 		
-		bool EmberApp::Initialize()
+		bool EmberApp::Initialize( int argc, char **argv )
 		{
-			return VInitializeSystems();
+			return VInitializeSystems( argc, argv );
 		}
 		
 		void EmberApp::Sleep( F64 seconds )
@@ -146,7 +146,7 @@ namespace ember
 			}
 		}
 		
-		bool EmberApp::VInitializeSystems()
+		bool EmberApp::VInitializeSystems( int argc, char **argv )
 		{
 			bool result = true;
 			
@@ -154,7 +154,7 @@ namespace ember
 			{
 				if ( _systems[i] != nullptr )
 				{
-					result = _systems[i]->VInitialize();
+					result = _systems[i]->VInitialize( argc, argv );
 				}
 			}
 			
