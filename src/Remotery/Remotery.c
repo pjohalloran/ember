@@ -90,6 +90,9 @@ static rmtBool g_SettingsInitialized = RMT_FALSE;
         #include <mach/vm_map.h>
         #include <mach/mach.h>
         #include <sys/time.h>
+
+        #include <GLFW/glfw3.h>
+
     #else
         #include <malloc.h>
     #endif
@@ -5985,7 +5988,7 @@ static void* rmtglGetProcAddress(OpenGL* opengl, const char* symbol)
 
     #elif defined(__APPLE__) && !defined(GLEW_APPLE_GLX)
 
-        return NSGLGetProcAddress((const GLubyte*)symbol);
+        return (void *)glfwGetProcAddress((const GLubyte*)symbol);
 
     #elif defined(RMT_PLATFORM_LINUX)
 
