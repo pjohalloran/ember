@@ -64,7 +64,7 @@ documented just below this comment.
 
 // Allow OpenGL profiling
 #ifndef RMT_USE_OPENGL
-#define RMT_USE_OPENGL 1
+#define RMT_USE_OPENGL 0
 #endif
 
 // Initially use POSIX thread names to name threads instead of Thread0, 1, ...
