@@ -38,6 +38,8 @@ namespace ember
 			
 			LOG_F( INFO, "Setup FLEXT system using version %i.%i and core profile %i", FLEXT_MAJOR_VERSION, FLEXT_MINOR_VERSION, FLEXT_CORE_PROFILE );
 			
+			rmt_BindOpenGL();
+			
 			LOG_F( INFO, "%s initialized", Name );
 			_initialized = true;
 			return true;
@@ -50,6 +52,8 @@ namespace ember
 				LOG_F( WARNING, "Tried to shutdown %s when already running!", Name );
 				return true;
 			}
+			
+			rmt_UnbindOpenGL();
 			
 			LOG_F( INFO, "%s shutdown", Name );
 			_initialized = false;
