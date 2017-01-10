@@ -4,10 +4,17 @@
  * @date 17/12/2016
  */
 
+#include <string>
+
 #include "LoggingSystem.h"
 
 #define LOGURU_IMPLEMENTATION 1
 #include <loguru.hpp>
+
+#include <sol.hpp>
+
+#include "app/EmberApp.h"
+#include "app/ScriptingSystem.h"
 
 namespace ember
 {
@@ -17,7 +24,7 @@ namespace ember
 		
 		const char *LoggingSystem::Name = "Logging";
 		
-		bool LoggingSystem::VInitialize()
+		bool LoggingSystem::VInitialize( int argc, char **argv )
 		{
 			if ( VInitialized() )
 			{
@@ -25,22 +32,25 @@ namespace ember
 				return true;
 			}
 			
-			// TMP TODO replace with data driven config files.
-			std::string arg0( "ember-test\0" );
-			std::string arg1( "-v\0" );
-			std::string arg2( "1\0" );
-			I32 c = 3;
-			char **args = new char *[3];
-			args[0] = ( char * )arg0.c_str();
-			args[1] = ( char * )arg1.c_str();
-			args[2] = ( char * )arg2.c_str();
-			// END TMP
+			loguru::init( argc, argv );
 			
-			loguru::init( c, args );
+			sol::table logConfig = Application->Script()->GetConfig( Name );
+			sol::table logFiles = logConfig["files"];
 			
-			loguru::add_file( "ember_all.log", loguru::Append, loguru::Verbosity_MAX );
-			loguru::add_file( "ember_last_run.log", loguru::Truncate, loguru::Verbosity_INFO );
-			loguru::g_stderr_verbosity = 1;
+			logFiles.for_each( [&]( std::pair<sol::object, sol::object> pair )
+			{
+				sol::table logFileConfig = pair.second.as<sol::table>();
+				
+				if ( logFileConfig.valid() )
+				{
+					std::string name = logFileConfig["name"];
+					int type = logFileConfig["type"];
+					int level = logFileConfig["level"];
+					loguru::add_file( name.c_str(), ( loguru::FileMode )type, ( loguru::Verbosity )level );
+				}
+			} );
+			
+			loguru::g_stderr_verbosity = logConfig["error_level"];
 			
 			LOG_F( INFO, "%s initialized", Name );
 			_initialized = true;

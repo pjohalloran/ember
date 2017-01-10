@@ -23,7 +23,7 @@ namespace ember
 				RenderSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ) { };
 				virtual ~RenderSystem() { }
 				
-				virtual bool VInitialize();
+				virtual bool VInitialize( int argc, char **argv );
 				
 				virtual bool VShutdown();
 				

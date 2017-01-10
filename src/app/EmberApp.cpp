@@ -72,11 +72,11 @@ namespace ember
 			AbstractSystem *loggingSystem = new LoggingSystem( 2, 0 );
 			_systems.push_back( loggingSystem );
 			
-			AbstractSystem *profilerSystem = new ProfilerSystem( 3, 0 );
-			_systems.push_back( profilerSystem );
-			
-			_fileSystem = new FileSystem( 4, 0 );
+			_fileSystem = new FileSystem( 3, 0 );
 			_systems.push_back( _fileSystem );
+			
+			AbstractSystem *profilerSystem = new ProfilerSystem( 4, 0 );
+			_systems.push_back( profilerSystem );
 			
 			_windowSystem = new WindowSystem( 5, 0 );
 			_systems.push_back( _windowSystem );
@@ -116,9 +116,9 @@ namespace ember
 			Application = nullptr;
 		}
 		
-		bool EmberApp::Initialize()
+		bool EmberApp::Initialize( int argc, char **argv )
 		{
-			return VInitializeSystems();
+			return VInitializeSystems( argc, argv );
 		}
 		
 		void EmberApp::Sleep( F64 seconds )
@@ -146,7 +146,7 @@ namespace ember
 			}
 		}
 		
-		bool EmberApp::VInitializeSystems()
+		bool EmberApp::VInitializeSystems( int argc, char **argv )
 		{
 			bool result = true;
 			
@@ -154,7 +154,7 @@ namespace ember
 			{
 				if ( _systems[i] != nullptr )
 				{
-					result = _systems[i]->VInitialize();
+					result = _systems[i]->VInitialize( argc, argv );
 				}
 			}
 			
@@ -196,7 +196,7 @@ namespace ember
 			EmberTimer timer;
 			timer.Start();
 			
-			//rmt_BeginOpenGLSample( VRender );
+			rmt_BeginOpenGLSample( VRender );
 			rmt_BeginCPUSample( VRender, 0 );
 			
 			_renderSystem->Clear();
@@ -204,7 +204,7 @@ namespace ember
 			_renderSystem->Draw();
 			
 			rmt_EndCPUSample();
-			//rmt_EndOpenGLSample();
+			rmt_EndOpenGLSample();
 			
 			timer.Stop();
 			

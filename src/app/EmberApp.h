@@ -48,7 +48,7 @@ namespace ember
 				
 			protected:
 			
-				virtual bool VInitializeSystems();
+				virtual bool VInitializeSystems( int argc, char **argv );
 				
 				virtual void VUpdate();
 				
@@ -59,7 +59,7 @@ namespace ember
 				EmberApp();
 				virtual ~EmberApp();
 				
-				bool Initialize();
+				bool Initialize( int argc, char **argv );
 				
 				void Run();
 				

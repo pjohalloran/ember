@@ -20,13 +20,15 @@ namespace ember
 		
 		const char *RenderSystem::Name = "Render";
 		
-		bool RenderSystem::VInitialize()
+		bool RenderSystem::VInitialize( int argc, char **argv )
 		{
 			if ( VInitialized() )
 			{
 				LOG_F( WARNING, "Tried to intialize %s when already running!", Name );
 				return true;
 			}
+			
+			CHECK_WITH_INFO_F( Application != nullptr && Application->Window() != nullptr && Application->Window()->VInitialized(), "WindowSystem needs to be intialized before the %s", "%s", Name );
 			
 			if ( flextInit( Application->Window()->GetWindow() ) != GL_TRUE )
 			{
@@ -35,6 +37,8 @@ namespace ember
 			}
 			
 			LOG_F( INFO, "Setup FLEXT system using version %i.%i and core profile %i", FLEXT_MAJOR_VERSION, FLEXT_MINOR_VERSION, FLEXT_CORE_PROFILE );
+			
+			rmt_BindOpenGL();
 			
 			LOG_F( INFO, "%s initialized", Name );
 			_initialized = true;
@@ -48,6 +52,8 @@ namespace ember
 				LOG_F( WARNING, "Tried to shutdown %s when already running!", Name );
 				return true;
 			}
+			
+			rmt_UnbindOpenGL();
 			
 			LOG_F( INFO, "%s shutdown", Name );
 			_initialized = false;

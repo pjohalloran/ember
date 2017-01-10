@@ -26,7 +26,7 @@ namespace ember
 				WindowSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _window( nullptr ) { };
 				virtual ~WindowSystem() { }
 				
-				virtual bool VInitialize();
+				virtual bool VInitialize( int argc, char **argv );
 				
 				virtual void VUpdate() { }
 				

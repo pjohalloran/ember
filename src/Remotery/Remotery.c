@@ -70,6 +70,8 @@ static rmtBool g_SettingsInitialized = RMT_FALSE;
 ------------------------------------------------------------------------------------------------------------------------
 */
 
+
+
 //
 // Required CRT dependencies
 //
@@ -88,7 +90,9 @@ static rmtBool g_SettingsInitialized = RMT_FALSE;
         #include <mach/vm_map.h>
         #include <mach/mach.h>
         #include <sys/time.h>
-        #include <Carbon/Carbon.h>
+
+        #include <GLFW/glfw3.h>
+
     #else
         #include <malloc.h>
     #endif
@@ -179,17 +183,11 @@ static void rmtFree( void* ptr )
 #if RMT_USE_OPENGL
 // DLL/Shared Library functions
 
-#if defined (RMT_PLATFORM_WINDOWS) || defined(RMT_PLATFORM_MACOS)
+#if defined (RMT_PLATFORM_WINDOWS)
 static void* rmtLoadLibrary(const char* path)
 {
     #if defined(RMT_PLATFORM_WINDOWS)
         return (void*)LoadLibraryA(path);
-    #elif defined(RMT_PLATFORM_MACOS)
-        CFStringRef pathRef = CFStringCreateWithCString(kCFAllocatorDefault, path,
-                                                     kCFStringEncodingASCII);
-        void *bundle = (void *)CFBundleGetBundleWithIdentifier(pathRef);
-        CFRelease(pathRef);
-        return bundle;
     #elif defined(RMT_PLATFORM_POSIX)
         return dlopen(path, RTLD_LOCAL | RTLD_LAZY);
     #else
@@ -202,8 +200,6 @@ static void rmtFreeLibrary(void* handle)
 {
     #if defined(RMT_PLATFORM_WINDOWS)
         FreeLibrary((HMODULE)handle);
-    #elif defined(RMT_PLATFORM_MACOS)
-        CFRelease((CFBundleRef)handle);
     #elif defined(RMT_PLATFORM_POSIX)
         dlclose(handle);
     #endif
@@ -220,12 +216,6 @@ static void* rmtGetProcAddress(void* handle, const char* symbol)
         #ifdef _MSC_VER
             #pragma warning(pop)
         #endif
-    #elif defined(RMT_PLATFORM_MACOS)
-    CFStringRef procname = CFStringCreateWithCString(kCFAllocatorDefault, symbol,
-                                                     kCFStringEncodingASCII);
-    void *proc = CFBundleGetFunctionPointerForName((CFBundleRef)handle, procname);
-    CFRelease(procname);
-    return proc;
     #elif defined(RMT_PLATFORM_POSIX)
         return dlsym(handle, symbol);
     #else
@@ -5997,9 +5987,9 @@ static void* rmtglGetProcAddress(OpenGL* opengl, const char* symbol)
     }
 
     #elif defined(__APPLE__) && !defined(GLEW_APPLE_GLX)
-    
-        return rmtGetProcAddress(opengl->dll_handle, (const GLubyte*)symbol);
-    
+
+        return (void *)glfwGetProcAddress((const GLubyte*)symbol);
+
     #elif defined(RMT_PLATFORM_LINUX)
 
         return glXGetProcAddressARB((const GLubyte*)symbol);
@@ -6209,8 +6199,6 @@ RMT_API void _rmt_BindOpenGL()
 
         #if defined (RMT_PLATFORM_WINDOWS)
             opengl->dll_handle = rmtLoadLibrary("opengl32.dll");
-        #elif defined(RMT_PLATFORM_MACOS)
-            opengl->dll_handle = rmtLoadLibrary("com.apple.opengl");
         #endif
 
         opengl->__glGetError = (PFNGLGETERRORPROC)rmtGetProcAddress(opengl->dll_handle, "glGetError");

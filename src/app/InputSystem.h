@@ -47,7 +47,7 @@ namespace ember
 					Clear();
 				}
 				
-				virtual bool VInitialize();
+				virtual bool VInitialize( int argc, char **argv );
 				
 				virtual void VUpdate();
 				

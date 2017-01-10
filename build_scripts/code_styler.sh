@@ -13,6 +13,10 @@ function should_style_file {
 			echo "Skipping $1"
 			return 1
 		fi
+		if [[ $filename == Remotery* ]]; then
+			echo "Skipping $1"
+			return 1
+		fi
 		if [ ".$extension" == "$i" ]; then
 			#echo "$1 is valid"
 			return 0

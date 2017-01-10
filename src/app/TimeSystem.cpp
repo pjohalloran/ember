@@ -17,7 +17,7 @@ namespace ember
 		
 		const char *TimeSystem::Name = "Time";
 		
-		bool TimeSystem::VInitialize()
+		bool TimeSystem::VInitialize( int argc, char **argv )
 		{
 			if ( VInitialized() )
 			{

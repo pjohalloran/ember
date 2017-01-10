@@ -91,7 +91,7 @@ namespace ember
 		
 		const char *InputSystem::Name = "Input";
 		
-		bool InputSystem::VInitialize()
+		bool InputSystem::VInitialize( int argc, char **argv )
 		{
 			if ( VInitialized() )
 			{
