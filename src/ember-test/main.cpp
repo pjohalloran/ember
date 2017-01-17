@@ -1,7 +1,10 @@
 #include "app/EmberApp.h"
 
+#include "events/Event.h"
+
 using namespace ember::core;
 using namespace ember::app;
+using namespace ember::events;
 
 int main( int argc, char **argv )
 {
@@ -17,6 +20,8 @@ int main( int argc, char **argv )
 	
 	delete app;
 	app = nullptr;
+	
+	Event e();
 	
 	return 0;
 }

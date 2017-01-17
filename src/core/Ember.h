@@ -21,6 +21,7 @@
 #include "EmberPlatform.h"
 
 #include <loguru.hpp>
+#include <string_id.hpp>
 
 // TODO include these ?
 // #include <boost/shared_ptr.hpp>
@@ -29,7 +30,6 @@ namespace ember
 {
 	namespace core
 	{
-	
 		template<class T>
 		void Delete( T *ptr ) throw()
 		{

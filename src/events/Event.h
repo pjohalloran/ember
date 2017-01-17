@@ -10,11 +10,14 @@
 
 #include "core/Ember.h"
 
+//#include "math/Point3.h"
+
 namespace ember
 {
 	namespace events
 	{
 		using namespace ember::core;
+		//using namespace ember::math;
 		
 		struct Variant
 		{
@@ -27,6 +30,7 @@ namespace ember
 				TypeU64,
 				TypeF32,
 				TypeF64,
+				//TypePoint3,
 				TypeCount
 			};
 			
@@ -39,21 +43,22 @@ namespace ember
 				U64 asUnsignedLong;
 				F32 asFloat;
 				F64 asDouble;
+				//Point3 asPoint3;
 			};
 			
 			Type type;
 		};
 		
-		struct EventData
+		struct Event
 		{
 			const U32 MaxArgs = 8;
 			
-			string_id Id;
+			//foonathan::string_id Id;
 			U32 ArgCount;
-			string_id Keys[MaxArgs];
-			Variant Data[MaxArgs];
+			//string_id Keys[MaxArgs];
+			//Variant Data[MaxArgs];
 			
-			EventData *Clone()
+			Event *Clone()
 			{
 				// return deep copy of me
 				return nullptr;
