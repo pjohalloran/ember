@@ -29,7 +29,7 @@ namespace ember
 				
 			public:
 			
-				AbstractSystem( int initPriority, int updatePriority ) : _initPriority( initPriority ), _updatePriority( updatePriority ), _initialized( false ) { }
+				AbstractSystem( I32 initPriority, I32 updatePriority ) : _initPriority( initPriority ), _updatePriority( updatePriority ), _initialized( false ) { }
 				
 				virtual ~AbstractSystem() { }
 				

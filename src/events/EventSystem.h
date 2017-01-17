@@ -11,6 +11,8 @@
 #include "core/Ember.h"
 #include "app/AbstractSystem.h"
 
+#include <EASTL/vector.h>
+
 namespace ember
 {
 	namespace events
@@ -26,8 +28,10 @@ namespace ember
 			
 				static const char *Name;
 				
+				eastl::vector<Event *> _events;
+				
 			public:
-				EventSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ) {}
+				EventSystem( I32 id, I32 priority );
 				virtual ~EventSystem() { }
 				
 				virtual bool VInitialize( int argc, char **argv );

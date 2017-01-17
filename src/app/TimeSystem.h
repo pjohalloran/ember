@@ -24,7 +24,7 @@ namespace ember
 				F64 _startFrameTime;
 				
 			public:
-				TimeSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _startAppTime( 0.0 ), _lastFrameTime( 0.0 ), _startFrameTime( 0.0 ), _frameCount( 0 ) { };
+				TimeSystem( I32 initPriority, I32 updatePriority ) : AbstractSystem( initPriority, updatePriority ), _startAppTime( 0.0 ), _lastFrameTime( 0.0 ), _startFrameTime( 0.0 ), _frameCount( 0 ) { };
 				virtual ~TimeSystem() { }
 				
 				virtual bool VInitialize( int argc, char **argv );

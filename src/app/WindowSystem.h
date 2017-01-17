@@ -23,7 +23,7 @@ namespace ember
 				GLFWwindow *_window;
 				
 			public:
-				WindowSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _window( nullptr ) { };
+				WindowSystem( I32 initPriority, I32 updatePriority ) : AbstractSystem( initPriority, updatePriority ), _window( nullptr ) { };
 				virtual ~WindowSystem() { }
 				
 				virtual bool VInitialize( int argc, char **argv );

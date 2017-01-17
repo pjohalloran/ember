@@ -59,7 +59,15 @@ namespace ember
 		// Initialize the global, extern game application pointer.
 		EmberApp *Application = NULL;
 		
-		EmberApp::EmberApp() : _systems(), _windowSystem( nullptr )
+		EmberApp::EmberApp() : _systems(), \
+			_windowSystem( nullptr ), \
+			_timeSystem( nullptr ), \
+			_inputSystem( nullptr ), \
+			_fileSystem( nullptr ), \
+			_renderSystem( nullptr ), \
+			_scriptSystem( nullptr ), \
+			_eventSystem( nullptr ), \
+			_rng( nullptr )
 		{
 			Application = this;
 			

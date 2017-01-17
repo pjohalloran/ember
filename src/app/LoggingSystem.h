@@ -20,7 +20,7 @@ namespace ember
 				static const char *Name;
 				
 			public:
-				LoggingSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ) { };
+				LoggingSystem( I32 initPriority, I32 updatePriority ) : AbstractSystem( initPriority, updatePriority ) { };
 				virtual ~LoggingSystem() { }
 				
 				virtual bool VInitialize( int argc, char **argv );

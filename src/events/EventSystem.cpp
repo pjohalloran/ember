@@ -14,6 +14,11 @@ namespace ember
 		
 		const char *EventSystem::Name = "Event";
 		
+		EventSystem::EventSystem( I32 id, I32 priority ) : AbstractSystem( id, priority )
+		{
+		
+		}
+		
 		bool EventSystem::VInitialize( int argc, char **argv )
 		{
 			if ( VInitialized() )

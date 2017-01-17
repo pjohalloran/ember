@@ -51,7 +51,7 @@ namespace ember
 			                );
 		}
 		
-		ScriptingSystem::ScriptingSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _lua( nullptr )
+		ScriptingSystem::ScriptingSystem( I32 initPriority, I32 updatePriority ) : AbstractSystem( initPriority, updatePriority ), _lua( nullptr )
 		{
 			// This system needs to get setup and running before everything else as it provides config
 			// data for all other sub systems in the engine.

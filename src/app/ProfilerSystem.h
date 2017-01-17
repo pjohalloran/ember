@@ -25,7 +25,7 @@ namespace ember
 				Remotery *_remotery;
 				
 			public:
-				ProfilerSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _remotery( nullptr ) { }
+				ProfilerSystem( I32 initPriority, I32 updatePriority ) : AbstractSystem( initPriority, updatePriority ), _remotery( nullptr ) { }
 				virtual ~ProfilerSystem() { }
 				
 				virtual bool VInitialize( int argc, char **argv );

@@ -40,7 +40,7 @@ namespace ember
 				Point2 _prevMouse;
 				
 			public:
-				InputSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _keyboardListeners(), _mouseListeners(), _gamepadListeners(), _prevMouse() { };
+				InputSystem( I32 initPriority, I32 updatePriority ) : AbstractSystem( initPriority, updatePriority ), _keyboardListeners(), _mouseListeners(), _gamepadListeners(), _prevMouse() { };
 				
 				virtual ~InputSystem()
 				{

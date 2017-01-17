@@ -20,7 +20,7 @@ namespace ember
 				static const char *Name;
 				
 			public:
-				RenderSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ) { };
+				RenderSystem( I32 initPriority, I32 updatePriority ) : AbstractSystem( initPriority, updatePriority ) { };
 				virtual ~RenderSystem() { }
 				
 				virtual bool VInitialize( int argc, char **argv );

@@ -24,7 +24,7 @@ namespace ember
 				filesystem::path _exePath;
 				
 			public:
-				FileSystem( I32 id, I32 priority ) : AbstractSystem( id, priority ), _exePath() { };
+				FileSystem( I32 initPriority, I32 updatePriority ) : AbstractSystem( initPriority, updatePriority ), _exePath() { };
 				virtual ~FileSystem() { }
 				
 				virtual bool VInitialize( int argc, char **argv );
