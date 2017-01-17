@@ -17,6 +17,11 @@
 
 namespace ember
 {
+	namespace events
+	{
+		class EventSystem;
+	}
+	
 	namespace app
 	{
 		using namespace ember::core;
@@ -41,6 +46,7 @@ namespace ember
 				FileSystem *_fileSystem;
 				RenderSystem *_renderSystem;
 				ScriptingSystem *_scriptSystem;
+				events::EventSystem *_eventSystem;
 				
 				Random *_rng;
 				
@@ -91,6 +97,11 @@ namespace ember
 				inline ScriptingSystem *Script() const
 				{
 					return _scriptSystem;
+				}
+				
+				inline events::EventSystem *Event() const
+				{
+					return _eventSystem;
 				}
 				
 				inline Random *RNG() const

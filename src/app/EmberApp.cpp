@@ -8,6 +8,7 @@
 #include <thread>
 
 #include <EASTL/sort.h>
+#include "Remotery/Remotery.h"
 
 #include "EmberApp.h"
 
@@ -22,7 +23,7 @@
 #include "app/ProfilerSystem.h"
 #include "app/ScriptingSystem.h"
 
-#include "Remotery/Remotery.h"
+#include "events/EventSystem.h"
 
 namespace ember
 {
@@ -30,6 +31,7 @@ namespace ember
 	{
 		using namespace ember::core;
 		using namespace ember::math;
+		using namespace ember::events;
 		
 		//
 		// Sub System execution order sorting
@@ -66,7 +68,7 @@ namespace ember
 			
 			// TODO: Make system setup order and whats used/needed data driven.
 			
-			_scriptSystem = new ScriptingSystem( 1, 3 );
+			_scriptSystem = new ScriptingSystem( 1, 4 );
 			_systems.push_back( _scriptSystem );
 			
 			AbstractSystem *loggingSystem = new LoggingSystem( 2, 0 );
@@ -81,7 +83,7 @@ namespace ember
 			_windowSystem = new WindowSystem( 5, 0 );
 			_systems.push_back( _windowSystem );
 			
-			_renderSystem = new RenderSystem( 6, 4 );
+			_renderSystem = new RenderSystem( 6, 5 );
 			_systems.push_back( _renderSystem );
 			
 			_timeSystem = new TimeSystem( 7, 1 );
@@ -89,6 +91,9 @@ namespace ember
 			
 			_inputSystem = new InputSystem( 8, 2 );
 			_systems.push_back( _inputSystem );
+			
+			_eventSystem = new EventSystem( 9, 3 );
+			_systems.push_back( _eventSystem );
 			
 			eastl::sort( _systems.begin(), _systems.end(), SortForInit );
 			
