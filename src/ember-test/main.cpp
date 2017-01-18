@@ -16,6 +16,9 @@ int main( int argc, char **argv )
 		return 1;
 	}
 	
+	ember::events::Event myEvt( Hash( "TEST" ), 2 );
+	myEvt.ArgCount;
+	
 	StringHash g = ember::core::Hash( "TEST" );
 	
 	switch ( g.hash_code() )

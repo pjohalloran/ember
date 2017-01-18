@@ -10,17 +10,19 @@
 
 #include "core/Ember.h"
 
-//#include "math/Point3.h"
+#include "math/Point3.h"
 
 namespace ember
 {
 	namespace events
 	{
 		using namespace ember::core;
-		//using namespace ember::math;
+		using namespace ember::math;
 		
 		struct Variant
 		{
+			static constexpr U32 MaxStringLen = 255;
+			
 			enum Type
 			{
 				TypeBool,
@@ -30,7 +32,12 @@ namespace ember
 				TypeU64,
 				TypeF32,
 				TypeF64,
-				//TypePoint3,
+				TypeVector2,
+				TypeVector3,
+				TypeVector4,
+				TypeMatrix3,
+				TypeMatrix4,
+				TypeString,
 				TypeCount
 			};
 			
@@ -43,7 +50,12 @@ namespace ember
 				U64 asUnsignedLong;
 				F32 asFloat;
 				F64 asDouble;
-				//Point3 asPoint3;
+				F32 asVectorTwo[2];
+				F32 asVectorThree[3];
+				F32 asVectorFour[4];
+				F32 asMatrixThree[9];
+				F32 asMatrixNine[16];
+				const char *asString[MaxStringLen];
 			};
 			
 			Type type;
@@ -51,18 +63,25 @@ namespace ember
 		
 		struct Event
 		{
-			const U32 MaxArgs = 8;
+			static constexpr U32 MaxArgs = 8;
 			
 			StringHash Id;
 			U32 ArgCount;
-			//string_id Keys[MaxArgs];
-			//Variant Data[MaxArgs];
+			U64 Keys[MaxArgs];
+			Variant Data[MaxArgs];
 			
-			Event( StringHash id ) : Id( id ) { }
+			Event( StringHash id, U32 argCount ) : Id( id )
+			{
+				DCHECK_LE_F( argCount, MaxArgs, "An event can only have maximum %i args", MaxArgs );
+				
+				ArgCount = argCount;
+				memset( Keys, 0, sizeof( U64 ) * ArgCount );
+				memset( Data, 0, sizeof( Variant ) * ArgCount );
+			}
 			
 			Event *Clone()
 			{
-				// return deep copy of me
+				// return deep copy of event
 				return nullptr;
 			};
 		};
