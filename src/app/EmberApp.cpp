@@ -67,9 +67,12 @@ namespace ember
 			_renderSystem( nullptr ), \
 			_scriptSystem( nullptr ), \
 			_eventSystem( nullptr ), \
-			_rng( nullptr )
+			_rng( nullptr ), \
+			_stringHashDB( nullptr )
 		{
 			Application = this;
+			
+			_stringHashDB = new ember::core::StringHashDatabase();
 			
 			_rng = new Random();
 			_rng->Randomize();

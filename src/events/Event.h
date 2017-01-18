@@ -53,10 +53,12 @@ namespace ember
 		{
 			const U32 MaxArgs = 8;
 			
-			//foonathan::string_id Id;
+			StringHash Id;
 			U32 ArgCount;
 			//string_id Keys[MaxArgs];
 			//Variant Data[MaxArgs];
+			
+			Event( StringHash id ) : Id( id ) { }
 			
 			Event *Clone()
 			{

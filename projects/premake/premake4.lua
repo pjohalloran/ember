@@ -42,7 +42,8 @@ solution "ember-engine"
       configuration "Debug"
          defines
          {
-            "DEBUG"
+            "DEBUG",
+            "STRING_HASH_DATABASE_ON"
          }
          flags
          {

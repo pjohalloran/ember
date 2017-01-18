@@ -17,11 +17,11 @@
 #include <new>
 #include <memory>
 
-#include "EmberTypes.h"
-#include "EmberPlatform.h"
-
 #include <loguru.hpp>
-#include <string_id.hpp>
+
+#include "EmberTypes.h"
+#include "EmberStringHash.h"
+#include "EmberPlatform.h"
 
 // TODO include these ?
 // #include <boost/shared_ptr.hpp>

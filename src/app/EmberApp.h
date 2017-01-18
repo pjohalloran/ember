@@ -49,6 +49,7 @@ namespace ember
 				events::EventSystem *_eventSystem;
 				
 				Random *_rng;
+				StringHashDatabase *_stringHashDB;
 				
 				void Sleep( F64 seconds );
 				
@@ -107,6 +108,11 @@ namespace ember
 				inline Random *RNG() const
 				{
 					return _rng;
+				}
+				
+				inline StringHashDatabase *StringHashDatabase() const
+				{
+					return _stringHashDB;
 				}
 		};
 		

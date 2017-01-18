@@ -15,13 +15,11 @@ int main( int argc, char **argv )
 		printf( "Failed to initialize the ember game engine - please check the logs for more details." );
 		return 1;
 	}
-	
+    
 	app->Run();
 	
 	delete app;
 	app = nullptr;
-	
-	Event e();
 	
 	return 0;
 }
