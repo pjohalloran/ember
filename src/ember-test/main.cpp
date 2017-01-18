@@ -15,7 +15,24 @@ int main( int argc, char **argv )
 		printf( "Failed to initialize the ember game engine - please check the logs for more details." );
 		return 1;
 	}
-    
+	
+	StringHash g = ember::core::Hash( "TEST" );
+	
+	switch ( g.hash_code() )
+	{
+		case "BLAH"_id:
+			printf( "BLAH\n" );
+			break;
+			
+		case "TEST"_id:
+			printf( "TEST\n" );
+			break;
+			
+		default:
+			printf( "SOMETHING ELSE\n" );
+			break;
+	}
+	
 	app->Run();
 	
 	delete app;
