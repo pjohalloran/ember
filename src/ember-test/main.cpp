@@ -16,6 +16,22 @@ int main( int argc, char **argv )
 		return 1;
 	}
 	
+	EmberVariant vari;
+	vari.SetBool( true );
+	
+	printf( " Bool = %i \n", vari.asBool );
+	
+	I32 val;
+	
+	if ( vari.TryGetValue( val ) )
+	{
+		printf( "Got I32\n" );
+	}
+	else
+	{
+		printf( "DID NOT GET I32\n" );
+	}
+	
 	ember::events::Event myEvt( Hash( "TEST" ), 2 );
 	myEvt.ArgCount;
 	

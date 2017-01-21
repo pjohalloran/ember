@@ -29,7 +29,7 @@ namespace ember
 			}
 		}
 		
-		Matrix4::Matrix4( F32 matrixArr[NUMBER_ELEMENTS] )
+		Matrix4::Matrix4( const F32 matrixArr[NUMBER_ELEMENTS] )
 		{
 			Set( matrixArr );
 		}

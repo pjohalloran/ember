@@ -31,7 +31,11 @@ namespace ember
 				
 				ArgCount = argCount;
 				memset( Keys, 0, sizeof( U64 ) * ArgCount );
-				memset( Data, 0, sizeof( EmberVariant ) * ArgCount );
+				
+				for ( U32 i = 0; i < ArgCount; ++i )
+				{
+					Data[i].Clear();
+				}
 			}
 			
 			Event *Clone()

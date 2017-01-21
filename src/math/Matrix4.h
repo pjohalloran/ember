@@ -126,7 +126,7 @@ namespace ember
 				
 				explicit Matrix4( const F32 scaler );
 				
-				explicit Matrix4( F32 matrixArr[NUMBER_ELEMENTS] );
+				explicit Matrix4( const F32 matrixArr[NUMBER_ELEMENTS] );
 				
 				explicit Matrix4( const F32 m00, const F32 m10, const F32 m20, const F32 m30, \
 				                  const F32 m01, const F32 m11, const F32 m21, const F32 m31, \
