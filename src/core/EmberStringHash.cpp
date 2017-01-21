@@ -1,5 +1,5 @@
 /*
- * @file Ember.cpp
+ * @file EmberStringHash.cpp
  * @author PJ O Halloran
  * @date 15/12/2016
  */

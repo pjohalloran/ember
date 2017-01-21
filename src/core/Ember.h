@@ -21,6 +21,7 @@
 
 #include "EmberTypes.h"
 #include "EmberStringHash.h"
+#include "EmberVariant.h"
 #include "EmberPlatform.h"
 
 // TODO include these ?
