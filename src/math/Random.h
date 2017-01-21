@@ -5,14 +5,11 @@
 /*
  * @file Random.h
  * @date 22/12/2016
- *
- * This is a Mersenne Twister pseudorandom number generator
- * originally developed by Takuji Nishimura and Makoto Matsumoto.
  */
 
 #include "core/EmberTypes.h"
 
-#define CMATH_N 624
+#include <random>
 
 namespace ember
 {
@@ -24,10 +21,7 @@ namespace ember
 		{
 			private:
 			
-				U32 _seed;
-				U32 _seedSp;
-				U64 _mt[CMATH_N];
-				I32 _mti;
+				std::mt19937 _rand;
 				
 			public:
 			
@@ -36,22 +30,17 @@ namespace ember
 				
 				void Randomize();
 				
-				void SetRandomSeed( U32 newSeed );
+				U32 Value();
 				
-				U32 Value( U32 n );
+				F32 ValueF32();
 				
-				F32 Value();
+				U32 Range( U32 min, U32 max );
 				
 				F32 Range( F32 min, F32 max );
 				
 				inline F32 Range01()
 				{
 					return Range( 0.0f, 1.0f );
-				};
-				
-				inline U32 GetRandomSeed() const
-				{
-					return _seed;
 				};
 		};
 	}
