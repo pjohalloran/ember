@@ -10,6 +10,8 @@
  * Variant type that can hold any POD or ember engine core type.
  */
 
+#include <cstring>
+
 #include "core/Ember.h"
 
 namespace ember
@@ -75,11 +77,24 @@ namespace ember
 			};
 			
 			Type type;
+			U64 handle;
 			
 			EmberVariant()
 			{
 				Clear();
 			}
+			
+			inline EmberVariant &operator=( const EmberVariant &rhs )
+			{
+				if ( this == &rhs )
+				{
+					return *this;
+				}
+				
+				memcpy( this, ( void * )&rhs, sizeof( EmberVariant ) );
+				
+				return *this;
+			};
 			
 			inline void Clear()
 			{

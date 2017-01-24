@@ -33,7 +33,27 @@ int main( int argc, char **argv )
 	}
 	
 	ember::events::Event myEvt( Hash( "TEST" ), 2 );
-	myEvt.ArgCount;
+	
+	myEvt[0].handle = "ARG1"_id;
+	myEvt[0].SetBool( true );
+	
+	myEvt[1].handle = "ARG2"_id;
+	myEvt[1].SetBool( false );
+	
+	printf( "Arg 1 bool = %i\n", myEvt[0].asBool );
+	printf( "Arg 2 bool = %i\n", myEvt[1].asBool );
+	
+	EmberVariant tryArg;
+	
+	if ( myEvt.TryGet( "ARG1"_id, tryArg ) )
+	{
+		printf( "TryGetArg 1 bool = %i\n", tryArg.asBool );
+	}
+	
+	if ( myEvt.TryGet( "ARG2"_id, tryArg ) )
+	{
+		printf( "TryGetArg 2 bool = %i\n", tryArg.asBool );
+	}
 	
 	StringHash g = ember::core::Hash( "TEST" );
 	

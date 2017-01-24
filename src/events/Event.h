@@ -22,15 +22,11 @@ namespace ember
 			
 			StringHash Id;
 			U32 ArgCount;
-			U64 Keys[MaxArgs];
 			EmberVariant Data[MaxArgs];
 			
-			Event( StringHash id, U32 argCount ) : Id( id )
+			Event( StringHash id, U32 argCount ) : Id( id ), ArgCount( argCount )
 			{
 				DCHECK_LE_F( argCount, MaxArgs, "An event can only have maximum %i args", MaxArgs );
-				
-				ArgCount = argCount;
-				memset( Keys, 0, sizeof( U64 ) * ArgCount );
 				
 				for ( U32 i = 0; i < ArgCount; ++i )
 				{
@@ -38,10 +34,49 @@ namespace ember
 				}
 			}
 			
+			Event( const Event &rhs ) : Id( rhs.Id ), ArgCount( rhs.ArgCount )
+			{
+				this->Id = rhs.Id;
+				this->ArgCount = ArgCount;
+				
+				for ( U32 i = 0; i < ArgCount; ++i )
+				{
+					Data[i] = rhs.Data[i];
+				}
+			}
+			
+			inline bool TryGet( const StringHash &hash, EmberVariant &data ) const
+			{
+				return TryGet( hash.hash_code(), data );
+			}
+			
+			inline bool TryGet( const U64 handle, EmberVariant &data ) const
+			{
+				bool found = false;
+				
+				for ( U32 i = 0; ( i < ArgCount ) && !found; ++i )
+				{
+					if ( Data[i].handle == handle )
+					{
+						data = Data[i];
+						found = true;
+					}
+				}
+				
+				return found;
+			}
+			
+			inline EmberVariant &operator []( const I32 index )
+			{
+				DCHECK_GE_F( index, 0, "out of bounds lower" );
+				DCHECK_LT_F( index, ArgCount, "out of bounds upper" );
+				
+				return Data[index];
+			};
+			
 			Event *Clone()
 			{
-				// return deep copy of event
-				return nullptr;
+				return new Event( *this );
 			};
 		};
 	}
