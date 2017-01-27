@@ -23,27 +23,11 @@ namespace ember
 			StringHash Id;
 			U32 ArgCount;
 			EmberVariant Data[MaxArgs];
+			F64 Timestamp;
 			
-			Event( StringHash id, U32 argCount ) : Id( id ), ArgCount( argCount )
-			{
-				DCHECK_LE_F( argCount, MaxArgs, "An event can only have maximum %i args", MaxArgs );
-				
-				for ( U32 i = 0; i < ArgCount; ++i )
-				{
-					Data[i].Clear();
-				}
-			}
+			Event( StringHash id, U32 argCount );
 			
-			Event( const Event &rhs ) : Id( rhs.Id ), ArgCount( rhs.ArgCount )
-			{
-				this->Id = rhs.Id;
-				this->ArgCount = ArgCount;
-				
-				for ( U32 i = 0; i < ArgCount; ++i )
-				{
-					Data[i] = rhs.Data[i];
-				}
-			}
+			Event( const Event &rhs );
 			
 			inline bool TryGet( const StringHash &hash, EmberVariant &data ) const
 			{
