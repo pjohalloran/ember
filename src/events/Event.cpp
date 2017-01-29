@@ -16,7 +16,7 @@ namespace ember
 		using namespace ember::core;
 		using namespace ember::app;
 		
-		Event::Event( StringHash id, U32 argCount ) : Id( id ), ArgCount( argCount )
+		Event::Event( StringHash id, U32 argCount ) : Id( id ), ArgCount( argCount ), Timestamp( 0.0F )
 		{
 			DCHECK_LE_F( argCount, MaxArgs, "An event can only have maximum %i args", MaxArgs );
 			
