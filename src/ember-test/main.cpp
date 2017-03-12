@@ -2,12 +2,16 @@
 
 #include "events/Event.h"
 
+#include <eastl/hash_map.h>
+
 using namespace ember::core;
 using namespace ember::app;
 using namespace ember::events;
 
 int main( int argc, char **argv )
 {
+    eastl::hash_map<int, int> m;
+    
 	EmberApp *app = new EmberApp();
 	
 	if ( !app->Initialize( argc, argv ) )
