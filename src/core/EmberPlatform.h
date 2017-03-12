@@ -52,6 +52,10 @@
 		#include "flextGL/flextGL.h"
 		#include <GLFW/glfw3.h>
 		#define GLFW_FUNC_PRE GLFWAPI
+		
+		#define RMT_ENABLED 1
+		#define RMT_USE_OPENGL 1
+		#include "Remotery/Remotery.h"
 	#endif
 	
 	#include <assert.h>

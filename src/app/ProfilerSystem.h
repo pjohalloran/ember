@@ -9,8 +9,6 @@
 
 #include "app/AbstractSystem.h"
 
-#include "Remotery/Remotery.h"
-
 namespace ember
 {
 	using namespace ember::core;

@@ -10,8 +10,6 @@
 #include "app/WindowSystem.h"
 #include "app/EmberApp.h"
 
-#include "Remotery/Remotery.h"
-
 namespace ember
 {
 	namespace app

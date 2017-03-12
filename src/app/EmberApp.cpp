@@ -8,7 +8,6 @@
 #include <thread>
 
 #include <EASTL/sort.h>
-#include "Remotery/Remotery.h"
 
 #include "EmberApp.h"
 
