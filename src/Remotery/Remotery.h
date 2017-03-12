@@ -64,7 +64,7 @@ documented just below this comment.
 
 // Allow OpenGL profiling
 #ifndef RMT_USE_OPENGL
-#define RMT_USE_OPENGL 0
+#define RMT_USE_OPENGL 1
 #endif
 
 // Allow Metal profiling
