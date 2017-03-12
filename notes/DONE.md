@@ -34,3 +34,4 @@
 	- Investigate a way to not have strings used at runtime.
 
 - Add flexgl as git submodule as cant be included as conan dependancies as they are too custom and or tools.
+- Add Remotery as git submodule as it cant be included as conan dependancies as it is too custom and or tools.

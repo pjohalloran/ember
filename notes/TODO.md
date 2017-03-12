@@ -8,8 +8,6 @@
 	- fileio (some)
 	- graphics (some)
 
-- Add Remotery as git submodule as it cant be included as conan dependancies as it is too custom and or tools.
-
 - Paths
 	- Add GUID generation functionality to the project.
 	- Investigate a way to not have paths used at runtime.
