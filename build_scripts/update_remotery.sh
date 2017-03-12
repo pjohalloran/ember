@@ -7,17 +7,10 @@ if [ $? -ne 0 ]; then
 	return 1
 fi
 
-cp "tools/Remotery/lib/Remotery.h" "src/Remotery/"
+cp "tools/Remotery/lib/*" "src/Remotery/"
 
 if [ $? -ne 0 ]; then
-	echo "[FAILED] To copy header files inside the src directory"
-	return 1
-fi
-
-cp "tools/Remotery/lib/Remotery.c" "src/Remotery/"
-
-if [ $? -ne 0 ]; then
-	echo "[FAILED] To copy src files inside the src directory"
+	echo "[FAILED] To copy files inside the src directory"
 	return 1
 fi
 
