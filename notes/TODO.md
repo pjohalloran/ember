@@ -1,9 +1,3 @@
-- Event System
-	- Define event manager class Header functionality.
-	- Define event data layout and API.
-	- Implement the Event base structure.
-	- Implement the event manager.
-
 - Bring over gameframework code i still like.
 	- fileio (some)
 	- graphics (some)
@@ -36,6 +30,12 @@
 	- imguizmo
 	- tinycthread
 	- clReflect
+
+- Event System
+	- Define event manager class Header functionality.
+	- Define event data layout and API.
+	- Implement the Event base structure.
+	- Implement the event manager.
 
 - List goals of the codebase
 	- Desktop only. Run equally as well on OSX and Windows.
