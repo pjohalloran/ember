@@ -10,3 +10,6 @@
 [submodule "src/thirdparty/loguru"]
 	path = src/thirdparty/loguru
 	url = git@github.com:emilk/loguru.git
+[submodule "src/thirdparty/EASTL"]
+	path = src/thirdparty/EASTL
+	url = git@github.com:electronicarts/EASTL.git
