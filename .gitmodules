@@ -1,6 +1,6 @@
 [submodule "tools/flextGL"]
-	path = tools/flextGL
+	path = src/thirdparty/flextGL
 	url = git@github.com:ginkgo/flextGL.git
 [submodule "tools/Remotery"]
-	path = tools/Remotery
+	path = src/thirdparty/Remotery
 	url = git@github.com:Celtoys/Remotery.git
