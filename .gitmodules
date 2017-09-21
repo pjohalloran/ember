@@ -7,3 +7,6 @@
 [submodule "src/thirdparty/glfw"]
 	path = src/thirdparty/glfw
 	url = git@github.com:glfw/glfw.git
+[submodule "src/thirdparty/loguru"]
+	path = src/thirdparty/loguru
+	url = git@github.com:emilk/loguru.git
