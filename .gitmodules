@@ -16,3 +16,6 @@
 [submodule "src/thirdparty/filesystem"]
 	path = src/thirdparty/filesystem
 	url = git@github.com:wjakob/filesystem.git
+[submodule "src/thirdparty/string_id"]
+	path = src/thirdparty/string_id
+	url = git@github.com:foonathan/string_id.git
