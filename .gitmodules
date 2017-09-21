@@ -19,3 +19,6 @@
 [submodule "src/thirdparty/string_id"]
 	path = src/thirdparty/string_id
 	url = git@github.com:foonathan/string_id.git
+[submodule "src/thirdparty/sol2"]
+	path = src/thirdparty/sol2
+	url = git@github.com:ThePhD/sol2.git
