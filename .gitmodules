@@ -13,3 +13,6 @@
 [submodule "src/thirdparty/EASTL"]
 	path = src/thirdparty/EASTL
 	url = git@github.com:electronicarts/EASTL.git
+[submodule "src/thirdparty/filesystem"]
+	path = src/thirdparty/filesystem
+	url = git@github.com:wjakob/filesystem.git
