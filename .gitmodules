@@ -4,3 +4,6 @@
 [submodule "tools/Remotery"]
 	path = src/thirdparty/Remotery
 	url = git@github.com:Celtoys/Remotery.git
+[submodule "src/thirdparty/glfw"]
+	path = src/thirdparty/glfw
+	url = git@github.com:glfw/glfw.git
