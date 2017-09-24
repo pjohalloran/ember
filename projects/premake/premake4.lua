@@ -1,6 +1,6 @@
 #!lua
 
-require 'conanpremake'
+--require 'conanpremake'
 
 -- Directory variables.
 local_flextGL_src_dir = "../../src/flextGL/"
@@ -21,12 +21,12 @@ solution "ember-engine"
    }
    includedirs
    {
-      conan_includedirs,
+      --conan_includedirs,
       local_includes_dir
    }
    libdirs
    {
-      conan_libdirs
+      --conan_libdirs
    }
    location(generated_project_dir)
 
@@ -122,15 +122,15 @@ solution "ember-engine"
       location(generated_project_dir)
       linkoptions
       {
-         conan_sharedlinkflags
+         --conan_sharedlinkflags
       }
       links
       {
-         conan_libs
+         --conan_libs
       }
       buildoptions
       {
-         conan_cppflags
+         --conan_cppflags
       }
       configuration "Debug"
          defines
@@ -167,18 +167,18 @@ solution "ember-engine"
       language "C++"
       buildoptions
       {
-         conan_cppflags
+         --conan_cppflags
       }
       links
       {
-         conan_libs,
+         --conan_libs,
          "flextGL",
          "Remotery",
          "ember"
       }
       linkoptions
       {
-         conan_exelinkflags
+         --conan_exelinkflags
       }
       files
       {
