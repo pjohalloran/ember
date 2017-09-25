@@ -10,9 +10,6 @@ local lib_name = "filesystem"
 
 local function build()
 	headers_pattern = path.join(lib_name, "*.h")
-
-	print(headers_pattern)
-
 	do_header_only_lib_copy(lib_name, headers_pattern)
 end
 

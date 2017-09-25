@@ -54,12 +54,12 @@ local function build()
 	end
 
 	local third_party_libs = {
-	   --"thirdparty/glfw.lua",
-	   --"thirdparty/EASTL.lua",
-	   --"thirdparty/string_id.lua",
+	   "thirdparty/glfw.lua",
+	   "thirdparty/EASTL.lua",
+	   "thirdparty/string_id.lua",
 	   "thirdparty/filesystem.lua",
-	   --"thirdparty/sol2.lua",
-	   --"thirdparty/loguru.lua",
+	   "thirdparty/sol2.lua",
+	   "thirdparty/loguru.lua",
 	};
 
 	local i = 1
