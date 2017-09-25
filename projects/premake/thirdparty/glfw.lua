@@ -1,3 +1,11 @@
+--
+-- @file glfw.lua
+-- @author PJ O Halloran
+-- @date 25/09/2017
+--
+-- For building the glfw library.
+--
+
 local lib_name = "glfw"
 local lib_src_dir = path.join(ember_thirdparty_src, lib_name)
 
