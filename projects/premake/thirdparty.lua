@@ -5,6 +5,16 @@ ember_root_include = path.join(ember_home, "include")
 ember_root_lib = path.join(ember_home, "lib")
 ember_thirdparty_src = path.join(ember_home, path.join("src", "thirdparty"))
 
+lib_ext = ""
+
+local function get_lib_ext()
+	if(os.ishost("windows")) then
+		return "lib"
+	else
+		return "a"
+	end
+end
+
 local function check_for_cmake()
 	res = os.execute("cmake --version")
 
@@ -17,6 +27,8 @@ end
 local function build()
 	check_for_cmake()
 
+	lib_ext = get_lib_ext()
+
 	if(not os.isdir(ember_root_include)) then
 		os.mkdir(ember_root_include)
 	end
@@ -28,6 +40,7 @@ local function build()
 	local third_party_libs = {
 	   "thirdparty/glfw.lua",
 	   "thirdparty/EASTL.lua",
+	   "thirdparty/string_id.lua",
 	};
 
 	local i = 1
@@ -53,6 +66,30 @@ local function clean()
 	if(os.isdir(ember_root_lib)) then
 		os.rmdir(ember_root_lib)
 	end
+end
+
+function copy_files(file_pattern, target_dir)
+	if(not os.isdir(target_dir)) then
+		print("Cannot copy files with pattern \"" .. file_pattern .. "\" as \"" .. target_dir .. "\" is not a valid directory")
+		return false
+	end
+
+	matched_files = os.matchfiles(file_pattern)
+
+	local i = 1
+	local size = #matched_files
+
+	while i <= size do
+	   	res, errorString = os.copyfile(matched_files[i], target_dir)
+
+		if(res == nil) then
+			print("Failed to copy " .. matched_files[i] .. " to target \"" .. target_dir .. "\"\nReason: " .. errorString)
+			os.exit(1)
+		end
+	   i = i + 1
+	end
+
+	return true
 end
 
 --

@@ -1,4 +1,5 @@
-/includes
+/include
+/lib
 /obj
 /bin
 *.suo
