@@ -1,3 +1,5 @@
+#!lua
+
 --
 -- @file sol2.lua
 -- @author PJ O Halloran

@@ -1,3 +1,5 @@
+#!lua
+
 --
 -- @file thirdparty.lua
 -- @author PJ O Halloran
@@ -10,7 +12,14 @@
 ember_home = path.join(os.getcwd(), path.join("..", ".."))
 ember_root_include = path.join(ember_home, "include")
 ember_root_lib = path.join(ember_home, "lib")
+ember_root_src = path.join(ember_home, "src")
+ember_root_bin = path.join(ember_home, "bin")
 ember_thirdparty_src = path.join(ember_home, path.join("src", "thirdparty"))
+
+ember_shared_link_flags = ""
+ember_cpp_flags = ""
+ember_exe_link_flags = ""
+ember_libs = ""
 
 lib_ext = ""
 
@@ -138,6 +147,28 @@ function do_header_only_lib_copy(lib_name, file_pattern)
 	if(copy_files(path.join(lib_src_dir, file_pattern), lib_include_path) == false) then
 		os.exit()
 	end
+end
+
+local function append_string_if_not_exists(original_string, append_string)
+	if(not string.find(original_string, append_string)) then
+		original_string = original_string .. " " .. append_string
+	end
+end
+
+function append_shared_link_flag(flag)
+	append_string_if_not_exists(ember_shared_link_flags, flag)
+end
+
+function append_cpp_flag(flag)
+	append_string_if_not_exists(ember_cpp_flags, flag)
+end
+
+function append_exe_link_flag(flag)
+	append_string_if_not_exists(ember_exe_link_flags, flag)
+end
+
+function append_lib(flag)
+	append_string_if_not_exists(ember_libs, flag)
 end
 
 --

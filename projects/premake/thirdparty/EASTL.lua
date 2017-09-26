@@ -1,3 +1,5 @@
+#!lua
+
 --
 -- @file EASTL.lua
 -- @author PJ O Halloran
@@ -20,6 +22,8 @@ local function build()
 
 	os.execute("cmake -DCMAKE_INSTALL_PREFIX:PATH=\"" .. ember_home .. "\" \"" .. lib_src_dir .. "\"")
 	os.execute("cmake --build . --target install --config " .. _OPTIONS["EASTL.Config"])
+
+	append_lib(lib_name)
 
 	os.chdir("..")
 	os.rmdir(lib_name)
