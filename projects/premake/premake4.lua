@@ -1,19 +1,17 @@
 #!lua
 
---require 'conanpremake'
+require 'thirdparty'
 
 -- Directory variables.
-local_flextGL_src_dir = "../../src/flextGL/"
-local_remotery_src_dir = "../../src/Remotery/"
-local_src_dir = "../../src/"
-local_ember_test_dir = local_src_dir .. "ember-test"
-local_includes_dir = "../../includes/"
-local_lib_dir = "../../libs/"
-local_bin_dir = "../../bin/"
+flextgl_lib_name = "flextGL"
+flextGL_src_dir = path.join(ember_root_src, flextgl_lib_name)
+remotery_lib_name = "Remotery"
+remotery_src_dir = path.join(ember_root_src, remotery_lib_name)
+ember_test_dir = path.join(ember_root_src, "ember-test")
 generated_project_dir = "generated_project"
 
 -- A solution contains projects, and defines the available configurations
-solution "ember-engine"
+workspace "ember-engine"
    configurations
    {
       "Debug",
@@ -21,12 +19,11 @@ solution "ember-engine"
    }
    includedirs
    {
-      --conan_includedirs,
-      local_includes_dir
+      ember_root_include
    }
    libdirs
    {
-      --conan_libdirs
+      ember_root_lib
    }
    location(generated_project_dir)
 
@@ -35,36 +32,24 @@ solution "ember-engine"
       language "C"
       files 
       {
-         local_flextGL_src_dir .. "**.h",
-         local_flextGL_src_dir .. "**.c"
+         path.join(flextGL_src_dir, "**.h"),
+         path.join(flextGL_src_dir, "**.c")
       }
       location(generated_project_dir)
-      configuration "Debug"
-         defines
-         {
-            "DEBUG",
-            "STRING_HASH_DATABASE_ON"
-         }
-         flags
-         {
-            "Symbols"
-         }
-         targetdir (local_lib_dir .. "debug")
-      configuration "Release"
-         defines
-         {
-            "RELEASE",
-            "NDEBUG"
-         }
-         flags
-         {
-            "Optimize"
-         }
-         targetdir (local_lib_dir .. "release")
-      configuration "macosx"
+      targetdir (ember_root_lib)
+
+      filter "configurations:Debug"
+         defines { "DEBUG" }
+         symbols "On"
+
+      filter "configurations:Release"
+         defines { "NDEBUG", "RELEASE" }
+         optimize "On"
+
+      filter "system:macosx"
          prebuildcommands 
          {
-            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. local_src_dir .. " ../" .. local_includes_dir
+            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. flextGL_src_dir .. " ../" .. ember_root_include
          }
 
    project "Remotery"
@@ -72,34 +57,24 @@ solution "ember-engine"
       language "C"
       files 
       {
-         local_remotery_src_dir .. "**.h",
-         local_remotery_src_dir .. "**.c"
+         path.join(remotery_src_dir, "**.h"),
+         path.join(remotery_src_dir, "**.c")
       }
       location(generated_project_dir)
-      configuration "Debug"
-         defines
-         {
-            "DEBUG"
-         }
-         flags
-         {
-            "Symbols"
-         }
-         targetdir (local_lib_dir .. "debug")
-      configuration "Release"
-         defines
-         {
-            "RELEASE"
-         }
-         flags
-         {
-            "Optimize"
-         }
-         targetdir (local_lib_dir .. "release")
-      configuration "macosx"
+      targetdir (ember_root_lib)
+
+      filter "configurations:Debug"
+         defines { "DEBUG" }
+         symbols "On"
+
+      filter "configurations:Release"
+         defines { "RELEASE" }
+         optimize "On"
+
+      filter "system:macosx"
          prebuildcommands 
          {
-            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. local_src_dir .. " ../" .. local_includes_dir
+            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. remotery_src_dir .. " ../" .. ember_root_include
          }
 
    project "ember"
@@ -107,59 +82,49 @@ solution "ember-engine"
       language "C++"
       files
       {
-         local_src_dir .. "**.h",
-         local_src_dir .. "**.cpp"
+         path.join(ember_root_src, "**.h"),
+         path.join(ember_root_src, "**.cpp")
       }
-      excludes
+      removefiles
       {
-         local_ember_test_dir .. "**.h",
-         local_ember_test_dir .. "**.cpp",
-         local_flextGL_src_dir .. "**.h",
-         local_flextGL_src_dir .. "**.c",
-         local_remotery_src_dir .. "**.h",
-         local_remotery_src_dir .. "**.c"
+         path.join(ember_test_dir, "**.h"),
+         path.join(ember_test_dir, "**.cpp"),
+         path.join(flextGL_src_dir, "**.h"),
+         path.join(flextGL_src_dir, "**.c"),
+         path.join(remotery_src_dir, "**.h"),
+         path.join(remotery_src_dir, "**.c"),
+         path.join(ember_thirdparty_src, "**")
       }
       location(generated_project_dir)
       linkoptions
       {
-         --conan_sharedlinkflags
+         ember_shared_link_flags
       }
       links
       {
-         --conan_libs
+         ember_libs
       }
       buildoptions
       {
-         --conan_cppflags
+         ember_cpp_flags
       }
-      configuration "Debug"
-         defines
-         {
-            "DEBUG"
-         }
-         flags
-         {
-            "Symbols"
-         }
-         targetdir (local_lib_dir .. "debug")
-      configuration "Release"
-         defines
-         {
-            "RELEASE"
-         }
-         flags
-         {
-            "Optimize"
-         }
-         targetdir (local_lib_dir .. "release")
-      configuration "macosx"
+      targetdir(ember_root_lib)
+      filter "configurations:Debug"
+         defines { "DEBUG" }
+         symbols "On"
+
+      filter "configurations:Release"
+         defines { "RELEASE" }
+         optimize "On"
+
+      filter "system:macosx"
          defines
          {
             "TARGET_OS_MAC"
          }
          prebuildcommands 
          {
-            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. local_src_dir .. " ../" .. local_includes_dir
+            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. ember_root_src .. " ../" .. ember_root_include
          }
 
    project "ember-test"
@@ -167,54 +132,37 @@ solution "ember-engine"
       language "C++"
       buildoptions
       {
-         --conan_cppflags
+         ember_cpp_flags
       }
       links
       {
-         --conan_libs,
-         "flextGL",
-         "Remotery",
+         ember_libs,
+         flextgl_lib_name,
+         remotery_lib_name,
          "ember"
       }
       linkoptions
       {
-         --conan_exelinkflags
+         ember_exe_link_flags
       }
       files
       {
-         local_ember_test_dir .. "**.h",
-         local_ember_test_dir .. "**.cpp"
+         path.join(ember_test_dir, "**.h"),
+         path.join(ember_test_dir, "**.cpp")
       }
       location(generated_project_dir)
-      configuration "Debug"
-         defines
-         {
-            "DEBUG"
-         }
-         flags
-         {
-            "Symbols"
-         }
-         libdirs
-         {
-            local_lib_dir .. "debug"
-         }
-         targetdir (local_bin_dir .. "debug")
-      configuration "Release"
-         defines
-         {
-            "RELEASE"
-         }
-         flags
-         {
-            "Optimize"
-         }
-         libdirs
-         {
-            local_lib_dir .. "release"
-         }
-         targetdir (local_bin_dir .. "release")
-      configuration "macosx"
+      targetdir (ember_root_bin)
+      libdirs { ember_root_lib }
+
+      filter "configurations:Debug"
+         defines { "DEBUG" }
+         symbols "On"
+
+      filter "configurations:Release"
+         defines { "RELEASE" }
+         optimize "On"
+
+      filter "system:macosx"
          defines
          {
             "TARGET_OS_MAC"
