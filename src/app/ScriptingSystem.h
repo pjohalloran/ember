@@ -9,7 +9,7 @@
 
 #include "app/AbstractSystem.h"
 
-#include <sol.hpp>
+#include <sol2/sol.hpp>
 
 namespace ember
 {

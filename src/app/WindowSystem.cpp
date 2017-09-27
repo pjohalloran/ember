@@ -4,7 +4,7 @@
  * @date 17/12/2016
  */
 
-#include <sol.hpp>
+#include <sol2/sol.hpp>
 
 #include "WindowSystem.h"
 

@@ -49,6 +49,19 @@ local function check_for_cmake()
 	end
 end
 
+local function write_build_flags_to_file()
+	print(ember_shared_link_flags)
+	print(ember_cpp_flags)
+	print(ember_exe_link_flags)
+
+	local filename = "thirdparty_build_flags.lua"
+	local content = string.format("ember_shared_link_flags = \"%s\"\nember_cpp_flags = \"%s\"\nember_exe_link_flags = \"%s\"\n",
+		ember_shared_link_flags,
+		ember_cpp_flags,
+		ember_exe_link_flags)
+	io.writefile(filename, content)
+end
+
 --
 -- Triggers building all third party libraries.
 --
@@ -87,6 +100,8 @@ local function build()
 	   end
 	   i = i + 1
 	end
+
+	write_build_flags_to_file()
 end
 
 --
@@ -135,6 +150,23 @@ function copy_files(file_pattern, target_dir)
 end
 
 --
+-- Common helper function to copy files matching a file pattern
+-- AND create the target directory if it does not yet exist.
+-- e.g.
+-- *.lib, *.hpp, etc.
+--
+-- @param lib_name The name of the library we are copying files for.
+-- @param file_pattern The wildcard, file pattern of files to copy.
+--
+function copy_files_to_new_directory(file_pattern, target_dir)
+	if(not os.isdir(target_dir)) then
+		os.mkdir(target_dir)
+	end
+
+	return copy_files(file_pattern, target_dir)
+end
+
+--
 -- Common helper function to copy & prepare header only libraries
 --
 -- @param lib_name The name of the library we are copying files for.
@@ -153,25 +185,30 @@ function do_header_only_lib_copy(lib_name, file_pattern)
 end
 
 local function append_string_if_not_exists(original_string, append_string)
-	if(not string.find(original_string, append_string)) then
-		original_string = original_string .. " " .. append_string
+	if(string.find(original_string, append_string) == nil) then
+		return original_string .. " " .. append_string
 	end
+	return original_string
 end
 
 function append_shared_link_flag(flag)
-	append_string_if_not_exists(ember_shared_link_flags, flag)
+	ember_shared_link_flags = append_string_if_not_exists(ember_shared_link_flags, flag)
+	print(ember_shared_link_flags)
 end
 
 function append_cpp_flag(flag)
-	append_string_if_not_exists(ember_cpp_flags, flag)
+	ember_cpp_flags = append_string_if_not_exists(ember_cpp_flags, flag)
+	print(ember_cpp_flags)
 end
 
 function append_exe_link_flag(flag)
-	append_string_if_not_exists(ember_exe_link_flags, flag)
+	ember_exe_link_flags = append_string_if_not_exists(ember_exe_link_flags, flag)
+	print(ember_exe_link_flags)
 end
 
 function append_lib(flag)
-	append_string_if_not_exists(ember_libs, flag)
+	ember_libs = append_string_if_not_exists(ember_libs, flag)
+	print(ember_libs)
 end
 
 --

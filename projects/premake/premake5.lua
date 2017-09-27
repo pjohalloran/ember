@@ -2,6 +2,12 @@
 
 require 'thirdparty'
 
+if(not os.isfile("thirdparty_build_flags.lua")) then
+   os.touchfile("thirdparty_build_flags.lua")
+end
+
+require 'thirdparty_build_flags'
+
 -- Directory variables.
 flextgl_lib_name = "flextGL"
 flextGL_src_dir = path.join(ember_root_src, flextgl_lib_name)
@@ -46,10 +52,16 @@ workspace "ember-engine"
          defines { "NDEBUG", "RELEASE" }
          optimize "On"
 
-      filter "system:macosx"
-         prebuildcommands 
+      filter "system:not windows"
+         prebuildcommands
          {
-            "rsync --include '*.h' --filter 'hide,! */' -avm " .. flextGL_src_dir .. " " .. ember_root_include
+            --"rsync --include '*.h' --filter 'hide,! */' -avm " .. flextGL_src_dir .. " " .. ember_root_include
+         }
+
+      filter "system:windows"
+         prebuildcommands
+         {
+            "" -- TODO: How can i do this on windows using command line? 
          }
 
    project "Remotery"
@@ -74,7 +86,13 @@ workspace "ember-engine"
       filter "system:macosx"
          prebuildcommands 
          {
-            "rsync --include '*.h' --filter 'hide,! */' -avm " .. remotery_src_dir .. " " .. ember_root_include
+            --"rsync --include '*.h' --filter 'hide,! */' -avm " .. remotery_src_dir .. " " .. ember_root_include
+         }
+
+      filter "system:windows"
+         prebuildcommands
+         {
+            "" -- TODO: How can i do this on windows using command line? 
          }
 
    project "ember"
@@ -108,6 +126,15 @@ workspace "ember-engine"
       {
          ember_cpp_flags
       }
+      sysincludedirs
+      {
+         ember_root_include,
+         path.join(ember_root_include, "string_id")
+      }
+      includedirs
+      {
+         ember_root_src
+      }
       targetdir(ember_root_lib)
       filter "configurations:Debug"
          defines { "DEBUG" }
@@ -124,7 +151,15 @@ workspace "ember-engine"
          }
          prebuildcommands 
          {
-            "rsync --include '*.h' --filter 'hide,! */' -avm " .. ember_root_src .. " " .. ember_root_include
+            --"rm -Rf " .. path.join(ember_root_include, "ember"),
+            --"rsync --include '*.h' --filter 'hide,! */' -avm " .. ember_root_src .. " " .. ember_root_include,
+            --"mv " .. path.join(ember_root_include, "src") .. " " .. path.join(ember_root_include, "ember")
+         }
+
+      filter "system:windows"
+         prebuildcommands
+         {
+            "" -- TODO: How can i do this on windows using command line? 
          }
 
    project "ember-test"
