@@ -49,7 +49,7 @@ workspace "ember-engine"
       filter "system:macosx"
          prebuildcommands 
          {
-            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. flextGL_src_dir .. " ../" .. ember_root_include
+            "rsync --include '*.h' --filter 'hide,! */' -avm " .. flextGL_src_dir .. " " .. ember_root_include
          }
 
    project "Remotery"
@@ -74,7 +74,7 @@ workspace "ember-engine"
       filter "system:macosx"
          prebuildcommands 
          {
-            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. remotery_src_dir .. " ../" .. ember_root_include
+            "rsync --include '*.h' --filter 'hide,! */' -avm " .. remotery_src_dir .. " " .. ember_root_include
          }
 
    project "ember"
@@ -124,7 +124,7 @@ workspace "ember-engine"
          }
          prebuildcommands 
          {
-            "rsync --include '*.h' --filter 'hide,! */' -avm ../" .. ember_root_src .. " ../" .. ember_root_include
+            "rsync --include '*.h' --filter 'hide,! */' -avm " .. ember_root_src .. " " .. ember_root_include
          }
 
    project "ember-test"
