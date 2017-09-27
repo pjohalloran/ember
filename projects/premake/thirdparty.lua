@@ -9,7 +9,10 @@
 -- The libs and headers are placed in the root directory of ember.
 --
 
-ember_home = path.join(os.getcwd(), path.join("..", ".."))
+-- im doing this (calling getdirectory * 2) as i know script is 2 dirs above root!
+-- Not great but unsure how else to do it.
+ember_home = path.getdirectory(path.getdirectory(path.join(os.getcwd())))
+
 ember_root_include = path.join(ember_home, "include")
 ember_root_lib = path.join(ember_home, "lib")
 ember_root_src = path.join(ember_home, "src")
