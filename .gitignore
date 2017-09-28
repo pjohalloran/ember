@@ -10,5 +10,6 @@
 *.a
 *.orig
 
+thirdparty_build_flags.lua
 projects/premake/incremental_build
 projects/premake/generated_project
