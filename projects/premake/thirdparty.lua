@@ -111,7 +111,6 @@ local function build()
 		print("Executing " .. third_party_libs[i] .. " for Lib: " .. lib_name);
 		if(third_party_libs[i] ~= nil) then
 	   		dofile(third_party_libs[i])
-	   		do_post_build(lib_name)
 		end
 		i = i + 1
 	end
