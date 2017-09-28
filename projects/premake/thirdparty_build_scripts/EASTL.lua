@@ -12,10 +12,7 @@ local lib_name = "EASTL"
 local lib_src_dir = path.join(ember_thirdparty_src, lib_name)
 
 local function build()
-	local tmp_dir = path.join(ember_build_directory, lib_name)
-
-	os.mkdir(tmp_dir)
-	os.chdir(tmp_dir)
+	do_pre_build(lib_name)
 
 	if not _OPTIONS["EASTL.Config"] then
 		print("EASTL.Config was not defined so will use MinSizeRel!")
@@ -27,7 +24,7 @@ local function build()
 
 	append_lib(lib_name)
 
-	os.chdir(path.join("..", ".."))
+	do_post_build(lib_name)
 end
 
 build()

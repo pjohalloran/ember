@@ -1,11 +1,6 @@
 #!lua
 
 require 'thirdparty'
-
-if(not os.isfile("thirdparty_build_flags.lua")) then
-   os.touchfile("thirdparty_build_flags.lua")
-end
-
 require 'thirdparty_build_flags'
 
 -- Directory variables.

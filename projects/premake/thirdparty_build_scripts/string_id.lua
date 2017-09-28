@@ -13,19 +13,12 @@ local output_lib_name = "foonathan_" .. lib_name
 local lib_src_dir = path.join(ember_thirdparty_src, lib_name)
 
 local function build()
-	local tmp_dir = path.join(ember_build_directory, lib_name)
-
-	os.mkdir(tmp_dir)
-	os.chdir(tmp_dir)
+	do_pre_build(lib_name)
 
 	os.execute("cmake -DCMAKE_INSTALL_PREFIX:PATH=\"" .. ember_home .. "\" \"" .. lib_src_dir .. "\"")
 	os.execute("cmake --build . --target \"" .. output_lib_name .. "\"")
 
 	if(copy_files("*." .. lib_ext, ember_root_lib) == false) then
-		os.exit()
-	end
-
-	if(copy_files("config_impl.hpp", path.join(ember_root_include, lib_name)) == false) then
 		os.exit()
 	end
 
@@ -37,16 +30,17 @@ local function build()
 		os.exit()
 	end
 
+	if(copy_files("config_impl.hpp", path.join(ember_root_include, lib_name)) == false) then
+		os.exit()
+	end
+
 	append_lib(output_lib_name)
-
 	append_shared_link_flag("-std=c++14")
-	
 	append_exe_link_flag("-std=c++14")
-
 	append_cpp_flag("-std=c++14")
 	append_cpp_flag("-stdlib=libc++")
 
-	os.chdir(path.join("..", ".."))
+	do_post_build(lib_name)
 end
 
 build()

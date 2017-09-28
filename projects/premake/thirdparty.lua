@@ -18,6 +18,9 @@ ember_root_lib = path.join(ember_home, "lib")
 ember_root_src = path.join(ember_home, "src")
 ember_root_bin = path.join(ember_home, "bin")
 ember_thirdparty_src = path.join(ember_home, path.join("src", "thirdparty"))
+ember_thirdparty_project = path.join(path.join(ember_home, "projects"), "premake")
+ember_thirdparty_build = path.join(ember_thirdparty_project, "thirdparty_build_scripts")
+ember_thirdparty_incremental = path.join(ember_thirdparty_project, "incremental_build")
 
 ember_shared_link_flags = ""
 ember_cpp_flags = ""
@@ -25,6 +28,11 @@ ember_exe_link_flags = ""
 ember_libs = ""
 
 lib_ext = ""
+
+-- ember premake5.lua needs this to exist if it does not already..
+if(not os.isfile("thirdparty_build_flags.lua")) then
+   os.touchfile("thirdparty_build_flags.lua")
+end
 
 --
 -- Gets the library extension for this type of OS.
@@ -62,6 +70,16 @@ local function write_build_flags_to_file()
 	io.writefile(filename, content)
 end
 
+function do_pre_build(lib_name)
+	local tmp_dir = path.join(ember_thirdparty_incremental, lib_name)
+	os.mkdir(tmp_dir)
+	os.chdir(tmp_dir)
+end
+
+function do_post_build(lib_name)
+	os.chdir(path.join("..", ".."))
+end
+
 --
 -- Triggers building all third party libraries.
 --
@@ -78,27 +96,24 @@ local function build()
 		os.mkdir(ember_root_lib)
 	end
 
-	local third_party_libs = {
-	   "thirdparty/glfw.lua",
-	   "thirdparty/EASTL.lua",
-	   "thirdparty/string_id.lua",
-	   "thirdparty/filesystem.lua",
-	   "thirdparty/sol2.lua",
-	   "thirdparty/loguru.lua",
-	};
+	if(not os.isdir(ember_thirdparty_incremental)) then
+		os.mkdir(ember_thirdparty_incremental)
+	end
+
+	local third_party_libs = os.matchfiles(path.join(ember_thirdparty_build, "*.lua"))
 
 	local i = 1
 	local size = #third_party_libs
 
-	-- Execute all the scripts defined in "third_party_libs".
+	-- Execute all the lua scripts defined in "thirdparty_build_scripts".
 	while i <= size do
-	   print("Executing " .. third_party_libs[i]);
-	   if(third_party_libs[i] == nil) then
-	      print(third_party_libs[i] .. " is nil")
-	   else
-	      dofile(third_party_libs[i])
-	   end
-	   i = i + 1
+		local lib_name = path.getbasename(third_party_libs[i])
+		print("Executing " .. third_party_libs[i] .. " for Lib: " .. lib_name);
+		if(third_party_libs[i] ~= nil) then
+	   		dofile(third_party_libs[i])
+	   		do_post_build(lib_name)
+		end
+		i = i + 1
 	end
 
 	write_build_flags_to_file()
@@ -114,6 +129,10 @@ local function clean()
 
 	if(os.isdir(ember_root_lib)) then
 		os.rmdir(ember_root_lib)
+	end
+
+	if(os.isdir(ember_thirdparty_incremental)) then
+		os.rmdir(ember_thirdparty_incremental)
 	end
 end
 
