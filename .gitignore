@@ -9,8 +9,6 @@
 *.log
 *.a
 *.orig
-thirdparty_build_flags.lua
 
-projects/premake/conanpremake.lua
-projects/conan/conaninfo.txt
+projects/premake/incremental_build
 projects/premake/generated_project
