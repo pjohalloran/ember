@@ -23,6 +23,10 @@ local function build()
 		os.exit()
 	end
 
+	if(copy_files("config_impl.hpp", path.join(ember_root_include, lib_name)) == false) then
+		os.exit()
+	end
+
 	lib_include_path = path.join(ember_root_include, lib_name)
 
 	os.mkdir(lib_include_path)
