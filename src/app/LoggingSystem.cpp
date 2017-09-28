@@ -9,7 +9,7 @@
 #include "LoggingSystem.h"
 
 #define LOGURU_IMPLEMENTATION 1
-#include <loguru.hpp>
+#include <loguru/loguru.hpp>
 
 #include <sol.hpp>
 
