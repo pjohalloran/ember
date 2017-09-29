@@ -202,11 +202,18 @@ function do_header_only_lib_copy(lib_name, file_pattern)
 	end
 end
 
+local function string_starts_with(original_string, starts_string)
+   return string.sub(original_string, 1, string.len(starts_string)) == starts_string
+end
+
 local function append_string_if_not_exists(original_string, append_string)
-	if(string.find(original_string, append_string) == nil) then
-		return original_string .. " " .. append_string
+	if(string.find(original_string, append_string, 1, true)) then
+		print("string \"" .. original_string .. "\" does contain " .. append_string)
+		return original_string
 	end
-	return original_string
+
+	print("string \"" .. original_string .. "\" does NOT contain " .. append_string)
+	return original_string .. " " .. append_string
 end
 
 function append_shared_link_flag(flag)
