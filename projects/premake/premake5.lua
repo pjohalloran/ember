@@ -47,18 +47,6 @@ workspace "ember-engine"
          defines { "NDEBUG", "RELEASE" }
          optimize "On"
 
-      filter "system:not windows"
-         prebuildcommands
-         {
-            --"rsync --include '*.h' --filter 'hide,! */' -avm " .. flextGL_src_dir .. " " .. ember_root_include
-         }
-
-      filter "system:windows"
-         prebuildcommands
-         {
-            "" -- TODO: How can i do this on windows using command line? 
-         }
-
    project "Remotery"
       kind "StaticLib"
       language "C"
@@ -77,18 +65,6 @@ workspace "ember-engine"
       filter "configurations:Release"
          defines { "RELEASE" }
          optimize "On"
-
-      filter "system:macosx"
-         prebuildcommands 
-         {
-            --"rsync --include '*.h' --filter 'hide,! */' -avm " .. remotery_src_dir .. " " .. ember_root_include
-         }
-
-      filter "system:windows"
-         prebuildcommands
-         {
-            "" -- TODO: How can i do this on windows using command line? 
-         }
 
    project "ember"
       kind "StaticLib"
@@ -143,18 +119,6 @@ workspace "ember-engine"
          defines
          {
             "TARGET_OS_MAC"
-         }
-         prebuildcommands 
-         {
-            --"rm -Rf " .. path.join(ember_root_include, "ember"),
-            --"rsync --include '*.h' --filter 'hide,! */' -avm " .. ember_root_src .. " " .. ember_root_include,
-            --"mv " .. path.join(ember_root_include, "src") .. " " .. path.join(ember_root_include, "ember")
-         }
-
-      filter "system:windows"
-         prebuildcommands
-         {
-            "" -- TODO: How can i do this on windows using command line? 
          }
 
    project "ember-test"
