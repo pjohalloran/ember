@@ -58,10 +58,6 @@ local function check_for_cmake()
 end
 
 local function write_build_flags_to_file()
-	print(ember_shared_link_flags)
-	print(ember_cpp_flags)
-	print(ember_exe_link_flags)
-
 	local filename = "thirdparty_build_flags.lua"
 	local content = string.format("ember_shared_link_flags = \"%s\"\nember_cpp_flags = \"%s\"\nember_exe_link_flags = \"%s\"\n",
 		ember_shared_link_flags,
@@ -208,32 +204,26 @@ end
 
 local function append_string_if_not_exists(original_string, append_string)
 	if(string.find(original_string, append_string, 1, true)) then
-		print("string \"" .. original_string .. "\" does contain " .. append_string)
 		return original_string
 	end
 
-	print("string \"" .. original_string .. "\" does NOT contain " .. append_string)
 	return original_string .. " " .. append_string
 end
 
 function append_shared_link_flag(flag)
 	ember_shared_link_flags = append_string_if_not_exists(ember_shared_link_flags, flag)
-	print(ember_shared_link_flags)
 end
 
 function append_cpp_flag(flag)
 	ember_cpp_flags = append_string_if_not_exists(ember_cpp_flags, flag)
-	print(ember_cpp_flags)
 end
 
 function append_exe_link_flag(flag)
 	ember_exe_link_flags = append_string_if_not_exists(ember_exe_link_flags, flag)
-	print(ember_exe_link_flags)
 end
 
 function append_lib(flag)
 	ember_libs = append_string_if_not_exists(ember_libs, flag)
-	print(ember_libs)
 end
 
 --
