@@ -100,7 +100,8 @@ workspace "ember-engine"
       sysincludedirs
       {
          ember_root_include,
-         path.join(ember_root_include, "string_id")
+         path.join(ember_root_include, "string_id"),
+         path.join(ember_root_include, "luajit")
       }
       includedirs
       {
