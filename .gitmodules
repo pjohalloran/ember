@@ -22,3 +22,6 @@
 [submodule "src/thirdparty/sol2"]
 	path = src/thirdparty/sol2
 	url = git@github.com:ThePhD/sol2.git
+[submodule "src/thirdparty/luajit"]
+	path = src/thirdparty/luajit
+	url = git@github.com:pjohalloran/luajit.git
