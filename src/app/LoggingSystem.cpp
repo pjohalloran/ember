@@ -11,8 +11,8 @@
 #define LOGURU_IMPLEMENTATION 1
 #include <loguru/loguru.hpp>
 
-#define SOL_USING_CXX_LUA
-#define SOL_USING_CXX_LUAJIT
+//#define SOL_USING_CXX_LUA
+//#define SOL_USING_CXX_LUAJIT
 #include <sol2/sol.hpp>
 
 #include "app/EmberApp.h"

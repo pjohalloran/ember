@@ -9,8 +9,8 @@
 
 #include "app/AbstractSystem.h"
 
-#define SOL_USING_CXX_LUA
-#define SOL_USING_CXX_LUAJIT
+//#define SOL_USING_CXX_LUA
+//#define SOL_USING_CXX_LUAJIT
 #include <sol2/sol.hpp>
 
 namespace ember
