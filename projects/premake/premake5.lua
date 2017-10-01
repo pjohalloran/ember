@@ -145,6 +145,16 @@ workspace "ember-engine"
          path.join(ember_test_dir, "**.h"),
          path.join(ember_test_dir, "**.cpp")
       }
+      sysincludedirs
+      {
+         ember_root_include,
+         path.join(ember_root_include, "string_id"),
+         path.join(ember_root_include, "luajit")
+      }
+      includedirs
+      {
+         ember_root_src
+      }
       location(generated_project_dir)
       targetdir (ember_root_bin)
       libdirs { ember_root_lib }
