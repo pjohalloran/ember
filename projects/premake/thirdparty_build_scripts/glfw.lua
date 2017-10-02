@@ -20,15 +20,15 @@ local function build()
 
 	append_lib(target_lib_name)
 
-	append_shared_link_flag("OpenGL.framework")
-	append_shared_link_flag("Cocoa.framework")
-	append_shared_link_flag("IOKit.framework")
-	append_shared_link_flag("CoreVideo.framework")
+	append_framework_shared_link_flag("OpenGL")
+	append_framework_shared_link_flag("Cocoa")
+	append_framework_shared_link_flag("IOKit")
+	append_framework_shared_link_flag("CoreVideo")
 
-	append_exe_link_flag("OpenGL.framework")
-	append_exe_link_flag("Cocoa.framework")
-	append_exe_link_flag("IOKit.framework")
-	append_exe_link_flag("CoreVideo.framework")
+	append_framework_exe_link_flag("OpenGL")
+	append_framework_exe_link_flag("Cocoa")
+	append_framework_exe_link_flag("IOKit")
+	append_framework_exe_link_flag("CoreVideo")
 
 	do_post_build(lib_name)
 end

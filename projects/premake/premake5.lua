@@ -117,6 +117,7 @@ workspace "ember-engine"
          optimize "On"
 
       filter "system:macosx"
+         frameworkdirs{ "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks" }
          defines
          {
             "TARGET_OS_MAC"
@@ -168,7 +169,12 @@ workspace "ember-engine"
          optimize "On"
 
       filter "system:macosx"
+         frameworkdirs{ "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks" }
          defines
          {
             "TARGET_OS_MAC"
          }
+
+print("ember_libs = " .. ember_libs)
+print("flextgl_lib_name = " .. flextgl_lib_name)
+print("remotery_lib_name = " .. remotery_lib_name)

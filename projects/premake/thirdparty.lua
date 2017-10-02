@@ -57,12 +57,17 @@ local function check_for_cmake()
 	end
 end
 
+local function trim(s)
+  return string.gsub(s, "^%s*(.-)%s*$", "%1")
+end
+
 local function write_build_flags_to_file()
 	local filename = "thirdparty_build_flags.lua"
-	local content = string.format("ember_shared_link_flags = \"%s\"\nember_cpp_flags = \"%s\"\nember_exe_link_flags = \"%s\"\n",
-		ember_shared_link_flags,
-		ember_cpp_flags,
-		ember_exe_link_flags)
+	local content = string.format("ember_shared_link_flags = \"%s\"\nember_cpp_flags = \"%s\"\nember_exe_link_flags = \"%s\"\nember_libs = \"%s\"\n",
+		trim(ember_shared_link_flags),
+		trim(ember_cpp_flags),
+		trim(ember_exe_link_flags),
+		trim(ember_libs))
 	io.writefile(filename, content)
 end
 
@@ -203,6 +208,10 @@ local function string_starts_with(original_string, starts_string)
 end
 
 local function append_string_if_not_exists(original_string, append_string)
+	if (append_string == nil or string.len(append_string) == 0) then
+		return original_string
+	end
+
 	if(string.find(original_string, append_string, 1, true)) then
 		return original_string
 	end
@@ -210,20 +219,41 @@ local function append_string_if_not_exists(original_string, append_string)
 	return original_string .. " " .. append_string
 end
 
-function append_shared_link_flag(flag)
-	ember_shared_link_flags = append_string_if_not_exists(ember_shared_link_flags, flag)
-end
-
+-- buildoptions
 function append_cpp_flag(flag)
 	ember_cpp_flags = append_string_if_not_exists(ember_cpp_flags, flag)
 end
 
+-- linkoptions lib
+function append_shared_link_flag(flag)
+	ember_shared_link_flags = append_string_if_not_exists(ember_shared_link_flags, flag)
+end
+
+-- linkoptions lib (frameworks for OSX)
+function append_framework_shared_link_flag(flag)
+	ember_shared_link_flags = append_string_if_not_exists(ember_shared_link_flags, "-framework " .. flag)
+end
+
+-- linkoptions exe
 function append_exe_link_flag(flag)
 	ember_exe_link_flags = append_string_if_not_exists(ember_exe_link_flags, flag)
 end
 
+-- linkoptions exe (frameworks for OSX)
+function append_framework_exe_link_flag(flag)
+	ember_exe_link_flags = append_string_if_not_exists(ember_exe_link_flags, "-framework " .. flag)
+end
+
+-- libs
 function append_lib(flag)
-	ember_libs = append_string_if_not_exists(ember_libs, flag)
+	-- work around for a bug in premake TODO keep an eye on and revise this.
+	-- on xcode it generates an extra -l before the first library
+	l_flag = "-l"
+	if (string.len(ember_libs) == 0) then
+		l_flag = ""
+	end
+
+	ember_libs = append_string_if_not_exists(ember_libs, l_flag .. flag)
 end
 
 --
