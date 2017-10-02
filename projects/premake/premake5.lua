@@ -176,7 +176,3 @@ workspace "ember-engine"
          {
             "TARGET_OS_MAC"
          }
-
-print("ember_libs = " .. ember_libs)
-print("flextgl_lib_name = " .. flextgl_lib_name)
-print("remotery_lib_name = " .. remotery_lib_name)
