@@ -8,8 +8,8 @@
 -- For building the luajit library.
 --
 
-local lib_name = "luajit"
-local target_lib_name = "lua"
+local lib_name = "lua"
+local target_lib_name = "lua_static"
 local lib_src_dir = path.join(ember_thirdparty_src, lib_name)
 
 local function build()

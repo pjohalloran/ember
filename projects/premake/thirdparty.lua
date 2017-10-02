@@ -269,7 +269,19 @@ newoption {
       { "Debug",    "Debug symbols included" },
       { "RelWithDebInfo",  "Release with some debug info" },
       { "MinSizeRel",  "Small Release" }
-   }
+   },
+   default = "MinSizeRel"
+}
+
+newoption {
+   trigger     = "sol2.Config",
+   value       = "Config",
+   description = "Choose which lua library to link with",
+   allowed = {
+      { "lua",    "Standard Lua" },
+      { "luajit",    "LuaJIT" }
+   },
+   default = "lua"
 }
 
 --
