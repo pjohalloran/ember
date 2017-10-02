@@ -101,7 +101,8 @@ workspace "ember-engine"
       {
          ember_root_include,
          path.join(ember_root_include, "string_id"),
-         path.join(ember_root_include, "luajit")
+         path.join(ember_root_include, "luajit"),
+         path.join(ember_root_include, "lua")
       }
       includedirs
       {
@@ -150,7 +151,8 @@ workspace "ember-engine"
       {
          ember_root_include,
          path.join(ember_root_include, "string_id"),
-         path.join(ember_root_include, "luajit")
+         path.join(ember_root_include, "luajit"),
+         path.join(ember_root_include, "lua")
       }
       includedirs
       {
