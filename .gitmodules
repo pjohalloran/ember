@@ -25,3 +25,6 @@
 [submodule "src/thirdparty/luajit"]
 	path = src/thirdparty/luajit
 	url = git@github.com:pjohalloran/luajit.git
+[submodule "src/thirdparty/lua"]
+	path = src/thirdparty/lua
+	url = git@github.com:LuaDist/lua.git
