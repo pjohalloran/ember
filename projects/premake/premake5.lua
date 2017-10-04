@@ -7,7 +7,7 @@ require 'thirdparty_build_flags'
 flextgl_lib_name = "flextGL"
 flextGL_src_dir = path.join(ember_root_src, flextgl_lib_name)
 remotery_lib_name = "Remotery"
-remotery_src_dir = path.join(ember_root_src, remotery_lib_name)
+remotery_src_dir = path.join(path.join(ember_thirdparty_src, remotery_lib_name), "lib")
 ember_test_dir = path.join(ember_root_src, "ember-test")
 generated_project_dir = "generated_project"
 
@@ -58,6 +58,12 @@ workspace "ember-engine"
       location(generated_project_dir)
       targetdir (ember_root_lib)
 
+      filter "options:API=metal"
+         files 
+         {
+            path.join(remotery_src_dir, "**.mm")
+         }
+
       filter "configurations:Debug"
          defines { "DEBUG" }
          symbols "On"
@@ -100,6 +106,7 @@ workspace "ember-engine"
       sysincludedirs
       {
          ember_root_include,
+         remotery_src_dir,
          path.join(ember_root_include, "string_id"),
          path.join(ember_root_include, "luajit"),
          path.join(ember_root_include, "lua")
@@ -150,6 +157,7 @@ workspace "ember-engine"
       sysincludedirs
       {
          ember_root_include,
+         remotery_src_dir,
          path.join(ember_root_include, "string_id"),
          path.join(ember_root_include, "luajit"),
          path.join(ember_root_include, "lua")

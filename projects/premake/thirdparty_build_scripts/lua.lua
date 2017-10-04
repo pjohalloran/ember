@@ -1,11 +1,11 @@
 #!lua
 
 --
--- @file luajit.lua
+-- @file lua.lua
 -- @author PJ O Halloran
 -- @date 30/09/2017
 --
--- For building the luajit library.
+-- For building the lua library.
 --
 
 local lib_name = "lua"

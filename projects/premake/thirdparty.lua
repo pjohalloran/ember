@@ -284,6 +284,40 @@ newoption {
    default = "lua"
 }
 
+newoption {
+   trigger     = "Remotery.Enabled",
+   value       = "Flag",
+   description = "Is Remotery profiling enabled?",
+   allowed = {
+      { "0",    "Off" },
+      { "1",    "On" }
+   },
+   default = "1"
+}
+
+newoption {
+   trigger     = "Remotery.CudaEnabled",
+   value       = "Flag",
+   description = "Is Remotery CUDA profiling enabled?",
+   allowed = {
+      { "0",    "Off" },
+      { "1",    "On" }
+   },
+   default = "0"
+}
+
+newoption {
+   trigger     = "Remotery.API",
+   value       = "API",
+   description = "Which Graphics API to profile?",
+   allowed = {
+      { "opengl", "OpenGL API" },
+      { "metal", "Metal API" },
+      { "d3d11", "DirectX 11 API" }
+   },
+   default = "opengl"
+}
+
 --
 -- Script ACTIONS
 --
