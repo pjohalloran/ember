@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PREMAKE_DIR="projects/premake/"
+PREMAKE_DIR="projects/"
 
 pushd "${PREMAKE_DIR}"
 

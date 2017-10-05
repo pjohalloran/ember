@@ -11,5 +11,5 @@
 *.orig
 
 thirdparty_build_flags.lua
-projects/premake/incremental_build
-projects/premake/generated_project
+projects/incremental_build
+projects/generated_project

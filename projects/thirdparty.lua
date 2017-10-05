@@ -18,7 +18,7 @@ ember_root_lib = path.join(ember_home, "lib")
 ember_root_src = path.join(ember_home, "src")
 ember_root_bin = path.join(ember_home, "bin")
 ember_thirdparty_src = path.join(ember_home, path.join("src", "thirdparty"))
-ember_thirdparty_project = path.join(path.join(ember_home, "projects"), "premake")
+ember_thirdparty_project = path.join(ember_home, "projects")
 ember_thirdparty_build = path.join(ember_thirdparty_project, "thirdparty_build_scripts")
 ember_thirdparty_incremental = path.join(ember_thirdparty_project, "incremental_build")
 
