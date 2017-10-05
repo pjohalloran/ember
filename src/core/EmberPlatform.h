@@ -55,7 +55,7 @@
 		
 		#define RMT_ENABLED 1
 		#define RMT_USE_OPENGL 1
-		#include "Remotery/Remotery.h"
+		#include "Remotery.h"
 	#endif
 	
 	#include <assert.h>
