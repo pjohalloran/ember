@@ -8,9 +8,9 @@
 -- For building the filesystem library.
 --
 
-local lib_name = "filesystem"
-
 local function build()
+	local lib_name = "filesystem"
+	
 	headers_pattern = path.join(lib_name, "*.h")
 	do_header_only_lib_copy(lib_name, headers_pattern)
 

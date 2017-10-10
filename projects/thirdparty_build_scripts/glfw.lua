@@ -8,11 +8,11 @@
 -- For building the glfw library.
 --
 
-local lib_name = "glfw"
-local target_lib_name = lib_name .. "3"
-local lib_src_dir = path.join(ember_thirdparty_src, lib_name)
-
 local function build()
+	local lib_name = "glfw"
+	local target_lib_name = lib_name .. "3"
+	local lib_src_dir = path.join(ember_thirdparty_src, lib_name)
+
 	do_pre_build(lib_name)
 	
 	os.execute("cmake -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF -DCMAKE_INSTALL_PREFIX:PATH=\"" .. ember_home .. "\" \"" .. lib_src_dir .. "\"")

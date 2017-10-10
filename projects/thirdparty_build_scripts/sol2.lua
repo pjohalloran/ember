@@ -8,9 +8,9 @@
 -- For building the sol2 library.
 --
 
-local lib_name = "sol2"
-
 local function build()
+	local lib_name = "sol2"
+	
 	hpp_dir = path.join("single", "sol")
 	hpp_name = path.join(hpp_dir, "sol.hpp")
 

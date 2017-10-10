@@ -8,10 +8,10 @@
 -- For building the lua library.
 --
 
-local lib_name = "lua"
-local lib_src_dir = path.join(ember_thirdparty_src, lib_name)
-
 local function build()
+	local lib_name = "lua"
+	local lib_src_dir = path.join(ember_thirdparty_src, lib_name)
+
 	if(_OPTIONS["sol2.Config"] ~= lib_name) then
 		return
 	end

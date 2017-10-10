@@ -8,10 +8,10 @@
 -- For building the EASTL library.
 --
 
-local lib_name = "EASTL"
-local lib_src_dir = path.join(ember_thirdparty_src, lib_name)
-
 local function build()
+	local lib_name = "EASTL"
+	local lib_src_dir = path.join(ember_thirdparty_src, lib_name)
+
 	do_pre_build(lib_name)
 
 	os.execute("cmake -DCMAKE_INSTALL_PREFIX:PATH=\"" .. ember_home .. "\" \"" .. lib_src_dir .. "\"")

@@ -8,9 +8,9 @@
 -- For building the loguru library.
 --
 
-local lib_name = "loguru"
-
 local function build()
+	local lib_name = "loguru"
+	
 	do_header_only_lib_copy(lib_name, "loguru.hpp")
 
 	append_shared_link_flag("-std=c++14")
