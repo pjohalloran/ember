@@ -1,6 +1,30 @@
 [submodule "tools/flextGL"]
-	path = tools/flextGL
+	path = src/thirdparty/flextGL
 	url = git@github.com:ginkgo/flextGL.git
 [submodule "tools/Remotery"]
-	path = tools/Remotery
+	path = src/thirdparty/Remotery
 	url = git@github.com:Celtoys/Remotery.git
+[submodule "src/thirdparty/glfw"]
+	path = src/thirdparty/glfw
+	url = git@github.com:glfw/glfw.git
+[submodule "src/thirdparty/loguru"]
+	path = src/thirdparty/loguru
+	url = git@github.com:emilk/loguru.git
+[submodule "src/thirdparty/EASTL"]
+	path = src/thirdparty/EASTL
+	url = git@github.com:electronicarts/EASTL.git
+[submodule "src/thirdparty/filesystem"]
+	path = src/thirdparty/filesystem
+	url = git@github.com:wjakob/filesystem.git
+[submodule "src/thirdparty/string_id"]
+	path = src/thirdparty/string_id
+	url = git@github.com:foonathan/string_id.git
+[submodule "src/thirdparty/sol2"]
+	path = src/thirdparty/sol2
+	url = git@github.com:ThePhD/sol2.git
+[submodule "src/thirdparty/luajit"]
+	path = src/thirdparty/luajit
+	url = git@github.com:pjohalloran/luajit.git
+[submodule "src/thirdparty/lua"]
+	path = src/thirdparty/lua
+	url = git@github.com:LuaDist/lua.git

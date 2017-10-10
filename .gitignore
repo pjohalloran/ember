@@ -1,4 +1,5 @@
-/includes
+/include
+/lib
 /obj
 /bin
 *.suo
@@ -9,6 +10,6 @@
 *.a
 *.orig
 
-projects/premake/conanpremake.lua
-projects/conan/conaninfo.txt
-projects/premake/generated_project
+thirdparty_build_flags.lua
+projects/incremental_build
+projects/generated_project

@@ -4,7 +4,7 @@
  * @date 15/12/2016
  */
 
-#include <loguru.hpp>
+#include <loguru/loguru.hpp>
 
 #include "EmberStringHash.h"
 

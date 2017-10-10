@@ -9,14 +9,6 @@ function should_style_file {
 	filename="${filename%.*}"
 
 	for i in "${file_exts[@]}"; do
-		if [[ $filename == flextGL* ]]; then
-			echo "Skipping $1"
-			return 1
-		fi
-		if [[ $filename == Remotery* ]]; then
-			echo "Skipping $1"
-			return 1
-		fi
 		if [ ".$extension" == "$i" ]; then
 			#echo "$1 is valid"
 			return 0
@@ -33,6 +25,10 @@ function style_files {
 			astyle $file --options=${ASTYLE_CONFIG_FILE} -n
 		fi
 	elif [ -d $1 ]; then
+		if [[ $1 == $curr_dir/src/thirdparty ]]; then
+			echo "Skipping $1"
+			return 0
+		fi
 		for file in $1/*; do
 			style_files $file
 		done

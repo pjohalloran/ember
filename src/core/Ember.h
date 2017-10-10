@@ -17,7 +17,7 @@
 #include <new>
 #include <memory>
 
-#include <loguru.hpp>
+#include <loguru/loguru.hpp>
 
 #include "EmberTypes.h"
 #include "EmberPlatform.h"

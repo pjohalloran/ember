@@ -1,10 +1,10 @@
 #!/bin/sh
 
-PREMAKE_DIR="projects/premake/"
+PREMAKE_DIR="projects/"
 
 pushd "${PREMAKE_DIR}"
 
-premake4 xcode4
+premake5 xcode4
 
 if [ $? -ne 0 ]; then
 	echo "[FAILED] generating project"

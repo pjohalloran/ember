@@ -4,7 +4,9 @@
  * @date 17/12/2016
  */
 
-#include <sol.hpp>
+//#define SOL_USING_CXX_LUA
+//#define SOL_USING_CXX_LUAJIT
+#include <sol2/sol.hpp>
 
 #include "WindowSystem.h"
 

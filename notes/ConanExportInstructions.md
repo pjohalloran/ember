@@ -1,2 +1,0 @@
- - conan export pjohalloran/testing
- - conan upload Hello/0.1@demo/testing

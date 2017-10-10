@@ -12,7 +12,7 @@
 #include "math/Vector4.h"
 #include "math/Matrix4.h"
 
-#include <loguru.hpp>
+#include <loguru/loguru.hpp>
 
 namespace ember
 {

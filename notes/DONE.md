@@ -1,7 +1,6 @@
-- Research conan package manager.
-- Research premake4.
-- Add initial configs for conan & premake.
-- Code styling script
+- Research premake5.
+- Add initial configs for premake.
+- Code styling script.
 
 - Make simple demo opening a window & gl context.
 	- Ability to clone and script installation of initial 3rd party dependancies.
