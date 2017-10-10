@@ -11,7 +11,7 @@ Hobbiyst game programming experiments.
 -- `git clone --recursive git@github.com:pjohalloran/ember.git` or `git clone git@github.com:pjohalloran/ember.git;cd ember;git submodule update --init --recursive`
 - To install and build all third party dependencies, run `. build_scripts\build_dependancies.sh`
 - To generate xcode solution, run `. build_scripts\regen_project.sh`
-- Open the xcode project in `projects\premake\generated_project\` and play.
+- Open the xcode project in `projects\generated_project\` and play.
 
 Currently, an OpenGL 4.1 Core Context is used, for instructions on how to setup ember to be used with a different OpenGL profile, [see](notes/GeneratingOpenGLExtensions.md)
 
