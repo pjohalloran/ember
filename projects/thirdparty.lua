@@ -266,10 +266,13 @@ function append_lib(flag)
 end
 
 function check_platform_supported()
-	if(not os.istarget("windows") or not os.istarget("macosx")) then
-   		print("OS " .. os.getversion().description .. " is not supported by ember right now!")
-   		os.exit(1)
+	if(os.istarget("windows") or os.istarget("macosx")) then
+		-- All Good
+		return
 	end
+   	
+   	print("OS " .. os.getversion().description .. " is not supported by ember right now!")
+   	os.exit(1)
 end
 
 --
