@@ -15,20 +15,34 @@ local function build()
 
 	do_pre_build(lib_name)
 	
-	os.execute("cmake -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF -DCMAKE_INSTALL_PREFIX:PATH=\"" .. ember_home .. "\" \"" .. lib_src_dir .. "\"")
+	local cmake_flags = "-DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF -DCMAKE_INSTALL_PREFIX:PATH=\"" .. ember_home .. "\" \"" .. lib_src_dir .. "\""
+
+	if(os.istarget("windows")) then
+		cmake_flags = cmake_flags .. " USE_MSVC_RUNTIME_LIBRARY_DLL=OFF"
+	end 
+
+	os.execute("cmake " .. cmake_flags)
 	os.execute("cmake --build . --target install")
 
 	append_lib(target_lib_name)
 
-	append_framework_shared_link_flag("OpenGL")
-	append_framework_shared_link_flag("Cocoa")
-	append_framework_shared_link_flag("IOKit")
-	append_framework_shared_link_flag("CoreVideo")
+	if (os.istarget("macosx")) then
+		append_framework_shared_link_flag("OpenGL")
+		append_framework_shared_link_flag("Cocoa")
+		append_framework_shared_link_flag("IOKit")
+		append_framework_shared_link_flag("CoreVideo")
 
-	append_framework_exe_link_flag("OpenGL")
-	append_framework_exe_link_flag("Cocoa")
-	append_framework_exe_link_flag("IOKit")
-	append_framework_exe_link_flag("CoreVideo")
+		append_framework_exe_link_flag("OpenGL")
+		append_framework_exe_link_flag("Cocoa")
+		append_framework_exe_link_flag("IOKit")
+		append_framework_exe_link_flag("CoreVideo")
+	else if(os.istarget("windows")) then
+		-- "glu32" needed ??
+
+		append_framework_shared_link_flag("opengl32")
+
+		append_framework_exe_link_flag("opengl32")
+	end
 
 	do_post_build(lib_name)
 end
