@@ -18,8 +18,11 @@ local function build()
 	append_exe_link_flag("-std=c++14")
 	
 	append_lib("stdc++")
-	append_lib("pthread")
-	append_lib("dl")
+
+	if(not os.istarget("windows")) then
+		append_lib("pthread")
+		append_lib("dl")
+	end
 
 	append_cpp_flag("-std=c++14")
 	append_cpp_flag("-stdlib=libc++")
