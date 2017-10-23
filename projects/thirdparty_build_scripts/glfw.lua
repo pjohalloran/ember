@@ -40,9 +40,7 @@ local function build()
 		append_framework_exe_link_flag("CoreVideo")
 	elseif(os.istarget("windows")) then
 		-- "glu32" needed ??
-		append_framework_shared_link_flag("opengl32")
-
-		append_framework_exe_link_flag("opengl32")
+		append_lib("opengl32")
 	end
 
 	do_post_build(lib_name)

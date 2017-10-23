@@ -36,6 +36,13 @@ local function build()
 		os.exit()
 	end
 
+	if(not os.isdir(ember_root_bin)) then
+		os.mkdir(ember_root_bin)
+	end
+	if(copy_files(path.join(tmp_install_dir, "bin/lua.dll"), ember_root_bin) == false) then
+		os.exit()
+	end
+
 	append_lib(lib_name)
 
 	do_post_build(lib_name)

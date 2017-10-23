@@ -61,6 +61,14 @@ local function trim(s)
   return string.gsub(s, "^%s*(.-)%s*$", "%1")
 end
 
+function flags_string_to_table(flags)
+	local flags_post = {}
+	for word in flags:gmatch("%S+") do
+		table.insert(flags_post, word)
+	end
+	return flags_post
+end
+
 local function write_build_flags_to_file()
 	local filename = "thirdparty_build_flags.lua"
 	local content = string.format("ember_shared_link_flags = \"%s\"\nember_cpp_flags = \"%s\"\nember_exe_link_flags = \"%s\"\nember_libs = \"%s\"\n",
@@ -255,14 +263,18 @@ end
 
 -- libs
 function append_lib(flag)
-	-- work around for a bug in premake TODO keep an eye on and revise this.
-	-- on xcode it generates an extra -l before the first library
-	l_flag = "-l"
-	if (string.len(ember_libs) == 0) then
-		l_flag = ""
-	end
+	if(os.istarget("windows")) then
+		ember_libs = append_string_if_not_exists(ember_libs, "" .. flag .. ".lib")
+	else
+		-- work around for a bug in premake TODO keep an eye on and revise this.
+		-- on xcode it generates an extra -l before the first library
+		l_flag = "-l"
+		if (string.len(ember_libs) == 0) then
+			l_flag = ""
+		end
 
-	ember_libs = append_string_if_not_exists(ember_libs, l_flag .. flag)
+		ember_libs = append_string_if_not_exists(ember_libs, l_flag .. flag)
+	end
 end
 
 function check_platform_supported()

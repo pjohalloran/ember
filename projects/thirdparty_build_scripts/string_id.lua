@@ -16,10 +16,17 @@ local function build()
 	do_pre_build(lib_name)
 
 	os.execute("cmake -DCMAKE_INSTALL_PREFIX:PATH=\"" .. ember_home .. "\" \"" .. lib_src_dir .. "\"")
-	os.execute("cmake --build . --target \"" .. output_lib_name .. "\"")
+	os.execute("cmake --build . --target \"" .. output_lib_name .. "\" --config Release")
 
-	if(copy_files("*." .. lib_ext, ember_root_lib) == false) then
-		os.exit()
+	if(os.istarget("windows")) then
+		-- TODO Fix this path - should be configurable.
+		if(copy_files(path.join("Release", "*." .. lib_ext), ember_root_lib) == false) then
+			os.exit()
+		end
+	else
+		if(copy_files("*." .. lib_ext, ember_root_lib) == false) then
+			os.exit()
+		end
 	end
 
 	lib_include_path = path.join(ember_root_include, lib_name)

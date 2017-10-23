@@ -78,6 +78,8 @@ workspace "ember-engine"
    project "ember"
       kind "StaticLib"
       language "C++"
+      cppdialect "C++14"
+      runtime "Release"
       files
       {
          path.join(ember_root_src, "**.h"),
@@ -96,15 +98,15 @@ workspace "ember-engine"
       location(generated_project_dir)
       linkoptions
       {
-         ember_shared_link_flags
+         flags_string_to_table(ember_shared_link_flags)
       }
       links
       {
-         ember_libs
+         flags_string_to_table(ember_libs)
       }
       buildoptions
       {
-         ember_cpp_flags
+         flags_string_to_table(ember_cpp_flags)
       }
       sysincludedirs
       {
@@ -134,23 +136,29 @@ workspace "ember-engine"
             "TARGET_OS_MAC"
          }
 
+      filter "system:windows"
+         defines
+         {
+            "_WINDOWS",
+            "NOMINMAX"
+         }
+
    project "ember-test"
       kind "ConsoleApp"
       language "C++"
+      cppdialect "C++14"
+      runtime "Release"
       buildoptions
       {
-         ember_cpp_flags
+         flags_string_to_table(ember_cpp_flags)
       }
       links
       {
-         ember_libs,
-         flextgl_lib_name,
-         remotery_lib_name,
-         "ember"
+         flags_string_to_table(ember_libs .. " " .. flextgl_lib_name .. " " .. remotery_lib_name .. " ember")
       }
       linkoptions
       {
-         ember_exe_link_flags
+         flags_string_to_table(ember_exe_link_flags)
       }
       files
       {
@@ -186,4 +194,11 @@ workspace "ember-engine"
          defines
          {
             "TARGET_OS_MAC"
+         }
+
+      filter "system:windows"
+         defines
+         {
+            "_WINDOWS",
+            "NOMINMAX"
          }
