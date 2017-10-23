@@ -3,6 +3,9 @@
 require 'thirdparty'
 require 'thirdparty_build_flags'
 
+-- Checks to see if the platform you are developing on is supported and will exit right away if not.
+check_platform_supported()
+
 -- Directory variables.
 flextgl_lib_name = "flextGL"
 flextGL_src_dir = path.join(ember_root_src, flextgl_lib_name)

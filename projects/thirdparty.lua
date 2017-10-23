@@ -31,7 +31,7 @@ lib_ext = ""
 
 -- ember premake5.lua needs this to exist if it does not already..
 if(not os.isfile("thirdparty_build_flags.lua")) then
-   os.touchfile("thirdparty_build_flags.lua")
+	os.touchfile("thirdparty_build_flags.lua")
 end
 
 --
@@ -156,7 +156,16 @@ function copy_files(file_pattern, target_dir)
 	local size = #matched_files
 
 	while i <= size do
-	   	res, errorString = os.copyfile(matched_files[i], target_dir)
+		if(not os.isfile(matched_files[i])) then
+			print("Failed to copy " .. matched_files[i] .. " to target \"" .. target_dir .. "\"\nReason: File does not exist")
+			os.exit(1)
+		end
+
+		if(os.istarget("windows")) then
+			res, errorString = os.copyfile(matched_files[i], path.join(target_dir, path.getname(matched_files[i])))
+		else
+			res, errorString = os.copyfile(matched_files[i], target_dir)
+		end
 
 		if(res == nil) then
 			print("Failed to copy " .. matched_files[i] .. " to target \"" .. target_dir .. "\"\nReason: " .. errorString)
@@ -254,6 +263,13 @@ function append_lib(flag)
 	end
 
 	ember_libs = append_string_if_not_exists(ember_libs, l_flag .. flag)
+end
+
+function check_platform_supported()
+	if(not os.istarget("windows") or not os.istarget("macosx")) then
+   		print("OS " .. os.getversion().description .. " is not supported by ember right now!")
+   		os.exit(1)
+	end
 end
 
 --
