@@ -10,6 +10,7 @@
 #include <ctime>
 
 #include <chrono>
+#include <functional>
 
 namespace ember
 {
