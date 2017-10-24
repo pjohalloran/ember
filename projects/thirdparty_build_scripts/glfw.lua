@@ -39,7 +39,6 @@ local function build()
 		append_framework_exe_link_flag("IOKit")
 		append_framework_exe_link_flag("CoreVideo")
 	elseif(os.istarget("windows")) then
-		-- "glu32" needed ??
 		append_lib("opengl32")
 	end
 
