@@ -98,7 +98,7 @@ workspace "ember-engine"
       location(generated_project_dir)
       linkoptions
       {
-         flags_string_to_table(ember_shared_link_flags)
+         ember_shared_link_flags
       }
       links
       {
@@ -158,7 +158,7 @@ workspace "ember-engine"
       }
       linkoptions
       {
-         flags_string_to_table(ember_exe_link_flags)
+         ember_exe_link_flags
       }
       files
       {

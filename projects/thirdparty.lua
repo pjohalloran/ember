@@ -266,14 +266,7 @@ function append_lib(flag)
 	if(os.istarget("windows")) then
 		ember_libs = append_string_if_not_exists(ember_libs, "" .. flag .. ".lib")
 	else
-		-- work around for a bug in premake TODO keep an eye on and revise this.
-		-- on xcode it generates an extra -l before the first library
-		l_flag = "-l"
-		if (string.len(ember_libs) == 0) then
-			l_flag = ""
-		end
-
-		ember_libs = append_string_if_not_exists(ember_libs, l_flag .. flag)
+		ember_libs = append_string_if_not_exists(ember_libs, flag)
 	end
 end
 
