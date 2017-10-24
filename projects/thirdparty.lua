@@ -298,6 +298,17 @@ newoption {
 }
 
 newoption {
+   trigger     = "string_id.Config",
+   value       = "Config",
+   description = "Choose which build config to use to build the EASTL library",
+   allowed = {
+      { "Release",    "Release mode" },
+      { "Debug",    "Debug symbols included" }
+   },
+   default = "Release"
+}
+
+newoption {
    trigger     = "sol2.Config",
    value       = "Config",
    description = "Choose which lua library to link with",
