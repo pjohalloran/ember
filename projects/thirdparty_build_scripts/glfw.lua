@@ -18,7 +18,7 @@ local function build()
 	local cmake_flags = "-DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF -DCMAKE_INSTALL_PREFIX:PATH=\"" .. ember_home .. "\" \"" .. lib_src_dir .. "\""
 
 	if(os.istarget("windows")) then
-		cmake_flags = cmake_flags .. " -DUSE_MSVC_RUNTIME_LIBRARY_DLL=OFF"
+		cmake_flags = cmake_flags .. " -DUSE_MSVC_RUNTIME_LIBRARY_DLL=ON"
 	end
 
 	print(cmake_flags)
