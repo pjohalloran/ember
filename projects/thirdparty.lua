@@ -31,7 +31,7 @@ lib_ext = ""
 
 -- ember premake5.lua needs this to exist if it does not already..
 if(not os.isfile("thirdparty_build_flags.lua")) then
-   os.touchfile("thirdparty_build_flags.lua")
+	os.touchfile("thirdparty_build_flags.lua")
 end
 
 --
@@ -59,6 +59,14 @@ end
 
 local function trim(s)
   return string.gsub(s, "^%s*(.-)%s*$", "%1")
+end
+
+function flags_string_to_table(flags)
+	local flags_post = {}
+	for word in flags:gmatch("%S+") do
+		table.insert(flags_post, word)
+	end
+	return flags_post
 end
 
 local function write_build_flags_to_file()
@@ -156,7 +164,16 @@ function copy_files(file_pattern, target_dir)
 	local size = #matched_files
 
 	while i <= size do
-	   	res, errorString = os.copyfile(matched_files[i], target_dir)
+		if(not os.isfile(matched_files[i])) then
+			print("Failed to copy " .. matched_files[i] .. " to target \"" .. target_dir .. "\"\nReason: File does not exist")
+			os.exit(1)
+		end
+
+		if(os.istarget("windows")) then
+			res, errorString = os.copyfile(matched_files[i], path.join(target_dir, path.getname(matched_files[i])))
+		else
+			res, errorString = os.copyfile(matched_files[i], target_dir)
+		end
 
 		if(res == nil) then
 			print("Failed to copy " .. matched_files[i] .. " to target \"" .. target_dir .. "\"\nReason: " .. errorString)
@@ -246,14 +263,21 @@ end
 
 -- libs
 function append_lib(flag)
-	-- work around for a bug in premake TODO keep an eye on and revise this.
-	-- on xcode it generates an extra -l before the first library
-	l_flag = "-l"
-	if (string.len(ember_libs) == 0) then
-		l_flag = ""
+	if(os.istarget("windows")) then
+		ember_libs = append_string_if_not_exists(ember_libs, "" .. flag .. ".lib")
+	else
+		ember_libs = append_string_if_not_exists(ember_libs, flag)
 	end
+end
 
-	ember_libs = append_string_if_not_exists(ember_libs, l_flag .. flag)
+function check_platform_supported()
+	if(os.istarget("windows") or os.istarget("macosx")) then
+		-- All Good
+		return
+	end
+   	
+   	print("OS " .. os.getversion().description .. " is not supported by ember right now!")
+   	os.exit(1)
 end
 
 --
@@ -271,6 +295,17 @@ newoption {
       { "MinSizeRel",  "Small Release" }
    },
    default = "MinSizeRel"
+}
+
+newoption {
+   trigger     = "string_id.Config",
+   value       = "Config",
+   description = "Choose which build config to use to build the EASTL library",
+   allowed = {
+      { "Release",    "Release mode" },
+      { "Debug",    "Debug symbols included" }
+   },
+   default = "Release"
 }
 
 newoption {

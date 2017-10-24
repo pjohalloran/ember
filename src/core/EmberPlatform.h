@@ -24,8 +24,12 @@
 
 #include "flextGL/flextGL.h"
 
-#include <GL/glfw3.h>
+#include <GLFW/glfw3.h>
 #define GLFW_FUNC_PRE GLFWAPI
+
+#define RMT_ENABLED 1
+#define RMT_USE_OPENGL 1
+#include "Remotery.h"
 
 #define STRCPY char *strcpy_s(char *, size_t, const char *);
 
