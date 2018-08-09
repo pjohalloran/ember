@@ -14,9 +14,9 @@ Hobbiyst game programming experiments.
 - Install the latest XCode from the App Store.
 - Clone the repository and get all submodules:
 -- `git clone --recursive git@github.com:pjohalloran/ember.git` or `git clone git@github.com:pjohalloran/ember.git;cd ember;git submodule update --init --recursive`
-- To install and build all third party dependencies, run `. build_scripts\build_dependancies.sh`
-- To generate xcode solution, run `. build_scripts\regen_project.sh`
-- Open the xcode project in `projects\generated_project\`.
+- To install and build all third party dependencies, run `. build_scripts/build_dependancies.sh`
+- To generate xcode solution, run `. build_scripts/regen_project.sh`
+- Open the xcode project in `projects/generated_project/`.
 
 ## On Windows
 - Install premake5 (https://premake.github.io/) and cmake (https://cmake.org/).
