@@ -27,8 +27,6 @@ namespace ember
 				return true;
 			}
 			
-			
-			
 			LOG_F( INFO, "%s initialized", Name );
 			_initialized = true;
 			return true;
