@@ -20,7 +20,7 @@
 #include "app/FileSystem.h"
 #include "app/RenderSystem.h"
 #include "app/ProfilerSystem.h"
-#include "app/ScriptingSystem.h"
+#include "scripting/ScriptingSystem.h"
 
 #include "events/EventSystem.h"
 
@@ -28,10 +28,6 @@ namespace ember
 {
 	namespace app
 	{
-		using namespace ember::core;
-		using namespace ember::math;
-		using namespace ember::events;
-		
 		//
 		// Sub System execution order sorting
 		//
@@ -185,7 +181,7 @@ namespace ember
 		{
 			EmberTimer timer;
 			timer.Start();
-			
+            
 			rmt_BeginCPUSample( VUpdate, 0 );
 			
 			for ( U32 i = 0, size = _systems.size(); i < size; ++i )

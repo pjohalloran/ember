@@ -21,18 +21,24 @@ namespace ember
 	{
 		class EventSystem;
 	}
+    
+    namespace scripting
+    {
+        class ScriptingSystem;
+    }
 	
 	namespace app
 	{
 		using namespace ember::core;
 		using namespace ember::math;
-		
+        using namespace ember::events;
+        using namespace ember::scripting;
+        
 		class WindowSystem;
 		class TimeSystem;
 		class InputSystem;
 		class FileSystem;
 		class RenderSystem;
-		class ScriptingSystem;
 		
 		class EmberApp
 		{
@@ -45,8 +51,8 @@ namespace ember
 				InputSystem *_inputSystem;
 				FileSystem *_fileSystem;
 				RenderSystem *_renderSystem;
-				ScriptingSystem *_scriptSystem;
-				events::EventSystem *_eventSystem;
+                ScriptingSystem *_scriptSystem;
+				EventSystem *_eventSystem;
 				
 				Random *_rng;
 				StringHashDatabase *_stringHashDB;

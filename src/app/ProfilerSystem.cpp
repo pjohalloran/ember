@@ -10,8 +10,6 @@ namespace ember
 {
 	namespace app
 	{
-		using namespace ember::core;
-		
 		const char *ProfilerSystem::Name = "Profiler";
 		
 		bool ProfilerSystem::VInitialize( int argc, char **argv )

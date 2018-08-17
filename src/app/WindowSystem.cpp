@@ -12,7 +12,7 @@
 
 #include "core/EmberPlatform.h"
 #include "app/EmberApp.h"
-#include "app/ScriptingSystem.h"
+#include "scripting/ScriptingSystem.h"
 
 namespace ember
 {
@@ -22,8 +22,6 @@ namespace ember
 		{
 			DLOG_F( ERROR, "GLFW error code = %i, message = %s", error, errorMsg );
 		}
-		
-		using namespace ember::core;
 		
 		const F32 WindowSystem::DPI = 25.4;
 		const char *WindowSystem::Name = "Window";
@@ -69,7 +67,7 @@ namespace ember
 			glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, FLEXT_MAJOR_VERSION );
 			glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, FLEXT_MINOR_VERSION );
 			
-			sol::table windowConfig = Application->Script()->GetConfig( Name );
+            sol::table windowConfig = Application->Script()->GetConfig( Name );
 			
 			bool useDebug = windowConfig["gl_debug"];
 			

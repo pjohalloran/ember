@@ -16,14 +16,12 @@
 #include <sol2/sol.hpp>
 
 #include "app/EmberApp.h"
-#include "app/ScriptingSystem.h"
+#include "scripting/ScriptingSystem.h"
 
 namespace ember
 {
 	namespace app
 	{
-		using namespace ember::core;
-		
 		const char *LoggingSystem::Name = "Logging";
 		
 		bool LoggingSystem::VInitialize( int argc, char **argv )

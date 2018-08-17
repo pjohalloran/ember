@@ -13,8 +13,6 @@ namespace ember
 {
 	namespace app
 	{
-		using namespace ember::core;
-		
 		const char *TimeSystem::Name = "Time";
 		
 		bool TimeSystem::VInitialize( int argc, char **argv )

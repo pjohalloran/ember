@@ -14,8 +14,6 @@ namespace ember
 {
 	namespace app
 	{
-		using namespace ember::core;
-		
 		const char *RenderSystem::Name = "Render";
 		
 		bool RenderSystem::VInitialize( int argc, char **argv )

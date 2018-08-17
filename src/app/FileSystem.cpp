@@ -12,9 +12,6 @@ namespace ember
 {
 	namespace app
 	{
-		using namespace ember::core;
-		using namespace filesystem;
-		
 		const char *FileSystem::Name = "File";
 		
 		bool FileSystem::VInitialize( int argc, char **argv )
@@ -25,7 +22,7 @@ namespace ember
 				return true;
 			}
 			
-			_exePath = path::getcwd();
+            _exePath = filesystem::path::getcwd();
 			DLOG_F( INFO, "FileSystem using ExePath = %s", _exePath.str().c_str() );
 			
 			LOG_F( INFO, "%s initialized", Name );

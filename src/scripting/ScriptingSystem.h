@@ -15,8 +15,11 @@
 
 namespace ember
 {
-	namespace app
+	namespace scripting
 	{
+        using namespace ember::core;
+        using namespace ember::app;
+        
 		class ScriptingSystem : public AbstractSystem
 		{
 			private:

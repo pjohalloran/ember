@@ -20,8 +20,6 @@ namespace ember
 {
 	namespace app
 	{
-		using namespace ember::core;
-		
 		//
 		// GLFW Input callbacks
 		//

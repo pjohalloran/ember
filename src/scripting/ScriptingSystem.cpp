@@ -8,7 +8,7 @@
 
 namespace ember
 {
-	namespace app
+	namespace scripting
 	{
 		using namespace ember::core;
 		
