@@ -10,7 +10,7 @@
 
 namespace ember
 {
-	namespace app
+	namespace file
 	{
 		const char *FileSystem::Name = "File";
 		

@@ -17,7 +17,7 @@
 #include "app/TimeSystem.h"
 #include "input/InputSystem.h"
 #include "app/LoggingSystem.h"
-#include "app/FileSystem.h"
+#include "file/FileSystem.h"
 #include "app/RenderSystem.h"
 #include "app/ProfilerSystem.h"
 #include "scripting/ScriptingSystem.h"

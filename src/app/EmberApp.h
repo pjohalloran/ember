@@ -32,6 +32,11 @@ namespace ember
         class InputSystem;
     }
     
+    namespace file
+    {
+        class FileSystem;
+    }
+    
 	namespace app
 	{
 		using namespace ember::core;
@@ -39,10 +44,10 @@ namespace ember
         using namespace ember::events;
         using namespace ember::scripting;
         using namespace ember::input;
+        using namespace ember::file;
         
 		class WindowSystem;
 		class TimeSystem;
-		class FileSystem;
 		class RenderSystem;
 		
 		class EmberApp

@@ -13,7 +13,9 @@
 
 namespace ember
 {
-	namespace app
+    using namespace ember::app;
+    
+	namespace file
 	{
 		class FileSystem : public AbstractSystem
 		{
@@ -24,7 +26,9 @@ namespace ember
 				filesystem::path _exePath;
 				
 			public:
+            
 				FileSystem( I32 initPriority, I32 updatePriority ) : AbstractSystem( initPriority, updatePriority ), _exePath() { };
+            
 				virtual ~FileSystem() { }
 				
 				virtual bool VInitialize( int argc, char **argv );
