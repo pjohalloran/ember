@@ -15,7 +15,7 @@
 
 #include "app/WindowSystem.h"
 #include "app/TimeSystem.h"
-#include "app/InputSystem.h"
+#include "input/InputSystem.h"
 #include "app/LoggingSystem.h"
 #include "app/FileSystem.h"
 #include "app/RenderSystem.h"

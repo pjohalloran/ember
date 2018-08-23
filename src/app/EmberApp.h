@@ -27,16 +27,21 @@ namespace ember
         class ScriptingSystem;
     }
 	
+    namespace input
+    {
+        class InputSystem;
+    }
+    
 	namespace app
 	{
 		using namespace ember::core;
 		using namespace ember::math;
         using namespace ember::events;
         using namespace ember::scripting;
+        using namespace ember::input;
         
 		class WindowSystem;
 		class TimeSystem;
-		class InputSystem;
 		class FileSystem;
 		class RenderSystem;
 		

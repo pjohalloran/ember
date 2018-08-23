@@ -17,15 +17,12 @@ namespace ember
 {
 	namespace input
 	{
-		class IKeyboardListener;
-		class IMouseListener;
-		class IGamepadListener;
-	}
-	
-	namespace app
-	{
-		using namespace ember::input;
+		using namespace ember::app;
 		using namespace ember::math;
+        
+        class IKeyboardListener;
+        class IMouseListener;
+        class IGamepadListener;
 		
 		class InputSystem : public AbstractSystem
 		{
