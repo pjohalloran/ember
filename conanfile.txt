@@ -1,0 +1,21 @@
+[requires]
+glfw/3.4
+eastl/3.21.23
+lua/5.4.7
+sol2/3.3.1
+# Note: loguru might need to be added via FetchContent if not in Conan Center
+# You can also use luajit instead of lua by changing the requirement
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[options]
+# GLFW options
+glfw/*:shared=False
+
+# EASTL options (if any customization needed)
+# eastl/*:option=value
+
+[layout]
+cmake_layout
