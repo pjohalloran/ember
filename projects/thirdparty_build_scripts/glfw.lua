@@ -23,8 +23,8 @@ local function build()
 
 	print(cmake_flags)
 
-	os.execute("cmake " .. cmake_flags)
-	os.execute("cmake --build . --target install")
+	execute_or_fail("cmake " .. cmake_flags, "Failed to configure " .. lib_name .. " with CMake")
+	execute_or_fail("cmake --build . --target install", "Failed to build " .. lib_name)
 
 	append_lib(target_lib_name)
 
