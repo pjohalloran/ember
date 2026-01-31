@@ -51,10 +51,28 @@ end
 local function check_for_cmake()
 	res = os.execute("cmake --version")
 
-	if(res == nil) then
+	if(res ~= 0) then
 		print("cmake is not installed and is required in order to build the third party dependacies!\ncmake can be found at: \"https://cmake.org\"")
 		os.exit(1)
 	end
+end
+
+--
+-- Execute a command and exit with error if it fails.
+--
+-- @param cmd The command to execute
+-- @param error_msg Optional error message to display on failure
+--
+function execute_or_fail(cmd, error_msg)
+	local ret = os.execute(cmd)
+	if ret ~= 0 then
+		if error_msg then
+			print("ERROR: " .. error_msg)
+		end
+		print("Command failed with exit code " .. tostring(ret) .. ": " .. cmd)
+		os.exit(1)
+	end
+	return ret
 end
 
 local function trim(s)
@@ -81,7 +99,7 @@ end
 
 function do_pre_build(lib_name)
 	local tmp_dir = path.join(ember_thirdparty_incremental, lib_name)
-	os.mkdir(tmp_dir)
+	safe_mkdir(tmp_dir)
 	os.chdir(tmp_dir)
 end
 
@@ -98,15 +116,15 @@ local function build()
 	lib_ext = get_lib_ext()
 
 	if(not os.isdir(ember_root_include)) then
-		os.mkdir(ember_root_include)
+		safe_mkdir(ember_root_include)
 	end
 
 	if(not os.isdir(ember_root_lib)) then
-		os.mkdir(ember_root_lib)
+		safe_mkdir(ember_root_lib)
 	end
 
 	if(not os.isdir(ember_thirdparty_incremental)) then
-		os.mkdir(ember_thirdparty_incremental)
+		safe_mkdir(ember_thirdparty_incremental)
 	end
 
 	local third_party_libs = os.matchfiles(path.join(ember_thirdparty_build, "*.lua"))
@@ -186,6 +204,27 @@ function copy_files(file_pattern, target_dir)
 end
 
 --
+-- Creates a directory and exits with error if it fails.
+--
+-- @param dir_path The directory path to create
+--
+function safe_mkdir(dir_path)
+	if os.isdir(dir_path) then
+		return true
+	end
+
+	local success, err = os.mkdir(dir_path)
+	if not success then
+		print("ERROR: Failed to create directory: " .. dir_path)
+		if err then
+			print("Reason: " .. err)
+		end
+		os.exit(1)
+	end
+	return success
+end
+
+--
 -- Common helper function to copy files matching a file pattern
 -- AND create the target directory if it does not yet exist.
 -- e.g.
@@ -196,7 +235,7 @@ end
 --
 function copy_files_to_new_directory(file_pattern, target_dir)
 	if(not os.isdir(target_dir)) then
-		os.mkdir(target_dir)
+		safe_mkdir(target_dir)
 	end
 
 	return copy_files(file_pattern, target_dir)
@@ -213,7 +252,7 @@ function do_header_only_lib_copy(lib_name, file_pattern)
 
 	local lib_include_path = path.join(ember_root_include, lib_name)
 
-	os.mkdir(lib_include_path)
+	safe_mkdir(lib_include_path)
 
 	if(copy_files(path.join(lib_src_dir, file_pattern), lib_include_path) == false) then
 		os.exit()

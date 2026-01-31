@@ -14,8 +14,8 @@ local function build()
 
 	do_pre_build(lib_name)
 
-	os.execute("cmake -DCMAKE_INSTALL_PREFIX:PATH=\"" .. ember_home .. "\" \"" .. lib_src_dir .. "\"")
-	os.execute("cmake --build . --target install --config " .. _OPTIONS["EASTL.Config"])
+	execute_or_fail("cmake -DCMAKE_INSTALL_PREFIX:PATH=\"" .. ember_home .. "\" \"" .. lib_src_dir .. "\"", "Failed to configure " .. lib_name .. " with CMake")
+	execute_or_fail("cmake --build . --target install --config " .. _OPTIONS["EASTL.Config"], "Failed to build " .. lib_name)
 
 	append_lib(lib_name)
 

@@ -21,13 +21,13 @@ local function build()
 
 	local tmp_install_dir = path.join(os.getcwd(), "tmp_install")
 
-	os.mkdir(tmp_install_dir)
+	safe_mkdir(tmp_install_dir)
 
-	os.execute("cmake -DCMAKE_INSTALL_PREFIX:PATH=\"" .. tmp_install_dir .. "\" \"" .. lib_src_dir .. "\"")
-	os.execute("cmake --build . --target install")
+	execute_or_fail("cmake -DCMAKE_INSTALL_PREFIX:PATH=\"" .. tmp_install_dir .. "\" \"" .. lib_src_dir .. "\"", "Failed to configure " .. lib_name .. " with CMake")
+	execute_or_fail("cmake --build . --target install", "Failed to build " .. lib_name)
 
 	local lib_include_path = path.join(ember_root_include, lib_name)
-	os.mkdir(lib_include_path)
+	safe_mkdir(lib_include_path)
 
 	if(copy_files(path.join(tmp_install_dir, "include/*"), lib_include_path) == false) then
 		os.exit()

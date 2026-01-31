@@ -20,8 +20,15 @@ local function build()
 	local src_location = path.join(lib_src_dir, "lib")
 	
 	local custom_header_file_name = path.join(src_location, "Remotery.h")
-	
-	local f = io.open(custom_header_file_name, "r")
+
+	local f, err = io.open(custom_header_file_name, "r")
+	if not f then
+		print("ERROR: Failed to open " .. custom_header_file_name .. " for reading")
+		if err then
+			print("Reason: " .. err)
+		end
+		os.exit(1)
+	end
  	local content = f:read("*all")
  	f:close()
 
@@ -50,7 +57,14 @@ local function build()
 	content = string.gsub(content, "#define RMT_USE_D3D11 0", string.format("#define RMT_USE_D3D11 %s", enable_d3d11_profiling))
 	content = string.gsub(content, "#define RMT_USE_METAL 0", string.format("#define RMT_USE_METAL %s", enable_metal_profiling))
 
-	local f = io.open(custom_header_file_name, "w")
+	local f, err = io.open(custom_header_file_name, "w")
+	if not f then
+		print("ERROR: Failed to open " .. custom_header_file_name .. " for writing")
+		if err then
+			print("Reason: " .. err)
+		end
+		os.exit(1)
+	end
 	f:write(content)
 	f:close()
 end
